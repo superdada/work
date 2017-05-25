@@ -1,0 +1,16 @@
+com\work\spark\xml\InitTableApp.class
+com\work\spark\OneObjectData.class
+com\work\spark\xml\DateUtil.class
+com\work\spark\xml\TableUtil.class
+com\work\spark\xml\Schema.class
+com\work\spark\MainRunner.class
+com\work\spark\xml\AppMain.class
+com\work\spark\xml\bean\MroDetailBean.class
+com\work\spark\xml\XmlParser.class
+com\work\spark\xml\bean\MreHeaderBean.class
+com\work\spark\MainRunner$1.class
+com\work\spark\xml\bean\MroHeaderBean.class
+com\work\spark\xml\bean\MreDetailBean.class
+com\work\spark\EncryptUtil.class
+com\work\spark\ReadSaxHandler.class
+com\work\spark\xml\HadoopUtils.class

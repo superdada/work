@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spark_read-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/spark-read/target/spark_read-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

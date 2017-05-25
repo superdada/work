@@ -1,0 +1,8 @@
+2017-05-23 10:06:55  [ main:0 ] - [ ERROR ]  Have no args, you should add YYYYMM
+2017-05-23 10:34:20  [ main:0 ] - [ ERROR ]  Have no args, you should add YYYYMM
+2017-05-23 14:30:26  [ main:0 ] - [ ERROR ]  error reading city_code.txt
+2017-05-23 14:30:26  [ main:7 ] - [ ERROR ]  error reading city_code.txt
+2017-05-23 14:31:07  [ main:0 ] - [ ERROR ]  error reading city_code.txt
+2017-05-23 14:31:07  [ main:5 ] - [ ERROR ]  error reading city_code.txt
+2017-05-23 14:35:28  [ main:0 ] - [ ERROR ]  error reading city_code.txt
+2017-05-23 14:35:28  [ main:8 ] - [ ERROR ]  error reading city_code.txt

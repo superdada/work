@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>magic lake CDN日志分析系统</title>
+    <!-- js库引入 -->
+    <script type="text/javascript" src="./js/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/libs/vue-1.0.min.js"></script>
+    <script src="./js/libs/bootstrap.min.js"></script>
+    <!-- 私有js文件引入 -->
+    <!-- bootstrap样式库引入 -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- 私有样式引入 -->
+    <link href="./css/mycss/icon/iconfont.css" rel="stylesheet"/>
+    <link href="./css/mycss/icon1/iconfont-logo.css" rel="stylesheet"/>
+    <link href="./css/mycss/cdn.css" rel="stylesheet" type="text/css"/>
+    <!-- 开关控件引入 -->
+    <link rel="stylesheet" type="text/css" href="switch/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="switch/css/htmleaf-demo.css">
+    <link rel="stylesheet" href="switch/css/default.css">
+    <link rel="stylesheet" href="switch/dist/switch.css">
+    <script src="switch/js/highlight.pack.js"></script>
+    <script src="switch/dist/switch.js"></script>
+    <!-- 测试数据引入 -->
+    <script src="./testData/itemsData.js"></script>
+
+    <script>
+        /**
+         * @type: // 请求配置（无配置默认请求所有库文件）
+         * @动态库(reqLibraries)有：['jQuery', 'ext', 'd3', 'eCharts', 'highCharts']
+         * @插件(reqPlugins)有：['bootstrap', 'highCharts3d']
+         *   requireConfig = {
+         *      navScript: string,  // 动态库的nav文件
+         *      libBaseURL: string, // 动态库根路径 （默认通过nav去寻找）
+         *      reqLibraries: Array, // 需要请求的动态库
+         *      reqPlugins: Array, // 需要请求的插件
+         *      libVersions: {}, // 多个版本切换 （请保持目录结构一致）
+         *		versionURL: win.versionURL, // 系统版本库地址
+         *		useMask: boolean, // 是否启动时显示遮罩，默认为true
+         *      style: { // ext多种样式切换
+         *          extStyle || 'triton' // aria/classic/crisp/gray/neptune/triton
+         *      }
+         *   }
+         **/
+        var AppBase = "<%=AppBase%>";
+        var baseURL = AppBase+"/web/module/index"; // 模块根目录
+
+        var requireConfig = {
+            userMask: false,
+            reqLibraries: ['ext', 'jQuery', baseURL+"/event.js"],
+            reqPlugins: []
+        };
+    </script>
+</head>
+
+<body >
+
+<div class="my-header">
+    <div ><img src="images/logo_1.png" class="my-logo1" /></div>
+    <div id="xingnengkuaizhao" class="my-header-item-selected">性能快照</div>
+    <div class="my-header-item">实时监控</div>
+    <div class="my-header-item">分析报表</div>
+    <div class="my-header-item">告警报表</div>
+    <div class="my-header-item">日志管理</div>
+    <div class="my-header-item">我的账号</div>
+</div>
+
+<div id="loading">
+    <div class="progress my-progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        </div>
+    </div>
+</div>
+
+<div id="vm" >
+    <div class="my-switch-box">
+        <div class="my-switch-item">
+            <div class= "my-switch-text">维度 :</div>
+            <ul class="my-switch-options">
+                <li  v-bind:class="{ 'my-options-on': curr_dimension==='data_center', 'my-options-off': curr_dimension !='data_center' }">数据中心</li>
+                <li  v-bind:class="{ 'my-options-on': curr_dimension==='ICP', 'my-options-off': curr_dimension !='ICP' }">ICP</li>
+            </ul>
+        </div>
+        <div class="my-switch-item">
+            <div class= "my-switch-text">指标 :</div>
+            <ul class="my-switch-options">
+                <li v-for="index in indexes" v-bind:class="{ 'my-options-on': curr_index == index.type, 'my-options-off': curr_index != index.type}">{{index.text}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="my-show-box">
+        <ul class=" my-list-titles my-list-row">
+            <li v-for="title in list_titles"><p>{{title}}</p></li>
+        </ul>
+        <ul class="my-list-items">
+            <li v-for="(index,item) in items"><ul class="my-list-row">
+                <li >{{item.name}}</li>
+                <li>{{item.belong_to}}</li>
+                <li ><ul>
+                    <li v-for="index in item.indexes" v-on:click="moreinfo(item.id, index.time)" >
+                        <div v-show="index.type === 'danger'" class="my-state-block state-danger"></div>
+                        <div v-show="index.type === 'warning'" class="my-state-block state-warning"></div>
+                        <div v-show="index.type === 'normal'" class="my-state-block state-normal"></div>
+                        <div v-show="index.type === 'null'" class="my-state-block state-null"></div>
+                    </li>
+                </ul></li>
+                <li>{{(item.indexes)[23].time}}</li>
+                <li  style="float:right"><span class="glyphicon glyphicon-share my-icons my-icons-on" aria-hidden="true"></span></il>
+                <li  style="float:right"><span class="glyphicon glyphicon-download-alt my-icons my-icons-on" aria-hidden="true"></span></il>
+                <li  v-on:click="changeState('alarm',item.id, item.monitor_flag, item.alarm_flag, index)" style="float:right"><span class="glyphicon glyphicon-bell my-icons my-icons-on" v-bind:class="{ 'my-icons-on': item.alarm_flag, 'my-icons-off': (!item.alarm_flag) }" aria-hidden="true"></span></il>
+                <li  v-on:click="changeState('monitor',item.id, item.monitor_flag, item.alarm_flag, index)" style="margin-right:5px;float:right"><input type="checkbox" class="demo-default-1" /></li>
+            </ul></li>
+        </ul>
+        <ul class="my-time-line">
+            <li v-for="timePoint in timeLine" class="my-time-point">
+                <div class="my-triangle-up"></div>
+                <div class="my-time-text">{{timePoint}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+    <script type="text/javascript">
+$(function () {
+    /*==============时间控件===============*/
+/*    initVM(__itemsData);
+    setTimeout( function(){
+    $('#loading').hide();}, 1 * 1000 );*/
+
+    /*初始化页面vm*/
+    $.getJSON("/api/data'", { 'dimension' : 'data_center', 'index' : 'healthy'}, function (Response) {
+        initVM(Response.data);
+        $('#loading').hide();
+    });
+});
+
+function initVM(_itemsData) {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            /*查询条件相关配置*/
+            dimensions : [{'type':'data_center', 'text': '数据中心'},{'type':'ICP', 'text': 'ICP'}],
+            indexes : [{'type':'healthy', 'text': '健康度'},{'type':'hit_rate', 'text': '命中率'},{'type':'data_rate', 'text': '速率'}],
+            curr_dimension : 'data_center',//当前维度类型，枚举值{'data_center', 'ICP'}
+            curr_index : 'healthy',//当前指标类型，枚举值{'healthy', 'hit_rate', 'data_rate'}
+            list_titles : ['数据中心', '地市', '最近24小时状态', '最近监测时间'],
+            /*信息窗口相关配置*/
+            items : _itemsData, // 信息窗口对象
+            timeLine : getTimeLine(_itemsData[0].indexes), 
+            mySwitchs : [],
+        },
+        ready: function () {
+            for (var i = 0; i < this.items.length; i++) {
+                var q = i+1;
+                var _lac = '.my-list-items>li:nth-child('+q+')>ul>li:nth-child(8)>input';
+                _id = 'my-Switch-' + i;
+                document.querySelector(_lac).id = _id
+                var mySwitch = new Switch(document.querySelector('#'+_id), {size: 'small',  showText: true,onText: ' ',offText: 'X',
+                            checked : this.items[i].monitor_flag});
+                this.mySwitchs[i]  = mySwitch;
+            };
+        },
+        methods : {
+            moreinfo : function(_id, _time ) {
+            $(window).trigger('event_moreinfo', [ vm.$data.curr_dimension, _id, _time]);
+            },
+            changeState : function(_type, _id, _monitorFlag, _alarmFlag, _index) {
+                alert(_type);
+                if (_type=='monitor') {
+                    _monitorFlag = !_monitorFlag;
+                    this.items[_index].monitor_flag = _monitorFlag;
+                    alert(_monitorFlag);
+                } else if (_type=='alarm') {
+                    _alarmFlag = ! _alarmFlag;
+                    this.items[_index].alarm_flag = _alarmFlag;
+                    alert(_alarmFlag);
+                } else
+                    return 0;
+/*                $.postJSON('/api/control',{
+                    'monitor_flag' : false, //监控标示位
+                    'alarm_flag' : true,//报警标示位
+                    'curr_dimension' : vm.$data.curr_dimension,//当前维度
+                    'id' : ''//目标id
+                },function (Response) {
+
+                })*/
+            },
+        }
+    });
+    $('#vm').show();
+}
+
+function getTimeLine(_indexes) {
+    var timeLine = [];
+    var j = 0 ;
+    for (var i = 2 ; i < _indexes.length; i = i + 3) {
+        timeLine[j] =  _indexes[i].time.substring(5) ;
+        j = j+1;
+    };
+    return timeLine;
+}
+/*function getItemIndex(_id) {
+    var timeLine = [];
+    var j = 0 ;
+    for (var i = 2 ; i < _indexes.length; i = i + 3) {
+        timeLine[j] =  _indexes[i].time.substring(5) ;
+        j = j+1;
+    };
+    return timeLine;
+}*/
+
+    </script>
+    <!--链接文件导航-->
+    <script data-main="web/lib/nav.min" src="web/lib/RequireJS/require-2.3/require.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+package cn.com.ailbb.Dao;
+
+import com.cloudera.impala.sqlengine.aeprocessor.aetree.relation.AEProject;
+import org.apache.commons.collections.MapUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import cn.com.ailbb.util.*;
+/**
+ * Created by xzl on 2017/5/17.
+ */
+@Repository
+public class TroubleShootingDaoImpl  implements  TroubleShootingDao{
+
+    @Autowired
+    JdbcTemplate jdbcTemplateVertica;
+    private static String dbName = "shcdn.";//数据库名称
+
+    @Override
+    public List<Map<String,Object>> getErrCodeRate(Map<String, String> map) {
+        String sql = getSelSql(map);
+        return jdbcTemplateVertica.queryForList( sql);
+    }
+
+
+    //根据查询条件获取查询SQL
+    public String getSelSql(Map<String, String> map) {
+        String dimension = MapUtils.getString(map, "dimension", "");//维度
+        String dc_city = map.get("dc_city");//地市
+        String dc_id = map.get("dc_id");//数据中心编号
+        String dc_name = map.get("dc_name");//数据中心名称
+        String icp_id = map.get("icp_id");//ICP编号
+        String icp_name = map.get("icp_name");//ICP名称
+        String server_address = map.get("server_address");//服务器
+        String ttime = map.get("ttime");//查询的时间点
+        //String orderStr = DataUtil.getString(map, "orderStr", "ttime");//排序指标
+        String orderStr = (map.get("orderStr")==null || map.get("orderStr").length() == 0 )?"ttime":map.get("orderStr").toString();
+       // String limitStr = MapUtil.getString(map, "limit");
+        String limitStr = map.get("limit")!=null? map.get("limit").toString():null;
+        int limit = DataUtil.checkObj(limitStr) ? DataUtil.StringToInt(limitStr) : 150;
+        String selql = " select " + orderStr + "*100 as \"value\"," +
+                //"hit_rate as \"hit_rate\"," +
+                //"useable_rate as \"useable_rate\","+
+                "ttime AS \"ttime\",{:selectPart}" +
+                " FROM {:tableName} WHERE 1=1 {:otherPart} ";
+        if (DataUtil.checkStr(dc_city)) {
+            selql += " and (dc_city = '" + dc_city + "' or dc_city = '" + dc_city + "市')";
+        }
+        if (DataUtil.checkStr(dc_id)) {
+            selql += " AND dc_id ='" + dc_id + "'";
+        }
+        if (DataUtil.checkStr(dc_name)) {
+            selql += " AND dc_name ='" + dc_name + "'";
+        }
+        if (DataUtil.checkStr(icp_id)) {
+            selql += " AND icp_id ='" + icp_id + "'";
+        }
+        if (DataUtil.checkStr(icp_name)) {
+            selql += " AND icp_name ='" + icp_name + "'";
+        }
+        if (DataUtil.checkStr(server_address)) {
+            selql += " AND server_address ='" + server_address + "'";
+        }
+        if (DataUtil.checkStr(ttime)) {
+            selql += " AND ttime ='" + ttime + "'";
+        }
+        selql += " AND " + orderStr + " is not null ";
+        //添加CDN/CACHE/ALL过滤条件
+        selql+=" and cache_cdn in("+(MapUtils.getString(map, "cache_cdn")==null?"'ALL',NULL)":"'"+MapUtils.getString(map, "cache_cdn")+"')");
+
+        selql += " order by " + orderStr + " limit " + limit + " ";//默认限制150条
+        Map<String, String> confMap = getSelectConf(map);
+        selql = selql.replace("{:selectPart}", confMap.get("selectPart"));
+        selql = selql.replace("{:tableName}", confMap.get("tableName"));
+        selql = selql.replace("{:otherPart}", confMap.get("otherPart"));
+        return selql;
+    }
+
+    //根据查询条件匹配表名,查询字段等信息
+    public Map<String, String> getSelectConf(Map<String, String> map) {
+        String timeType = map.get("timeType");//时间类型 2:小时,3:天,4:周,5:月
+        String dimension = MapUtils.getString(map, "dimension", "");//维度
+        String tableName = dbName + "r_report_" + timeType;//表名
+        String selectPart = "";//查询的其他条件
+        String otherPart = "";//查询的其他限制
+        if ("domain".equals(dimension)) { //域名维度
+            tableName += "2200";
+            selectPart += " icp_id AS \"icp_id\",icp_name AS \"icp_name\",icp_address as \"icp_address\"," +
+                    " domain_name as \"y_name\",domain_name as \"id\" ";
+            otherPart += " AND  domain_name is not null ";
+        } else if ("server".equals(dimension)) { //ICP服务器维度
+            tableName += "3100";
+            selectPart += " dc_city AS \"dc_city\",dc_name AS \"dc_name\",dc_id AS \"dc_id\"," +
+                    " server_address as \"y_name\",server_address as \"id\" ";
+            otherPart += " AND  server_address is not null ";
+        }
+        Map<String, String> confMap = new HashMap<String, String>();
+        confMap.put("tableName", tableName);
+        confMap.put("selectPart", selectPart);
+        confMap.put("otherPart", otherPart);
+        return confMap;
+    }
+}

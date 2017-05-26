@@ -11,19 +11,20 @@ import java.sql.SQLException;
  * Created by wang on 2017/5/24.
  */
 public class HandleHive {
-    private static final String driverName = "org.apache.hive.jdbc.HiveDriver";
-    private String hiveconnectionString;
+    private String driverName;
+    private String connectionString;
     private Connection connection;
 
     private static Logger logger = Logger.getLogger(HandleHive.class);
-    public HandleHive(String hiveconnectionString,String userName,String password){
-        this.hiveconnectionString = hiveconnectionString;
+    public HandleHive(String driverName,String connectionString,String userName,String password){
+        this.driverName = driverName;
+        this.connectionString = connectionString;
 
         try{
             Class.forName(driverName);
-            connection = DriverManager.getConnection(hiveconnectionString,userName,password);
+            connection = DriverManager.getConnection(connectionString,userName,password);
         }catch (ClassNotFoundException e){
-            logger.error("org.apache.hive.jdbc.HiveDriver not found");
+            logger.error("driver not found");
             e.printStackTrace();
         }catch (SQLException e){
             logger.error("getConnection error");

@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="cdn:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/cdn_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="cdn/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="cdn" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="commons" />
+          <element id="library" level="project" name="log" />
+          <element id="library" level="project" name="util" />
+          <element id="library" level="project" name="mybatis" />
+          <element id="library" level="project" name="shiro" />
+          <element id="library" level="project" name="spring" />
+          <element id="library" level="project" name="connection" />
+          <element id="library" level="project" name="servlet" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

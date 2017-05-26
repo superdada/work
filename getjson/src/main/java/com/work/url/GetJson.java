@@ -45,10 +45,13 @@ public class GetJson {
         getResult();
 
         //使用JDBC接口在hive中执行SQL语句，以便创建表和分区，为了防止同一月份重新导入的情况，每次创建分区之前要删除分区
-        executeSQL();
+        executeSQL("hive");
 
         //将resultString写入对应月份的分析下，从而完成数据入hive
         writeToHDFS();
+
+        //写入后，在impala刷新元数据，以便更新
+        executeSQL("impala");
     }
 
     private void writeToHDFS(){
@@ -56,12 +59,20 @@ public class GetJson {
         hdfsio.WriteFile(getConf.hdfs+getLocation(),resultString.toString(),getConf.hadoopUserName);
     }
 
-    private void executeSQL(){
-        handleHive = new HandleHive(getConf.hiveconnectionString,getConf.hadoopUserName,"");
-        handleHive.executeSQL(createTableSQL);
-        handleHive.executeSQL(getConf.dropPartition.replace("YYYYMM",monthString));
-        handleHive.executeSQL(getConf.addPartition.replace("YYYYMM",monthString));
-        handleHive.closeConnection();
+    private void executeSQL(String sqltype){
+        if(sqltype == "hive"){
+            handleHive = new HandleHive(getConf.hivedriverName,getConf.hiveconnectionString,getConf.hadoopUserName,"");
+            handleHive.executeSQL(createTableSQL);
+            handleHive.executeSQL(getConf.dropPartition.replace("YYYYMM",monthString));
+            handleHive.executeSQL(getConf.addPartition.replace("YYYYMM",monthString));
+            handleHive.closeConnection();
+        }
+        else if(sqltype == "impala"){
+            handleHive = new HandleHive(getConf.impaladriverName,getConf.impalaconnectionString,"","");
+            handleHive.executeSQL("invalidate metadata");
+            handleHive.closeConnection();
+            System.out.println("Impala invalidate metadata");
+        }
     }
 
     //根据createTable.sql中create table语句中含有的location语句，

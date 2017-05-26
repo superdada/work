@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- C3P0 数据库连接池配置 Start↓-->
+
+    <!-- 加载数据源配置信息 -->
+    <bean id="dataBaseProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:dataBase.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- sqlite3数据库配置数据源 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="dataSourceName" value="${hibernate.datasourcename}" />
+        <property name="driverClass" value="${mysql.driverClass}" />
+        <property name="jdbcUrl" value="${mysql.url}" />
+        <property name="user" value="${mysql.user}" />
+        <property name="password" value="${mysql.password}" />
+        <property name="minPoolSize" value="${hibernate.minPoolSize}" />
+        <property name="maxPoolSize" value="${hibernate.maxPoolSize}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialPoolSize" value="${hibernate.initialPoolSize}" />
+        <property name="acquireIncrement" value="${hibernate.acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${hibernate.acquireRetryAttempts}" />
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdleTime" value="${hibernate.maxIdleTime}" />
+        <property name="maxStatements" value="0"/>
+        <property name="maxStatementsPerConnection"  value="100"/>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" abstract="false">
+        <property name="dataSource">
+            <ref bean="dataSource" />
+        </property>
+    </bean>
+
+    <!-- vertica数据库配置数据源 -->
+    <bean id="dataSourceVertica" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="dataSourceName" value="${hibernate.datasourcename}" />
+        <property name="driverClass" value="${vertica.driverClass}" />
+        <property name="jdbcUrl" value="${vertica.url}" />
+        <property name="user" value="${vertica.user}" />
+        <property name="password" value="${vertica.password}" />
+        <property name="maxStatements" value="0"/>
+        <property name="maxStatementsPerConnection"  value="100"/>
+        <property name="minPoolSize" value="${hibernate.minPoolSize}" />
+        <property name="maxPoolSize" value="${hibernate.maxPoolSize}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialPoolSize" value="${hibernate.initialPoolSize}" />
+        <property name="acquireIncrement" value="${hibernate.acquireIncrement}" />
+        <property name="acquireRetryAttempts" value="${hibernate.acquireRetryAttempts}" />
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdleTime" value="${hibernate.maxIdleTime}" />
+    </bean>
+
+    <bean id="jdbcTemplateVertica" class="org.springframework.jdbc.core.JdbcTemplate" abstract="false">
+        <property name="dataSource">
+            <ref bean="dataSourceVertica" />
+        </property>
+    </bean>
+    <!-- C3P0 数据库连接池配置 End↑-->
+
+    <!-- 事务管理 transaction manager, use JtaTransactionManager for global tx Start↓-->
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 传播行为 -->
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- aop -->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.com.ailbb.server.impl..*.*(..))" />
+    </aop:config>
+
+    <!-- 事务管理 End↑-->
+
+    <!--MyBatis配置 Start↓-->
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation">
+            <value>
+                classpath:cn/com/ailbb/config/mybatis-config.xml
+            </value>
+        </property>
+    </bean>
+
+    <!-- 数据映射器，数据映射器必须为接口，每个表均有一个数据映射器 Start↓-->
+
+    <!--用户表-->
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.UserMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--系统信息表-->
+    <bean id="systemMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.SystemMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--数据中心状态表-->
+    <bean id="dataCenterMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.DataCenterStatusMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--数据中心状态表-->
+    <bean id="pfcsnapshotMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.PfcsnapshotMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--用户组信息表-->
+    <bean id="groupInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.GroupInfoMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--用户组权限表-->
+    <bean id="groupRightsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.GroupRightsMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <bean id="menuInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.MenuInfoMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
+    <!--其他表-->
+
+    <!-- 数据映射器 End↑-->
+
+    <!--MyBatis配置 End↑-->
+
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis的配置-->
+<configuration>
+    <properties>
+    </properties>
+
+	<!-- 配置mybatis的缓存，延迟加载等等一系列属性 -->  
+    <settings>
+        <!--配置驼峰命名法转换-->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>  
+	</settings>
+</configuration>

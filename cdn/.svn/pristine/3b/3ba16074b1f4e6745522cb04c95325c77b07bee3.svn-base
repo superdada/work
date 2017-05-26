@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context
+	 		http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	<!--
+        配置SpringMVC的控制器-DispatcherServlet
+		因为spring-servlet.xml只是 controller 级别的上下文，说白了就是 servlet 级别的初始化，
+		它不涉及到除了转发之外的任何实体，所以它的作用范围仅仅限制在 servlet 级别，
+		所以它的初始化应该是跟spring 的 DispatcherServlet 初始化在一起，所以就是在 <servlet> 表情中初始化的。
+		它有一个默认值就是【/WEB-INF/remoting-servlet.xml 】，注意配置文件的对应的名称是【 servlet-name】-servlet.xml，
+		所以如果你没有给servlet 制定配置文件的位置，并且在默认位置下也没有配置文件，
+		那么系统启动的时候就会报错。
+	-->
+
+	<!-- 启用spring mvc 注解 -->
+	<!--
+        很多注解我们还是比较常用，尤其是Antowired的注解，在自动注入的时候更是经常使用，所以如果总是需要按照传统的方式一条一条配置显得有些繁琐和没有必要，
+        于是spring给我们提供<context:annotation-config/>的简化配置方式，自动帮你完成声明。
+    	注意：如果配置了<context:component-scan>那么<context:annotation-config/>标签就可以不用再xml中配置了，因为前者包含了后者。另外<context:annotation-config/>还提供了两个子标签
+    -->
+	<!--<context:annotation-config />-->
+
+	<!--
+		设置使用注解的类所在的jar包，在此配置的是所有ajax/form的.do请求的包
+		在context:component-scan可以添加use-default-filters，spring配置中的use-default-filters用来指示是否自动扫描带有@Component、@Repository、@Service和@Controller的类。默认为true，即默认扫描
+		如果想要过滤其中这四个注解中的一个，比如@Repository，可以添加<context:exclude-filter />子标签
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		注：在这里springMVC控制器只管理controller注解，其他注解，例如service交给spring
+	-->
+	<context:component-scan base-package="cn.com.ailbb.controller"  use-default-filters="false">
+		<!--扫描Controller-->
+		<context:include-filter type="annotation"
+								expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+								expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+	<!-- 完成请求和注解POJO的映射 -->
+	<!--
+		开启了注解扫描,注入了AnnotationMethodHandlerAdapter作用是对有RequestMapping注解的控制器进行HTTP路径、HTTP方法和请求参数解析.
+		DefaultAnnotationHandlerMapping作用是映射处理程序方法级别的HTTP路径.
+		在spring 3.1之后由RequestMappingHandlerAdapter和RequestMappingHandlerMapping代替.
+	-->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
+
+	<!-- 添加视图解析器，对转向页面的路径解析，自动添加前后缀。prefix：前缀， suffix：后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>

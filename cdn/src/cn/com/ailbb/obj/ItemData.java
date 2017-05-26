@@ -1,0 +1,107 @@
+package cn.com.ailbb.obj;
+
+import cn.com.ailbb.util.TimeUtil;
+
+import java.util.*;
+
+/**
+ * Created by WildMrZhang on 2017/3/7.
+ */
+public class ItemData {
+    private String id;
+    private String name;
+    private String belong_to;
+    private String ranknum;
+    private List<Map<String,Object>> indexes = new ArrayList<>();
+    private boolean monitor_flag = true; // 监控标示位
+    private boolean alarm_flag = true; // 报警标示位
+
+    public ItemData(String id, String name, String belong_to, String ranknum, Map<String,Object> map, boolean monitor_flag, boolean alarm_flag){
+        this.setId(id);
+        this.setName(name);
+        this.setBelong_to(belong_to);
+        this.setRanknum(ranknum);
+        this.putIndexes(map);
+        this.setMonitor_flag(monitor_flag);
+        this.setAlarm_flag(alarm_flag);
+
+        Date date = TimeUtil.MinTextToDate(map.get("time").toString());
+        for(int i=1; i<24; i++) {
+            String time = TimeUtil.DateToMinDateText(new Date(date.getTime() + i*60*60*1000));
+            this.putIndexes(new HashMap<String,Object>(){{
+                put("time", time);
+                put("type", null);
+            }});
+        }
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBelong_to() {
+        return belong_to;
+    }
+
+    public void setBelong_to(String belong_to) {
+        this.belong_to = belong_to;
+    }
+
+    public String getRanknum() {
+        return ranknum;
+    }
+
+    public void setRanknum(String ranknum) {
+        this.ranknum = ranknum;
+    }
+
+    public List<Map<String, Object>> getIndexes() {
+        return indexes;
+    }
+
+    public void setIndexes(List<Map<String, Object>> indexes) {
+        this.indexes = indexes;
+    }
+
+    public boolean isMonitor_flag() {
+        return monitor_flag;
+    }
+
+    public void setMonitor_flag(boolean monitor_flag) {
+        this.monitor_flag = monitor_flag;
+    }
+
+    public boolean isAlarm_flag() {
+        return alarm_flag;
+    }
+
+    public void setAlarm_flag(boolean alarm_flag) {
+        this.alarm_flag = alarm_flag;
+    }
+
+    public void putIndexes(Map<String, Object> map){
+        boolean isFind = false;
+
+        for(Map<String,Object> m : indexes)
+            if(m.get("time").equals(map.get("time"))) {
+                isFind = true;
+                m.put("type", map.get("type"));
+            }
+
+        if(!isFind)
+            indexes.add(map);
+    }
+}

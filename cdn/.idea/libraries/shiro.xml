@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="shiro">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-aspectj-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-cas-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-core-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-web-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-spring-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-ehcache-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-guice-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-quartz-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-hazelcast-1.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="commons">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/com.springsource.org.apache.commons.lang-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-beanutils-1.8.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/mchange-commons-java-0.2.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/ezmorph-1.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-collections4-4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-lang3-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/com.springsource.org.aopalliance-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

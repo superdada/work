@@ -23,6 +23,9 @@ public class GetConf {
     public static String addPartition;
     public static String types;
     public static String hadoopUserName;
+    public static String hivedriverName;
+    public static String impaladriverName;
+    public static String impalaconnectionString;
 
     private static Logger logger = Logger.getLogger(GetConf.class);
 
@@ -49,6 +52,9 @@ public class GetConf {
             addPartition = properties.getProperty("addPartition");
             types = properties.getProperty("types");
             hadoopUserName = properties.getProperty("hadoopUserName");
+            hivedriverName = properties.getProperty("hivedriverName");
+            impaladriverName = properties.getProperty("impaladriverName");
+            impalaconnectionString = properties.getProperty("impalaconnectionString");
         }catch(IOException e){
             logger.error("read ./etc/data.properties error");
             e.printStackTrace();

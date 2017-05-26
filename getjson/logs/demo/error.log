@@ -1,2 +1,3 @@
-2017-05-25 10:48:44  [ main:0 ] - [ ERROR ]  read ./etc/data.properties error
-2017-05-25 10:51:12  [ main:0 ] - [ ERROR ]  read ./etc/data.properties error
+2017-05-26 17:29:02  [ main:4942 ] - [ ERROR ]  getConnection error
+2017-05-26 17:31:00  [ main:4381 ] - [ ERROR ]  getConnection error
+2017-05-26 17:31:51  [ main:4324 ] - [ ERROR ]  getConnection error

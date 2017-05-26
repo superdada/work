@@ -1342,3 +1342,231 @@
 2017-05-26 17:35:52  [ main:3054 ] - [ DEBUG ]  Stopping client
 2017-05-26 17:35:52  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3055 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs: closed
 2017-05-26 17:35:52  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3055 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs: stopped, remaining connections 0
+2017-05-26 17:50:35  [ main:0 ] - [ INFO ]  cityCode:10401 result code is 4
+2017-05-26 17:50:35  [ main:7 ] - [ INFO ]  cityCode:12210 result code is 4
+2017-05-26 17:50:35  [ main:14 ] - [ INFO ]  cityCode:12213 result code is 4
+2017-05-26 17:50:35  [ main:19 ] - [ INFO ]  cityCode:12214 result code is 4
+2017-05-26 17:50:35  [ main:23 ] - [ INFO ]  cityCode:12215 result code is 4
+2017-05-26 17:50:35  [ main:27 ] - [ INFO ]  cityCode:10201 result code is 4
+2017-05-26 17:50:35  [ main:31 ] - [ INFO ]  cityCode:12216 result code is 4
+2017-05-26 17:50:35  [ main:35 ] - [ INFO ]  cityCode:12217 result code is 4
+2017-05-26 17:50:35  [ main:39 ] - [ INFO ]  cityCode:12908 result code is 4
+2017-05-26 17:50:35  [ main:42 ] - [ INFO ]  cityCode:12110 result code is 4
+2017-05-26 17:50:35  [ main:47 ] - [ INFO ]  cityCode:12513 result code is 4
+2017-05-26 17:50:35  [ main:51 ] - [ INFO ]  cityCode:12514 result code is 4
+2017-05-26 17:50:35  [ main:55 ] - [ INFO ]  cityCode:11003 result code is 4
+2017-05-26 17:50:35  [ main:60 ] - [ INFO ]  cityCode:12510 result code is 4
+2017-05-26 17:50:35  [ main:63 ] - [ INFO ]  cityCode:11002 result code is 4
+2017-05-26 17:50:35  [ main:67 ] - [ INFO ]  cityCode:11001 result code is 4
+2017-05-26 17:50:35  [ main:73 ] - [ INFO ]  cityCode:12710 result code is 4
+2017-05-26 17:50:35  [ main:77 ] - [ INFO ]  cityCode:12711 result code is 4
+2017-05-26 17:50:35  [ main:81 ] - [ INFO ]  cityCode:12517 result code is 4
+2017-05-26 17:50:35  [ main:85 ] - [ INFO ]  cityCode:12515 result code is 4
+2017-05-26 17:50:35  [ main:90 ] - [ INFO ]  cityCode:12516 result code is 4
+2017-05-26 17:50:35  [ main:94 ] - [ INFO ]  cityCode:10320 result code is 4
+2017-05-26 17:50:35  [ main:98 ] - [ INFO ]  cityCode:12705 result code is 4
+2017-05-26 17:50:35  [ main:102 ] - [ INFO ]  cityCode:12704 result code is 4
+2017-05-26 17:50:35  [ main:106 ] - [ INFO ]  cityCode:12601 result code is 4
+2017-05-26 17:50:35  [ main:110 ] - [ INFO ]  cityCode:12703 result code is 4
+2017-05-26 17:50:35  [ main:114 ] - [ INFO ]  cityCode:12702 result code is 4
+2017-05-26 17:50:35  [ main:118 ] - [ INFO ]  cityCode:12709 result code is 4
+2017-05-26 17:50:35  [ main:123 ] - [ INFO ]  cityCode:12501 result code is 4
+2017-05-26 17:50:35  [ main:127 ] - [ INFO ]  cityCode:12708 result code is 4
+2017-05-26 17:50:35  [ main:131 ] - [ INFO ]  cityCode:12406 result code is 4
+2017-05-26 17:50:35  [ main:135 ] - [ INFO ]  cityCode:12502 result code is 4
+2017-05-26 17:50:35  [ main:140 ] - [ INFO ]  cityCode:12707 result code is 4
+2017-05-26 17:50:35  [ main:146 ] - [ INFO ]  cityCode:12407 result code is 4
+2017-05-26 17:50:35  [ main:151 ] - [ INFO ]  cityCode:12503 result code is 4
+2017-05-26 17:50:35  [ main:155 ] - [ INFO ]  cityCode:12706 result code is 4
+2017-05-26 17:50:35  [ main:159 ] - [ INFO ]  cityCode:12504 result code is 4
+2017-05-26 17:50:35  [ main:163 ] - [ INFO ]  cityCode:12401 result code is 4
+2017-05-26 17:50:35  [ main:168 ] - [ INFO ]  cityCode:12505 result code is 4
+2017-05-26 17:50:35  [ main:172 ] - [ INFO ]  cityCode:10804 result code is 4
+2017-05-26 17:50:35  [ main:176 ] - [ INFO ]  cityCode:12402 result code is 4
+2017-05-26 17:50:35  [ main:180 ] - [ INFO ]  cityCode:10805 result code is 4
+2017-05-26 17:50:35  [ main:184 ] - [ INFO ]  cityCode:12507 result code is 4
+2017-05-26 17:50:35  [ main:188 ] - [ INFO ]  cityCode:10806 result code is 4
+2017-05-26 17:50:35  [ main:192 ] - [ INFO ]  cityCode:12508 result code is 4
+2017-05-26 17:50:35  [ main:196 ] - [ INFO ]  cityCode:12701 result code is 4
+2017-05-26 17:50:35  [ main:200 ] - [ INFO ]  cityCode:10801 result code is 4
+2017-05-26 17:50:35  [ main:204 ] - [ INFO ]  cityCode:10802 result code is 4
+2017-05-26 17:50:35  [ main:209 ] - [ INFO ]  cityCode:12102 result code is 4
+2017-05-26 17:50:35  [ main:214 ] - [ INFO ]  cityCode:12808 result code is 4
+2017-05-26 17:50:35  [ main:217 ] - [ INFO ]  cityCode:12103 result code is 4
+2017-05-26 17:50:35  [ main:221 ] - [ INFO ]  cityCode:12807 result code is 4
+2017-05-26 17:50:35  [ main:225 ] - [ INFO ]  cityCode:12101 result code is 4
+2017-05-26 17:50:35  [ main:229 ] - [ INFO ]  cityCode:10310 result code is 4
+2017-05-26 17:50:35  [ main:233 ] - [ INFO ]  cityCode:12106 result code is 4
+2017-05-26 17:50:35  [ main:238 ] - [ INFO ]  cityCode:12804 result code is 4
+2017-05-26 17:50:35  [ main:242 ] - [ INFO ]  cityCode:10311 result code is 4
+2017-05-26 17:50:35  [ main:246 ] - [ INFO ]  cityCode:12107 result code is 4
+2017-05-26 17:50:35  [ main:251 ] - [ INFO ]  cityCode:10312 result code is 4
+2017-05-26 17:50:35  [ main:255 ] - [ INFO ]  cityCode:12104 result code is 4
+2017-05-26 17:50:35  [ main:261 ] - [ INFO ]  cityCode:12802 result code is 4
+2017-05-26 17:50:35  [ main:265 ] - [ INFO ]  cityCode:10313 result code is 4
+2017-05-26 17:50:35  [ main:269 ] - [ INFO ]  cityCode:12105 result code is 4
+2017-05-26 17:50:35  [ main:273 ] - [ INFO ]  cityCode:12801 result code is 4
+2017-05-26 17:50:35  [ main:277 ] - [ INFO ]  cityCode:12903 result code is 4
+2017-05-26 17:50:35  [ main:281 ] - [ INFO ]  cityCode:10315 result code is 4
+2017-05-26 17:50:35  [ main:285 ] - [ INFO ]  cityCode:10316 result code is 4
+2017-05-26 17:50:35  [ main:289 ] - [ INFO ]  cityCode:12901 result code is 4
+2017-05-26 17:50:35  [ main:292 ] - [ INFO ]  cityCode:10317 result code is 4
+2017-05-26 17:50:35  [ main:296 ] - [ INFO ]  cityCode:10512 result code is 4
+2017-05-26 17:50:35  [ main:300 ] - [ INFO ]  cityCode:12906 result code is 4
+2017-05-26 17:50:35  [ main:304 ] - [ INFO ]  cityCode:10511 result code is 4
+2017-05-26 17:50:35  [ main:308 ] - [ INFO ]  cityCode:12905 result code is 4
+2017-05-26 17:50:35  [ main:312 ] - [ INFO ]  cityCode:10510 result code is 4
+2017-05-26 17:50:35  [ main:315 ] - [ INFO ]  cityCode:12904 result code is 4
+2017-05-26 17:50:35  [ main:322 ] - [ INFO ]  cityCode:10601 result code is 4
+2017-05-26 17:50:35  [ main:327 ] - [ INFO ]  cityCode:10501 result code is 4
+2017-05-26 17:50:35  [ main:333 ] - [ INFO ]  cityCode:12810 result code is 4
+2017-05-26 17:50:35  [ main:341 ] - [ INFO ]  cityCode:12811 result code is 4
+2017-05-26 17:50:35  [ main:348 ] - [ INFO ]  cityCode:10506 result code is 4
+2017-05-26 17:50:35  [ main:353 ] - [ INFO ]  cityCode:10507 result code is 4
+2017-05-26 17:50:35  [ main:358 ] - [ INFO ]  cityCode:13001 result code is 4
+2017-05-26 17:50:35  [ main:363 ] - [ INFO ]  cityCode:10509 result code is 4
+2017-05-26 17:50:35  [ main:368 ] - [ INFO ]  cityCode:10502 result code is 4
+2017-05-26 17:50:35  [ main:373 ] - [ INFO ]  cityCode:10503 result code is 4
+2017-05-26 17:50:35  [ main:380 ] - [ INFO ]  cityCode:10504 result code is 4
+2017-05-26 17:50:35  [ main:386 ] - [ INFO ]  cityCode:10505 result code is 4
+2017-05-26 17:50:35  [ main:394 ] - [ INFO ]  cityCode:12208 result code is 4
+2017-05-26 17:50:35  [ main:401 ] - [ INFO ]  cityCode:13009 result code is 4
+2017-05-26 17:50:35  [ main:405 ] - [ INFO ]  cityCode:12207 result code is 4
+2017-05-26 17:50:35  [ main:409 ] - [ INFO ]  cityCode:10308 result code is 4
+2017-05-26 17:50:35  [ main:413 ] - [ INFO ]  cityCode:13007 result code is 4
+2017-05-26 17:50:35  [ main:417 ] - [ INFO ]  cityCode:12209 result code is 4
+2017-05-26 17:50:35  [ main:421 ] - [ INFO ]  cityCode:10304 result code is 4
+2017-05-26 17:50:35  [ main:425 ] - [ INFO ]  cityCode:12301 result code is 4
+2017-05-26 17:50:35  [ main:428 ] - [ INFO ]  cityCode:13002 result code is 4
+2017-05-26 17:50:35  [ main:432 ] - [ INFO ]  cityCode:10301 result code is 4
+2017-05-26 17:50:35  [ main:436 ] - [ INFO ]  cityCode:13103 result code is 4
+2017-05-26 17:50:35  [ main:453 ] - [ INFO ]  cityCode:12202 result code is 4
+2017-05-26 17:50:35  [ main:459 ] - [ INFO ]  cityCode:13102 result code is 4
+2017-05-26 17:50:35  [ main:468 ] - [ INFO ]  cityCode:10303 result code is 4
+2017-05-26 17:50:35  [ main:472 ] - [ INFO ]  cityCode:12201 result code is 4
+2017-05-26 17:50:35  [ main:477 ] - [ INFO ]  cityCode:13101 result code is 4
+2017-05-26 17:50:35  [ main:481 ] - [ INFO ]  cityCode:10302 result code is 4
+2017-05-26 17:50:35  [ main:486 ] - [ INFO ]  cityCode:12204 result code is 4
+2017-05-26 17:50:35  [ main:491 ] - [ INFO ]  cityCode:12203 result code is 4
+2017-05-26 17:50:35  [ main:496 ] - [ INFO ]  cityCode:12206 result code is 4
+2017-05-26 17:50:35  [ main:500 ] - [ INFO ]  cityCode:12205 result code is 4
+2017-05-26 17:50:35  [ main:505 ] - [ INFO ]  cityCode:11901 result code is 4
+2017-05-26 17:50:35  [ main:509 ] - [ INFO ]  cityCode:13010 result code is 4
+2017-05-26 17:50:35  [ main:515 ] - [ INFO ]  cityCode:13011 result code is 4
+2017-05-26 17:50:35  [ main:522 ] - [ INFO ]  cityCode:13012 result code is 4
+2017-05-26 17:50:35  [ main:539 ] - [ INFO ]  cityCode:13013 result code is 4
+2017-05-26 17:50:35  [ main:545 ] - [ INFO ]  cityCode:10701 result code is 4
+2017-05-26 17:50:35  [ main:551 ] - [ INFO ]  cityCode:11813 result code is 4
+2017-05-26 17:50:35  [ main:555 ] - [ INFO ]  cityCode:11201 result code is 4
+2017-05-26 17:50:35  [ main:559 ] - [ INFO ]  cityCode:11207 result code is 4
+2017-05-26 17:50:35  [ main:564 ] - [ INFO ]  cityCode:11101 result code is 4
+2017-05-26 17:50:35  [ main:568 ] - [ INFO ]  cityCode:11102 result code is 4
+2017-05-26 17:50:35  [ main:572 ] - [ INFO ]  cityCode:11301 result code is 4
+2017-05-26 17:50:35  [ main:577 ] - [ INFO ]  cityCode:11409 result code is 4
+2017-05-26 17:50:35  [ main:581 ] - [ INFO ]  cityCode:11808 result code is 4
+2017-05-26 17:50:35  [ main:585 ] - [ INFO ]  cityCode:10901 result code is 4
+2017-05-26 17:50:35  [ main:589 ] - [ INFO ]  cityCode:11512 result code is 4
+2017-05-26 17:50:35  [ main:594 ] - [ INFO ]  cityCode:11401 result code is 4
+2017-05-26 17:50:35  [ main:597 ] - [ INFO ]  cityCode:11403 result code is 4
+2017-05-26 17:50:35  [ main:601 ] - [ INFO ]  cityCode:11402 result code is 4
+2017-05-26 17:50:35  [ main:605 ] - [ INFO ]  cityCode:11801 result code is 4
+2017-05-26 17:50:35  [ main:609 ] - [ INFO ]  cityCode:11706 result code is 4
+2017-05-26 17:50:35  [ main:613 ] - [ INFO ]  cityCode:11701 result code is 4
+2017-05-26 17:50:35  [ main:617 ] - [ INFO ]  cityCode:11506 result code is 4
+2017-05-26 17:50:35  [ main:621 ] - [ INFO ]  cityCode:11601 result code is 4
+2017-05-26 17:50:35  [ main:624 ] - [ INFO ]  cityCode:11502 result code is 4
+2017-05-26 17:50:35  [ main:628 ] - [ INFO ]  cityCode:11501 result code is 4
+2017-05-26 17:50:35  [ main:631 ] - [ INFO ]  cityCode:11603 result code is 4
+2017-05-26 17:50:35  [ main:645 ] - [ INFO ]  cityCode:11602 result code is 4
+2017-05-26 17:50:35  [ main:656 ] - [ INFO ]  cityCode:11608 result code is 4
+2017-05-26 17:50:35  [ main:660 ] - [ INFO ]  cityCode:12001 result code is 4
+2017-05-26 17:50:35  [ main:865 ] - [ INFO ]  Supplied authorities: 10.100.28.87:10000
+2017-05-26 17:50:35  [ main:866 ] - [ INFO ]  Resolved authority: 10.100.28.87:10000
+2017-05-26 17:50:36  [ main:967 ] - [ INFO ]  Will try to open client transport with JDBC Uri: jdbc:hive2://10.100.28.87:10000/default
+2017-05-26 17:50:36  [ main:969 ] - [ DEBUG ]  opening transport org.apache.thrift.transport.TSaslClientTransport@3337cdec
+2017-05-26 17:50:36  [ main:970 ] - [ DEBUG ]  Sending mechanism name PLAIN and initial response of length 15
+2017-05-26 17:50:36  [ main:974 ] - [ DEBUG ]  CLIENT: Writing message with status START and payload length 5
+2017-05-26 17:50:36  [ main:975 ] - [ DEBUG ]  CLIENT: Writing message with status COMPLETE and payload length 15
+2017-05-26 17:50:36  [ main:975 ] - [ DEBUG ]  CLIENT: Start message handled
+2017-05-26 17:50:36  [ main:975 ] - [ DEBUG ]  CLIENT: Main negotiation loop complete
+2017-05-26 17:50:36  [ main:975 ] - [ DEBUG ]  CLIENT: SASL Client receiving last message
+2017-05-26 17:50:36  [ main:976 ] - [ DEBUG ]  CLIENT: Received message with status COMPLETE and payload length 0
+2017-05-26 17:50:36  [ main:1021 ] - [ DEBUG ]  writing data length: 71
+2017-05-26 17:50:36  [ main:1041 ] - [ DEBUG ]  CLIENT: reading data length: 109
+2017-05-26 17:50:36  [ main:1083 ] - [ DEBUG ]  writing data length: 503
+2017-05-26 17:50:36  [ main:1112 ] - [ DEBUG ]  CLIENT: reading data length: 109
+2017-05-26 17:50:36  [ main:1130 ] - [ DEBUG ]  writing data length: 100
+2017-05-26 17:50:36  [ main:1135 ] - [ DEBUG ]  CLIENT: reading data length: 53
+2017-05-26 17:50:36  [ main:1152 ] - [ DEBUG ]  writing data length: 96
+2017-05-26 17:50:36  [ main:1156 ] - [ DEBUG ]  CLIENT: reading data length: 42
+2017-05-26 17:50:36  [ main:1161 ] - [ DEBUG ]  writing data length: 172
+2017-05-26 17:50:36  [ main:1193 ] - [ DEBUG ]  CLIENT: reading data length: 109
+2017-05-26 17:50:36  [ main:1194 ] - [ DEBUG ]  writing data length: 100
+2017-05-26 17:50:36  [ main:1230 ] - [ DEBUG ]  CLIENT: reading data length: 53
+2017-05-26 17:50:36  [ main:1231 ] - [ DEBUG ]  writing data length: 96
+2017-05-26 17:50:36  [ main:1232 ] - [ DEBUG ]  CLIENT: reading data length: 42
+2017-05-26 17:50:36  [ main:1232 ] - [ DEBUG ]  writing data length: 176
+2017-05-26 17:50:36  [ main:1242 ] - [ DEBUG ]  CLIENT: reading data length: 109
+2017-05-26 17:50:36  [ main:1243 ] - [ DEBUG ]  writing data length: 100
+2017-05-26 17:50:36  [ main:1289 ] - [ DEBUG ]  CLIENT: reading data length: 53
+2017-05-26 17:50:36  [ main:1289 ] - [ DEBUG ]  writing data length: 96
+2017-05-26 17:50:36  [ main:1290 ] - [ DEBUG ]  CLIENT: reading data length: 42
+2017-05-26 17:50:36  [ main:1302 ] - [ DEBUG ]  writing data length: 83
+2017-05-26 17:50:36  [ main:1306 ] - [ DEBUG ]  CLIENT: reading data length: 40
+2017-05-26 17:50:36  [ main:1534 ] - [ DEBUG ]  field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(valueName=Time, value=[Rate of successful kerberos logins and latency (milliseconds)], about=, always=false, type=DEFAULT, sampleName=Ops)
+2017-05-26 17:50:36  [ main:1542 ] - [ DEBUG ]  field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(valueName=Time, value=[Rate of failed kerberos logins and latency (milliseconds)], about=, always=false, type=DEFAULT, sampleName=Ops)
+2017-05-26 17:50:36  [ main:1544 ] - [ DEBUG ]  UgiMetrics, User and group related metrics
+2017-05-26 17:50:36  [ main:1593 ] - [ DEBUG ]  Kerberos krb5 configuration not found, setting default realm to empty
+2017-05-26 17:50:36  [ main:1596 ] - [ DEBUG ]  PrivilegedAction as:hdfs (auth:SIMPLE) from:org.apache.hadoop.fs.FileSystem.get(FileSystem.java:153)
+2017-05-26 17:50:36  [ main:1801 ] - [ DEBUG ]  dfs.client.use.legacy.blockreader.local = false
+2017-05-26 17:50:36  [ main:1802 ] - [ DEBUG ]  dfs.client.read.shortcircuit = false
+2017-05-26 17:50:36  [ main:1802 ] - [ DEBUG ]  dfs.client.domain.socket.data.traffic = false
+2017-05-26 17:50:36  [ main:1802 ] - [ DEBUG ]  dfs.domain.socket.path = 
+2017-05-26 17:50:36  [ main:1844 ] - [ DEBUG ]  StartupProgress, NameNode startup progress
+2017-05-26 17:50:37  [ main:1985 ] - [ DEBUG ]  multipleLinearRandomRetry = null
+2017-05-26 17:50:37  [ main:2038 ] - [ DEBUG ]   Creating new Groups object
+2017-05-26 17:50:37  [ main:2123 ] - [ DEBUG ]  Trying to load the custom-built native-hadoop library...
+2017-05-26 17:50:37  [ main:2125 ] - [ DEBUG ]  Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+2017-05-26 17:50:37  [ main:2125 ] - [ DEBUG ]  java.library.path=C:\Program Files\Java\jdk1.7.0_79\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\app\wang\product\11.2.0\client_1;C:\Program Files\Java\jdk1.8.0_111\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;D:\bin\apache-maven-3.3.9\bin;C:\Program Files (x86)\Subversion\bin;C:\apache-tomcat-8.5.13\bin;C:\apache-tomcat-8.5.13\lib;C:\Program Files\Git\cmd;C:\Users\wang\Anaconda2;C:\Users\wang\Anaconda2\Scripts;C:\Users\wang\Anaconda2\Library\bin;C:\Users\wang\AppData\Local\atom\bin;C:\Program Files\Docker Toolbox;.
+2017-05-26 17:50:37  [ main:2125 ] - [ WARN ]  Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2017-05-26 17:50:37  [ main:2126 ] - [ DEBUG ]  Falling back to shell based
+2017-05-26 17:50:37  [ main:2127 ] - [ DEBUG ]  Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+2017-05-26 17:50:37  [ main:2127 ] - [ DEBUG ]  Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000
+2017-05-26 17:50:37  [ main:2140 ] - [ DEBUG ]  rpcKind=RPC_PROTOCOL_BUFFER, rpcRequestWrapperClass=class org.apache.hadoop.ipc.ProtobufRpcEngine$RpcRequestWrapper, rpcInvoker=org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker@30b5a795
+2017-05-26 17:50:37  [ main:2877 ] - [ DEBUG ]  Both short-circuit local reads and UNIX domain socket are disabled.
+2017-05-26 17:50:37  [ main:2898 ] - [ DEBUG ]  /catt/data/ncp/T_NCP_STAT/month=201704/data.txt: masked=rw-r--r--
+2017-05-26 17:50:38  [ main:2930 ] - [ DEBUG ]  The ping interval is 60000 ms.
+2017-05-26 17:50:38  [ main:2932 ] - [ DEBUG ]  Connecting to /10.100.28.80:8020
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:2953 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs: starting, having connections 1
+2017-05-26 17:50:38  [ IPC Parameter Sending Thread #0:2954 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs sending #0
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:2961 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs got value #0
+2017-05-26 17:50:38  [ main:2961 ] - [ DEBUG ]  Call: create took 41ms
+2017-05-26 17:50:38  [ main:2972 ] - [ DEBUG ]  computePacketChunkSize: src=/catt/data/ncp/T_NCP_STAT/month=201704/data.txt, chunkSize=516, chunksPerPacket=127, packetSize=65532
+2017-05-26 17:50:38  [ LeaseRenewer:hdfs@10.100.28.80:8020:2979 ] - [ DEBUG ]  Lease renewer daemon for [DFSClient_NONMAPREDUCE_-1591242601_1] with renew id 1 started
+2017-05-26 17:50:38  [ main:2982 ] - [ DEBUG ]  DFSClient writeChunk allocating new packet seqno=0, src=/catt/data/ncp/T_NCP_STAT/month=201704/data.txt, packetSize=65532, chunksPerPacket=127, bytesCurBlock=0
+2017-05-26 17:50:38  [ main:2982 ] - [ DEBUG ]  Queued packet 0
+2017-05-26 17:50:38  [ main:2983 ] - [ DEBUG ]  Queued packet 1
+2017-05-26 17:50:38  [ Thread-4:2983 ] - [ DEBUG ]  Allocating new block
+2017-05-26 17:50:38  [ main:2983 ] - [ DEBUG ]  Waiting for ack for: 1
+2017-05-26 17:50:38  [ IPC Parameter Sending Thread #0:2992 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs sending #1
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:2993 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs got value #1
+2017-05-26 17:50:38  [ Thread-4:2993 ] - [ DEBUG ]  Call: addBlock took 2ms
+2017-05-26 17:50:38  [ Thread-4:3010 ] - [ DEBUG ]  pipeline = 10.100.28.83:50010
+2017-05-26 17:50:38  [ Thread-4:3010 ] - [ DEBUG ]  pipeline = 10.100.28.102:50010
+2017-05-26 17:50:38  [ Thread-4:3011 ] - [ DEBUG ]  pipeline = 10.100.28.96:50010
+2017-05-26 17:50:38  [ Thread-4:3011 ] - [ DEBUG ]  Connecting to datanode 10.100.28.83:50010
+2017-05-26 17:50:38  [ Thread-4:3012 ] - [ DEBUG ]  Send buf size 131072
+2017-05-26 17:50:38  [ IPC Parameter Sending Thread #0:3012 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs sending #2
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3013 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs got value #2
+2017-05-26 17:50:38  [ Thread-4:3013 ] - [ DEBUG ]  Call: getServerDefaults took 1ms
+2017-05-26 17:50:38  [ DataStreamer for file /catt/data/ncp/T_NCP_STAT/month=201704/data.txt block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448:3075 ] - [ DEBUG ]  DataStreamer block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448 sending packet packet seqno:0 offsetInBlock:0 lastPacketInBlock:false lastByteOffsetInBlock: 333
+2017-05-26 17:50:38  [ ResponseProcessor for block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448:3153 ] - [ DEBUG ]  DFSClient seqno: 0 status: SUCCESS status: SUCCESS status: SUCCESS downstreamAckTimeNanos: 241446
+2017-05-26 17:50:38  [ DataStreamer for file /catt/data/ncp/T_NCP_STAT/month=201704/data.txt block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448:3154 ] - [ DEBUG ]  DataStreamer block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448 sending packet packet seqno:1 offsetInBlock:333 lastPacketInBlock:true lastByteOffsetInBlock: 333
+2017-05-26 17:50:38  [ ResponseProcessor for block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448:3155 ] - [ DEBUG ]  DFSClient seqno: 1 status: SUCCESS status: SUCCESS status: SUCCESS downstreamAckTimeNanos: 619947
+2017-05-26 17:50:38  [ DataStreamer for file /catt/data/ncp/T_NCP_STAT/month=201704/data.txt block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448:3155 ] - [ DEBUG ]  Closing old block BP-922953066-10.100.28.80-1473782232381:blk_1075412312_17589448
+2017-05-26 17:50:38  [ IPC Parameter Sending Thread #0:3157 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs sending #3
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3158 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs got value #3
+2017-05-26 17:50:38  [ main:3158 ] - [ DEBUG ]  Call: complete took 1ms
+2017-05-26 17:50:38  [ main:3160 ] - [ DEBUG ]  Stopping client
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3161 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs: closed
+2017-05-26 17:50:38  [ IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs:3161 ] - [ DEBUG ]  IPC Client (970493935) connection to /10.100.28.80:8020 from hdfs: stopped, remaining connections 0

@@ -22,7 +22,7 @@ public class GetJson {
     private Map<String,String> provinceCodeMap;
     private StringBuilder resultString;
     private String createTableSQL;
-    private HandleHive handleHive;
+    private HandleDB handleHive;
     private HDFSIO hdfsio;
 
     private static Logger logger = Logger.getLogger(GetJson.class);
@@ -61,14 +61,14 @@ public class GetJson {
 
     private void executeSQL(String sqltype){
         if(sqltype == "hive"){
-            handleHive = new HandleHive(getConf.hivedriverName,getConf.hiveconnectionString,getConf.hadoopUserName,"");
+            handleHive = new HandleDB(getConf.hivedriverName,getConf.hiveconnectionString,getConf.hadoopUserName,"");
             handleHive.executeSQL(createTableSQL);
             handleHive.executeSQL(getConf.dropPartition.replace("YYYYMM",monthString));
             handleHive.executeSQL(getConf.addPartition.replace("YYYYMM",monthString));
             handleHive.closeConnection();
         }
         else if(sqltype == "impala"){
-            handleHive = new HandleHive(getConf.impaladriverName,getConf.impalaconnectionString,"","");
+            handleHive = new HandleDB(getConf.impaladriverName,getConf.impalaconnectionString,"","");
             handleHive.executeSQL("invalidate metadata");
             handleHive.closeConnection();
             System.out.println("Impala invalidate metadata");

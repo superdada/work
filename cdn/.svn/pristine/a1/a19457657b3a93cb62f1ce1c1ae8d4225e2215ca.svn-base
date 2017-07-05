@@ -1,0 +1,31 @@
+/**
+ * Created by zhongguohua
+ * on 2017/3/20.
+ */
+
+$(function () {
+
+    initWdName([
+        {text: '地市', type: "cityName", conditions: "cityName"},
+        {text: '数据中心', type: "dataCenter", conditions: "cityName,dataCenter"},
+        {text: 'ICP', type: "ICP", conditions: "ICP"},
+        {text: '服务器', type: "server", conditions: "cityName,dataCenter,server"}
+    ]);
+    initDiv();
+    loadChartData();
+    $(window).resize(function () {
+        initDiv();
+        resizeChart();
+    });
+});
+
+function initDiv() {
+    var bodyHeight = $("body").height();
+    $("#chart_flow").css({
+        height: bodyHeight - 230
+    });
+}
+function loadChartData() {
+    var url =AppBase + "/flowandband.do?method=request1";
+    loadData(url, ['chart_flow']);
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户权限组</title>
+</head>
+<style>
+    #radioGroup{
+        width:200px;
+        background: #fff;
+    }
+    #radioGroup p{
+        height: 32px;
+        font-size: 14px;
+        font-family: '微软雅黑 ';
+        margin: 0 0 0 15px;
+        padding: 0;
+    }
+    .Grouptitle{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    #radioGroup p span{
+        float: left;
+        vertical-align: middle;
+    }
+    input[type="radio"]{
+        display: inline-block;
+        outline: none;
+        width: 16px;
+        height: 16px;
+        float: left;
+        margin-left: 15px;
+        cursor: pointer;
+        vertical-align: middle;
+    }
+</style>
+<body>
+<div id="radioGroup">
+    <p class="Grouptitle">用户组：</p>
+</div>
+</body>
+</html>

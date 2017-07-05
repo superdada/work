@@ -8,6 +8,15 @@
     <script type="text/javascript">
         var AppBase = "<%=AppBase%>";
         var baseURL = AppBase+"/web/module/cdn"; // 模块根目录
+        var conditionReflesh = {
+
+        };
+        //多选框的处理
+        var conditionReflesh_multiple = {
+            'ICP2':{conId:'domain2'},
+            'domain2':{conId: ""},
+            'server2':{conId: ""}
+        };
     </script>
     <script src="js/libs/jquery-1.11.1.min.js"></script>
     <script src="js/ajax.js"></script>
@@ -31,9 +40,9 @@
 <%@include file="commonCondition.jsp" %>
 <div id="scrollDiv" style="width: 100%;height: 100%;">
     <div id="chartIndex">
-        <div id="healthRate" class="chart_content"></div>
+        <div id="statusCode" class="chart_content"></div>
         <div id="hitRate" class="chart_content"></div>
-        <div id="useableRate" class="chart_content"></div>
+        <div id="delay" class="chart_content"></div>
     </div>
 </div>
 </body>

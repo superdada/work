@@ -1,0 +1,485 @@
+/**
+ * Created by xzl on 2017/6/6.
+ */
+$(function () {
+    initVM();
+});
+function initVM() {
+    var vm = new Vue({
+        el: '#vm',
+        data: {
+            /*查询条件相关配置*/
+            datasource:[{'type':'log_data','text':'日志数据'},{'type':'dial_data','text':'拨测数据'}],
+            cdn_cache_all:[{'type':'cdn','text':'CDN'},{'type':'cache','text':'CACHE'}],
+            dimensions1 : [{'type':'data_center', 'text': '内容中心'},{'type':'ICP', 'text': 'ICP'},{'type':'service_type','text':'业务类型'}],
+            dimensions2 : [{'type':'fringe_node', 'text': '边缘节点'},{'type':'ICP', 'text': 'ICP'},{'type':'service_type','text':'业务类型'}],
+            indexes : [{'type':'health_rate', 'text': 'HTTP业务成功率'},{'type':'hit_rate', 'text': '缓存命中率'},{'type':'avg_dl_speed', 'text': '平均下载速率'},{'type':'bandwidth','text':'流量'},{'type':'visit_cnt','text':'请求数'},{'type':'delay','text':'首字节延迟'}],
+            curr_datasource:'log_data',
+            curr_cdn:'cdn',
+            curr_dimension : 'data_center',//当前维度类型，枚举值{'data_center', 'ICP'}
+            directory_level:1,//目录级别，一级目录和二级目录
+            curr_index : 'health_rate,hit_rate,avg_dl_speed,bandwidth,visit_cnt,delay',//当前指标类型，枚举值{'healthy', 'hit_rate', 'data_rate'}
+
+            /*信息窗口相关配置*/
+            all_items:{},
+            items_dir1:{}, //用来保存每次下钻时的当前目录的数据，这样就不用重新去请求数据
+            curr_page:1
+        },
+        ready: function () {
+            /* */
+            setInterval(this.refreshpage(), 60*60*1000);
+            //初始化layui表单
+            layui.use('form', function() {
+                var form = layui.form();
+                //选择改变颜色
+
+                //全选
+                form.on('checkbox(allChoose)', function(data){
+
+                    var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+                    var result="";
+                    if( $(data.elem).prop("checked")) {
+                        child.each(function (index, item) {
+                            item.checked = data.elem.checked;
+                            $(item).parents('tr').addClass("index-this");
+                            result+=$(item).parent().next("td").html()+',';
+                        });
+                        $("#indexes").val(result.substring(0,result.length-1));
+                    }else{
+                        $("#indexes").val("");
+                        child.each(function (index, item) {
+                            item.checked = data.elem.checked;
+                            $(item).parents('tr').removeClass("index-this");
+                        });
+                    }
+                    form.render('checkbox');
+                });
+                form.on('checkbox(*)', function(data){
+                    var result="";
+                    if( $(data.elem).prop("checked")){
+                        // $(data.elem).addClass("index-input-this");
+                        $(data.elem).parents('tr').addClass("index-this");
+                        if($("#indexes").val() != ""){
+                            result = $("#indexes").val() +',';
+                        }
+                        result = result + $(data.elem).parent().next("td").html();
+                        $("#indexes").val(result);
+                    }
+                    else{
+                        $(data.elem).removeClass("index-input-this");
+                        $(data.elem).parents('tr').removeClass("index-this");
+                        result = $("#indexes").val();
+                        var str = $(data.elem).parent().next("td").html();
+                        if(result.indexOf(str) == 0 ){
+                            $("#indexes").val(result.substring(str.length+1));
+                        }else if( result.indexOf(str)  == (result.length -str.length )){
+                            $("#indexes").val(result.substring(0,(result.length -str.length-1 )));
+                        }else{
+                            $("#indexes").val($("#indexes").val().replace(str+',',""));
+                        }
+
+                    }
+                    form.render('checkbox');
+                });
+
+                form.on('select',function(data){
+                    vm.$data.curr_dimension=data.value;
+                    if(vm.$data.curr_cdn == 'cdn'){
+                        $.each(vm.$data.dimensions1, function (n, value) {
+                            if(data.value == value.text){
+                                vm.$data.curr_dimension = value.type;
+                            };
+                        });
+                    }else{
+                        $.each(vm.$data.dimensions2, function (n, value) {
+                            if(data.value == value.text){
+                                vm.$data.curr_dimension = value.type;
+                            };
+                        });
+                    }
+                    //重新请求数据
+                    vm.refreshpage();
+                });
+            });
+            //将指标的input框变为全选
+            $("#index_table").children('table').find('thead input[type="checkbox"]').attr("checked",'checked');
+            var child =  $("#index_table").children('table').find('tbody input[type="checkbox"]');
+            var result="";
+            child.each(function (index, item) {
+                item.checked = true;
+                $(item).parents('tr').addClass("index-this");
+                result+=$(item).parent().next("td").html()+',';
+            });
+            $("#indexes").val(result.substring(0,result.length-1));
+
+        },
+        computed:{
+            timeLine : function () {
+                var _indexes = this.items[0].indexes;
+                var _timeLine = [];
+                var j = 0 ;
+                for (var i = 2 ; i < _indexes.length; i = i + 3) {
+                    _timeLine[j] =  _indexes[i].time.substring(5) ;
+                    j = j+1;
+                };
+                return _timeLine;
+            },
+            list_titles : function () {
+                var _list_titles =[];
+                if(this.curr_dimension =='data_center'  && this.directory_level ==1) {
+                    $("#listrow5").css("display","none");
+                    $("#listrow3").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").addClass("textline");
+                    });
+                    _list_titles =  ['内容中心','最近24小时状态', '最近监测时间'];
+                } else if (this.curr_dimension=='ICP' && this.directory_level ==1) {
+                    $("#listrow5").css("display","none");
+                    $("#listrow3").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").addClass("textline");
+                    });
+                    _list_titles = ['ICP', '最近24小时状态', '最近监测时间'];
+                } else if (this.curr_dimension=='ICP' && this.directory_level ==2){
+                    $("#listrow5").css("display","none");
+                    $("#listrow3").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").removeClass();
+                    });
+                    _list_titles = ['域名', '最近24小时状态', '最近监测时间'];
+                }else if(this.curr_dimension=='service_type' && this.directory_level ==1){
+                    $("#listrow5").css("display","none");
+                    $("#listrow3").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").removeClass();
+                    });
+                    _list_titles=['业务类型','最近24小时状态','最近监测时间']
+                }else if(this.curr_dimension =='fringe_node'  && this.directory_level ==1){
+                    $("#listrow5").css("display","none");
+                    $("#listrow3").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").addClass("textline");
+                    });
+                    _list_titles=['地市','最近24小时状态','最近监测时间']
+                }else if(this.curr_dimension =='fringe_node'  && this.directory_level ==2 || (this.curr_dimension =='data_center' && this.directory_level ==2)){
+                    $("#listrow3").css("display","none");
+                    $("#listrow5").css("display","block");
+                    $(".my-list-items").children("li").children().each(function(index,element){
+                        $(element).children("li:first").removeClass();
+                    });
+                    _list_titles = ['设备名称', 'IP地址', '承载业务','最近24小时状态', '最近监测时间'];
+                }
+                else{
+                    return 0;
+                }
+                return _list_titles;
+            },
+            total_pages:function () {
+                var _arr = Object.keys(this.all_items);
+                var _total_pages = _arr.length;
+                return _total_pages;
+            },
+            items  : function () {
+                var _items = this.all_items["page" + this.curr_page];
+                return _items;
+            }
+
+        },
+        methods : {
+            time_show:function(arr){
+                for(var i = arr.length-1;i>=0;i--){
+                    if(arr[i].type !=null){
+                        return arr[i].time;
+                    }
+                }
+                return arr[0].time;
+            },
+            refreshpage:function(){
+                $.getJSON(AppBase + '/pfcsnapshot.do?method=request1', { 'datasource':this.curr_datasource,'dimension' : this.curr_dimension, 'index' : this.curr_index,'cache_cdn':this.curr_cdn}, function (Response) {
+                    var _data = Response.data;
+                    var _max_rows = 10;
+                    var _vmData = {};
+                    if(_data.length <= _max_rows ) {
+                        _vmData["page1"] = _data;
+                    } else {
+                        for(var d = 1; d <=(_data.length/_max_rows+1) ; d++) {
+                            var _li = [];
+                            if(d!=(_data.length/_max_rows+1) ){
+                                for(var j=1; j < _max_rows+1 ; j++){
+                                    _li.push(_data[_max_rows*(d-1)+(j-1)]);
+                                };
+                            }else{
+                                for(var j=1; j < _data.length%_max_rows+1 ; j++){
+                                    _li.push(_data[_max_rows*(d-1)+(j-1)]);
+                                };
+                            }
+                            _vmData["page"+d] = _li;
+                        }
+                    };
+                    vm.$data.all_items = _vmData;
+                    vm.$data.curr_page = 1;
+                });
+
+            },
+            moreinfo : function(_item, _index ) {
+                if(_index.type != null){
+                    $(window).trigger('event_moreinfo', [ vm.$data.curr_datasource,vm.$data.curr_cdn,vm.$data.curr_dimension, _item, _index.time,vm.$data.directory_level]);
+                } else
+                    return 0;
+            },
+//                moreinfo : function(_item, _index ) {
+//                    if(_index.type != null){
+//                        $(window).trigger('event_moreinfo', [ vm.$data.curr_dimension, _item, _index.time]);
+//                    } else
+//                        return 0;
+//                },
+            switch : function(_type, _option) {
+                //$('#loading').show();
+                if (_type=='datasource') {
+                    this.curr_datasource = _option;
+                }  else if(_type=='cdn'){
+                    this.curr_cdn=_option;
+                    //维度的选项值发生变化
+                    layui.use('form', function() {
+                        var form = layui.form();
+                        if (_option == 'cdn') {
+                            $("#dimension").find('option').empty();
+                            $.each(vm.$data.dimensions1, function (n, value) {
+                                if(n == 0){
+                                    $("#dimension").append("<option value=\"" + value.type + "\" selected >" + value.text + "</option>");
+                                    vm.$data.curr_dimension = value.type;
+                                }else{
+                                    $("#dimension").append("<option value=\"" + value.type + "\">" + value.text + "</option>");
+                                }
+                            });
+                        } else {
+                            $("#dimension").find('option').empty();
+                            $.each(vm.$data.dimensions2, function (n, value) {
+                                if(n == 0){
+                                    $("#dimension").append("<option value=\"" + value.type + "\" selected >" + value.text + "</option>");
+                                    vm.$data.curr_dimension  = value.type;
+                                }else{
+                                    $("#dimension").append("<option value=\"" + value.type + "\">" + value.text + "</option>");
+                                }
+                            });
+                        }
+                        form.render('select');
+                    });
+                }else{
+                    return 0;
+                }
+                 //重新请求数据
+                this.refreshpage();
+
+            },
+            changeState : function(_type, _id, _monitorFlag, _alarmFlag, _index) {
+                //$('#loading').show();
+                if (_type=='monitor') {
+                    _monitorFlag = !_monitorFlag;
+                    this.items[_index].monitor_flag = _monitorFlag;
+                } else if (_type=='alarm') {
+                    _alarmFlag = ! _alarmFlag;
+                    this.items[_index].alarm_flag = _alarmFlag;
+                } else
+                    return 0;
+                $.post(AppBase+'/pfcsnapshot.do?method=request3',{
+                    'monitor_flag' : _monitorFlag, //监控标示位
+                    'alarm_flag' : _alarmFlag,//报警标示位
+                    'datasource':vm.$data.curr_datasource,
+                    'dimension' : vm.$data.curr_dimension,//当前维度
+                    'cache_cdn':vm.$data.curr_cdn,
+                    'directory_level':vm.$data.directory_level,
+                    'id' : _id//目标id
+                },function (Response) {
+                  //重新请求数据：
+                    this.refreshpage();
+                },'JSON');
+            },
+            share: function(_item, index) {
+                $.post(AppBase+'/pfcsnapshot.do?method=request5',{ // 分享链接
+                    'dimension' : vm.$data.curr_dimension, //当前维度
+                    'index': vm.$data.curr_index,
+                    'cache_cdn':vm.$data.curr_cdn,
+                    'id' : _item.id,//目标id
+                    'time': (_item.indexes)[23].time
+                },function (Response) {
+                    function showMsg(Response){
+                        Ext.Msg.show({
+                            title: Response.msg,
+                            msg: ' 请使用 [ Ctrl + C ] 复制该链接，点击 [ 预览 ] 预览分享页面 ',
+                            width: 500,
+                            buttonText : {
+                                ok: '预览',
+                                cancel: '关闭'
+                            },
+                            prompt:true,
+                            multiline: false,
+                            value: (~location.href.indexOf('?') ? location.href.substr(0, location.href.indexOf('?')).replace("index_cp.jsp","") : location.href.replace("index_cp.jsp","")) + Response.data,
+                            fn: function (btn) {
+                                if (btn == 'ok') {
+                                    window.open(Response.data);
+                                    setTimeout(function(){
+                                        showMsg(Response);
+                                    }, 0);
+                                }
+                            }
+                        });
+                    }
+
+                    if(Response.success) {
+                        if (Response.data) {
+                            showMsg(Response);
+                        } else{
+                            Ext.Msg.alert("成功", Response.msg);
+                        }
+                    } else {
+                        Ext.Msg.alert("失败", "分享失败，请重试！");
+                    }
+                },'JSON');
+            },
+            download : function (_item) {
+                $.post(AppBase+'/pfcsnapshot.do?method=request6',{ // 查询数据
+                    'dimension' : vm.$data.curr_dimension,//当前维度
+                    'cache_cdn':vm.$data.curr_cdn,//当前类型
+                    'id' : _item.id,//目标id
+                    'time': (_item.indexes)[23].time,
+                    timeout : 60*1000*10 //超时时间设置，单位毫秒
+                },function (Response) {
+                    Ext.MessageBox.confirm(Response.msg, Ext.String.format(" [ {0} ] [ {1} ] ", _item.id, _item.name) + Response.data, function(btn){
+                        if(btn == 'yes'){
+                            $.post(AppBase+'/pfcsnapshot.do?method=request4',{
+                                'dimension' : vm.$data.curr_dimension,//当前维度
+                                'cache_cdn':vm.$data.curr_cdn,
+                                'id' : _item.id,//目标id
+                                'time': (_item.indexes)[23].time,
+                                'fileName': "test"
+                            },function (Response) {
+                                $('iframe').attr("src", Response.data);
+                            },'JSON');
+                        }
+                    });
+                },'JSON');
+            },
+            changePage : function(_type) {
+                if (_type=='Previous') {
+                    if (this.curr_page < 2) {
+                        return 0;
+                    } else {
+                        this.curr_page = this.curr_page - 1;
+                    }
+                } else if (_type=='next') {
+                    if (this.curr_page < this.total_pages ) {
+                        this.curr_page = this.curr_page + 1;
+                    } else {
+                        return 0;
+                    }
+                } else if (_type=='jump') {
+                    var _pageNum_input =  $("input[id='my-page-num']").val();
+                    var _pageNum = _pageNum_input-0;
+                    _pageNum = _pageNum*1;
+                    var re = /^\+?[1-9][0-9]*$/;　　//正整数
+                    if ( (re.test(_pageNum)) && (_pageNum <= this.total_pages) ) {
+                        this.curr_page = _pageNum;
+                    } else {
+                        alert("请输入1到"+this.total_pages+"的整数")
+                        return 0;
+                    }
+                } else
+                    return 0;
+            },
+            choose_table:function(){
+                if( $("#index_table").css("display") =="none"){
+                    $("#index_table").css("display","block");
+                }else{
+                    $("#index_table").css("display","none");
+                    var index_value =$("#indexes").val();
+                    if (index_value != ""){
+                        $.each(vm.$data.indexes, function (n, value) {
+                            if(index_value.indexOf(value.text) >= 0 ){
+                                index_value = index_value.replace(value.text,value.type);
+                            }
+                        });
+                        //当指标值不为空且与上一次指标值相比发生变化时请求数据
+                        if(this.curr_index != index_value ){
+                            this.curr_index =index_value;
+                            //ajax请求，重新请求数据
+                            this.refreshpage();
+                        }
+                    }
+
+                }
+
+            },
+            goup: function () {
+                this.directory_level = 1;
+                //保存当前目录的数值
+                for(var i in this.items_dir1)
+                {
+                    this.all_items[i]=this.items_dir1[i];
+                }
+                $("#second_dir").css("display","none");
+                $("#first_dir").css("display","block");
+            },
+            goin:function(id){
+                if( this.directory_level ==2){
+                    return 0;
+                }else {
+                    if(this.curr_dimension =='ICP' || this.curr_dimension =="data_center" ||this.curr_dimension =="fringe_node" ){
+                        this.directory_level = 2;
+                        //保存当前目录的数值
+                        for(var i in this.all_items)
+                        {
+                            this.items_dir1[i]=this.all_items[i];
+                        }
+                        $("#first_dir").css("display","none");
+                        $("#second_dir").css("display","block");
+                        /* var name ="";
+                         if( $("#listrow3").css("display")=="block"){
+                         name =  $("#indexlist3 li").eq(0).html();
+                         }else{
+                         name =  $("#indexlist5 li").eq(0).html();
+                         }*/
+                        //二级目录请求
+                        $.post(AppBase+'/pfcsnapshot.do?method=request1',{
+                            'datasource':this.curr_datasource,
+                            'dimension' : this.curr_dimension,
+                            'index' : this.curr_index,
+                            'cache_cdn':this.curr_cdn,
+                            'id':id
+                        },function (Response) {
+                            var _data = Response.data;
+                            var _max_rows = 10;
+                            var _vmData = {};
+                            if(_data.length <= _max_rows ) {
+                                _vmData["page1"] = _data;
+                            } else {
+                                for(var d = 1; d <=(_data.length/_max_rows+1) ; d++) {
+                                    var _li = [];
+                                    if(d!=(_data.length/_max_rows+1) ){
+                                        for(var j=1; j < _max_rows+1 ; j++){
+                                            _li.push(_data[_max_rows*(d-1)+(j-1)]);
+                                        };
+                                    }else{
+                                        for(var j=1; j < _data.length%_max_rows+1 ; j++){
+                                            _li.push(_data[_max_rows*(d-1)+(j-1)]);
+                                        };
+                                    }
+                                    _vmData["page"+d] = _li;
+                                }
+                            };
+                            vm.$data.all_items = _vmData;
+                            vm.$data.curr_page = 1;
+
+                        },'JSON');
+                    }else{
+                        return 0;
+                    }
+
+                }
+
+            }
+        }
+    });
+    $('#loading').hide()
+    $('#vm').show();
+}

@@ -16,8 +16,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title><%=null == dimension || dimension.equals("data_center") ? "数据中心" : "ICP"%> - 分享页面</title>
-
+    <title>分享页面</title>
     <meta charset="UTF-8">
 
     <meta http-equiv="pragma" content="no-cache">
@@ -60,10 +59,13 @@
             reqPlugins: ['bootstrap']
         };
 
-        var request_id = <%=request.getParameter("id")%>;
-        var dimension = '<%=dimension%>';
+        var request_id ='<%=request.getParameter("id")%>';
+        var dimension = '<%=request.getParameter("dimension")%>';
         var index = '<%=request.getParameter("index")%>';
-        var cache_cdn = <%=request.getParameter("cache_cdn")%>;
+        var cache_cdn ='<%=request.getParameter("cache_cdn")%>';
+        var datasource ='<%=request.getParameter("datasource")%>';
+        var directory_level = '<%=request.getParameter("directory_level")%>';
+        var time = '<%=request.getParameter("time")%>';
     </script>
 
 </head>

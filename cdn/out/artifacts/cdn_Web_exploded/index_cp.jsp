@@ -349,8 +349,8 @@
                         };
                         vm.$data.all_items = _vmData;
                         //if (_type=='dimension') {
-                            vm.$data.curr_page = 1;
-                      //  };
+                        vm.$data.curr_page = 1;
+                        //  };
                     });
                 },
                 changeState : function(_type, _id, _monitorFlag, _alarmFlag, _index) {
@@ -461,15 +461,15 @@
                     },'JSON');
                 },
                 changePage : function(_type) {
-                   /* if(this.curr_page == this.total_pages){
-                        $('.my-page-controller').eq(0).removeClass("my-page-controller").addClass("my-page-controller-off");
+                    /* if(this.curr_page == this.total_pages){
+                     $('.my-page-controller').eq(0).removeClass("my-page-controller").addClass("my-page-controller-off");
 
-                    }else if(this.curr_page == 1){
-                        $('.my-page-controller').eq(1).removeClass("my-page-controller").addClass("my-page-controller-off");
-                    }else {
-                        $('.my-page-controller').eq(1).removeClass("my-page-controller-off").addClass("my-page-controller");
-                        $('.my-page-controller').eq(0).removeClass("my-page-controller-off").addClass("my-page-controller");
-                    }*/
+                     }else if(this.curr_page == 1){
+                     $('.my-page-controller').eq(1).removeClass("my-page-controller").addClass("my-page-controller-off");
+                     }else {
+                     $('.my-page-controller').eq(1).removeClass("my-page-controller-off").addClass("my-page-controller");
+                     $('.my-page-controller').eq(0).removeClass("my-page-controller-off").addClass("my-page-controller");
+                     }*/
                     if (_type=='Previous') {
                         if (this.curr_page < 2) {
                             return 0;

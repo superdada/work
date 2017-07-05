@@ -6,16 +6,56 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/web/lib/nav.jsp" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>用户组管理</title>
-    <link rel="stylesheet" type="text/css" href="css/mycss/cdn.css">
+    <link rel="stylesheet" href="ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="components/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="css/mycss/userrights.css">
     <script type="text/javascript" src="js/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="ztree/js/jquery.ztree.core.min.js"></script>
+    <script type="text/javascript" src="ztree/js/jquery.ztree.excheck.min.js"></script>
+    <script type="text/javascript" src="ztree/js/jquery.ztree.exedit.min.js"></script>
     <script src="components/layer/layer.min.js"></script>
     <script src="components/layui/layui.js"></script>
+    <script src="js/GroupManagent.js"></script>
+    <script type="text/javascript">
+        var AppBase = "<%=AppBase%>";
+        var baseURL = AppBase+"/web/module/cdn"; // 模块根目录
+    </script>
 </head>
+<style type="text/css">
+    html,body {
+        /*width: 1200px;*/
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        background-color: #f3f3f3;
+    }
+</style>
 <body>
-
+<div id="userpanel">
+    <div id ="leftpannel" >
+        <div class="title_li">组织机构</div>
+        <ul id="tree-nav" class="ztree">
+        </ul>
+    </div>
+    <div id ="rightpanel" >
+        <div class="userlist">权限列表</div>
+        <div class="userfunction">
+            <ul>
+                <li><a onclick="popupbox('addgroup')">新增用户组</a> <span>|</span></li>
+                <li><a onclick="popupbox('editrights')">编辑</a> <span>|</span></li>
+                <li><a onclick="popupbox('confirm')">确认</a> <span>|</span></li>
+            </ul>
+        </div>
+        <div id="rights" class="ztree"></div>
+    </div>
+</div>
 </body>
 </html>

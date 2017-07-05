@@ -12,6 +12,8 @@ function chartFactory(_type, _domID, _data) {
         case "line":
             CF_Line(_domID, _data);
             break;
+        case 'bar':
+            CF_Bar(_domID, _data);
     }
 }
 function CF_Ring(_domID, _data){
@@ -231,4 +233,49 @@ function CF_Line(_domID, _data){
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     return myChart;
+}
+
+function CF_Bar(_domID, _data){
+    var myChart = echarts.init(document.getElementById(_domID));
+    var option =  {
+       grid:{
+             show: true,
+             left:0,
+             bottom:26,
+             top:30,
+             right:0,
+             backgroundColor:_data.others.thresholds[_data.others.thresholds.length-1][1]
+        },
+        xAxis : [
+            {
+                show:false,
+                type : 'category',
+                splitLine: {show:false},
+                data : _data.data.name
+            }
+        ],
+        yAxis : [
+            {
+                show:false,
+                type: 'value',
+                max:_data.others.thresholds[_data.others.thresholds.length-1][0],
+                splitLine: {show:false},
+                splitArea: {show: false}
+            }
+        ],
+        series : [
+            {
+                name: _data.data.name[0],
+                type:'bar',
+                barWidth:100,
+                data:_data.data.value, //必须为数组
+                itemStyle:{
+                    normal:{color: _data.data.color}
+                }
+            }
+          ]
+    };
+    myChart.setOption(option);
+    return myChart;
+
 }

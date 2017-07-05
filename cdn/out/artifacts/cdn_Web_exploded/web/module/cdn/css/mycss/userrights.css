@@ -1,0 +1,180 @@
+/* 鎬讳綋
+ ========================================================================== */
+html, body, div, ul, li, p, a {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/*li {display: inline-block}*/
+
+
+a:hover,a:focus{
+    text-decoration: none;
+}
+
+.my-float-right {
+    float: right;
+}
+
+.my-float-left {
+    float: left;
+}
+
+body, div, li, a, p {
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+/*=================usermanegent=================*/
+
+.ztree *{
+    font-size: 14px;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+/*
+.ztree li {
+    line-height: 26px;
+}
+.ztree li a {
+    height: 26px;
+}
+*/
+.ztree li span.button.add {
+    margin-left:2px;
+    margin-right: -1px;
+    background-position:-144px 0;
+    vertical-align:top;
+    *vertical-align:middle
+}
+#userpanel{
+    width:1200px;
+    background: #FFF;
+    height:99%;
+    overflow: hidden;
+    border-left: 1px solid #bbbbbb;
+    border-right: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+}
+#pannel li:after{
+  border: none;
+}
+#leftpannel{
+    width:238px;
+    height:  100%;
+    font-size: 14px;
+    border-right:2px solid #F3F3F3;
+    float: left;
+}
+#tree-nav{
+    padding: 0;
+    margin:0;
+    overflow: hidden;
+}
+.trSelected{
+    background: #F2F2F2;
+}
+#group-nav li{
+    line-height: 26px;
+    font-size: 14px ;
+    padding-left: 10px;
+}
+.title_li{
+    line-height: 30px;
+    font-size: 14px ;
+    border-bottom:2px solid #F3F3F3;
+    padding-left: 10px;
+    font-weight: 600;
+    color:#FFFFFF;
+    background: #647b9a;
+}
+
+#tree-nav li a i,#tree-nav li a cite{
+    font-size: 14px;
+}
+#rightpanel{
+    width:960px;
+    height: 100%;
+    float: left;
+    padding-bottom: 15px;
+}
+.userlist{
+    padding-left: 10px;
+    display: inline-block;
+    line-height: 30px;
+    font-size:14px;
+    background: #647b9a;
+    width:100%;
+    vertical-align: middle;
+    color:#FFFFFF;
+    font-weight: 600;
+    /* border-bottom: 1px solid #F3F3F3;*/
+
+}
+.userfunction{
+    overflow: hidden;
+    height: 35px;
+    background: #f2f2f2;
+    border-top: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+}
+.userfunction ul{
+    overflow: hidden;
+}
+.userfunction li{
+    display: inline-block;
+    line-height: 35px;
+    float:left;
+
+}
+.userfunction li a{
+    padding: 5px 10px 5px 10px;
+    border:1px solid #f2f2f2;
+    color: #777;
+}
+.userfunction li a:hover{
+    border-radius: 4px;
+    border:1px solid #9F9F9F;
+    font-weight: bold;
+    color: #777;
+}
+.userfunction li  span{
+}
+/*=================分页=================*/
+.my-page-control-box {
+    float: right;
+    width: 300px;
+    height: auto;
+    margin-right: 10px;
+    margin-top: 26px;
+    overflow: hidden;
+}
+
+.my-page-controller {
+    float: right;
+    width: 34px;
+    height: 34px;
+    margin: 0 10px;
+    border: 1px solid #BBBBBB;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-top: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.my-page-controller:hover {
+    background: #E6E6E6;
+}
+
+.my-page-goto {
+    float: right;
+    width: 120px;
+}
+
+.my-page-text {
+    float: right;
+    font-size: 14px;
+    padding-top: 8px;
+}

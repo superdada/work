@@ -1,0 +1,700 @@
+package cn.com.ailbb.service;
+
+import cn.com.ailbb.obj.ItemData;
+import cn.com.ailbb.server.dao.DataCenterDao;
+import cn.com.ailbb.server.pojo.DataCenterStatus;
+import cn.com.ailbb.util.MailUtil;
+import cn.com.ailbb.util.SQLUtil;
+import cn.com.ailbb.util.TimeUtil;
+import cn.com.ailbb.util.DataUtil;
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.*;
+
+/**
+ * Created by WildMrZhang on 2017/3/7.
+ */
+@Service
+public class PerformanceSnapshotService {
+
+    @Autowired
+    JdbcTemplate jdbcTemplateVertica;
+    @Resource
+    private DataCenterDao dataCenterDao;
+    private static Logger logger = Logger.getLogger(PerformanceSnapshotService.class); // log4j日志
+
+    //定义数据表
+    private static final String Dbschedule = "shcdn.";
+    private static final String Table_cdn_datacenter_1 = Dbschedule+"r_snapshot2_21200";
+    private static final String Table_cache_edgenode_1 = Dbschedule+"r_snapshot2_22100";
+    private static final String Table_icp_1 = Dbschedule+"r_snapshot2_20010";
+    private static final String Table_businesstype_1 = Dbschedule+"r_snapshot2_20002";
+    private static final String Table_cdn_datacenter_2 = Dbschedule+"r_snapshot2_21300";
+    private static final String Table_cache_edgenode_2 = Dbschedule+"r_snapshot2_22300";
+    private static final String Table_icp_2 = Dbschedule+"r_snapshot2_20020";
+    private static final String Table_icp_3 = Dbschedule+"r_snapshot2_20320";
+    private static final String Table_businesstype_2 = Dbschedule+"r_snapshot2_20302";
+    private static final String Table_businesstype_3 = Dbschedule+"r_snapshot2_20022";
+
+    //定义数据源
+    private static final String Datasource_log = "log_data";
+    private static final String Datasource_dial = "dial_data";
+    //定义类型
+    private static final String Cache_cdn_cache = "cache";
+    private static final String Cache_cdn_cdn = "cdn";
+    //定义维度
+    private static final String Dimension_data_center = "data_center";
+    private static final String Dimension_fringe_node = "fringe_node";
+    private static final String Dimension_ICP = "ICP";
+    private static final String Dimension_service_type = "service_type";
+    //定义表维度
+    private static final Map<String,String> Table_cdn_datacenter_1_selectMap = new HashMap<String,String>(){{
+        put("content_center","id");
+        put("ttime","time");
+    }};
+    private static final Map<String,String> Table_cache_edgenode_1_selectMap = new HashMap<String,String>(){{
+        put("city_name","id");
+        put("ttime","time");
+    }};
+    private static final Map<String,String> Table_icp_1_selectMap = new HashMap<String,String>(){{
+        put("icp_name","id");
+        put("icp_rank","rank");
+        put("ttime","time");
+    }};
+    private static final Map<String,String> Table_businesstype_1_selectMap = new HashMap<String,String>(){{
+        put("service_type","id");
+        put("ttime","time");
+    }};
+    //定义指标类型
+    private static Map<String, String> index2LevelMap = new HashMap<String,String>(){{
+        put("health_rate","health_level");
+        put("hit_rate","hit_level");
+        put("avg_dl_speed","avg_dl_level");
+        put("bandwidth","bandwidth_level");
+        put("visit_cnt","visit_level");
+        put("delay","delay_level");
+    }};
+
+    //定义select内容
+    private static final String Table_cdn_datacenter_1_select = "content_center as id,ttime as time,";
+    private static final String Table_cache_edgenode_1_select = "city_name as id,ttime as time,";
+    private static final String Table_icp_1_select = "icp_name as id,icp_rank as rank,ttime as time,";
+    private static final String Table_businesstype_1_select = "service_name as id,ttime as time,";
+    private static final String Table_cdn_datacenter_2_select = "server_name as id,server_address as name,service_name as belong_to,ttime as time,";
+    private static final String Table_cache_edgenode_2_select = "server_name as id,server_address as name,service_name as belong_to,ttime as time,";
+    private static final String Table_icp_2_select = "domain_name as id,ttime as time,";
+    //定义where id内容
+    private static final String Table_cdn_datacenter_2_where = " and content_center = '%s' ";
+    private static final String Table_cdn_datacenter_2_2_where = " and server_name = '%s' ";
+    private static final String Table_cache_edgenode_2_where = " and city_name = '%s' ";
+    private static final String Table_cache_edgenode_2_2_where = " and server_name = '%s' ";
+    private static final String Table_icp_2_where = " and icp_name = '%s' ";
+    private static final String Table_icp_2_2_where = " and domain_name = '%s' ";
+    private static final String Table_businesstype_2_where = " and service_name = '%s' ";
+
+    /**
+     * 转换数据
+     * @param list
+     * @return
+     */
+    public List<ItemData> dataHandler(List<Map<String,Object>> list,String datasource, String dimension, String type,int directory_level,String index,boolean enableAlarm) throws Exception{
+        if(list == null)
+            return null;
+
+        Map<String, ItemData> data = new HashMap<>();
+        List<ItemData> formatData = new ArrayList<>();
+        List<String> alarmList= new ArrayList<>();
+        boolean isAlarm = false;
+
+        for(Map<String,Object> map : list) {
+            //long startTime = System.currentTimeMillis();    //获取开始时间
+            if(null == map.get("id")) continue;
+            String id = map.get("id").toString();
+            String name = map.get("name")!=null?map.get("name").toString():null;
+
+            String belong_to = map.get("belong_to")!=null?map.get("belong_to").toString():null;
+            String rankindex = map.get("rank")!=null?map.get("rank").toString():null;
+            int indexlevel = null == map.get("indexlevel") ? 0 : Integer.parseInt(map.get("indexlevel").toString());
+            String type_trans = getAlarmType(indexlevel);
+            String time = TimeUtil.TextToMinDateText(map.get("time")!=null?map.get("time").toString():"");
+
+            DataCenterStatus dataCenterStatus = null;
+
+            if(null == data.get(id)) {
+                dataCenterStatus = dataCenterDao.getCenterStatus(id,datasource,type,dimension,directory_level);
+                if(null == dataCenterStatus || dataCenterStatus.isMonitorFlag()) {
+                    data.put(id, new ItemData(id, name, belong_to, rankindex,new HashMap<String,Object>() {{
+                        put("time", time);
+                        put("type", type_trans);
+                    }}, true, true));
+                } else {
+                    data.put(id, new ItemData(id, name, belong_to, rankindex,new HashMap<String,Object>() {{
+                        put("time", time);
+                        put("type", null);
+                    }},dataCenterStatus.isMonitorFlag(),dataCenterStatus.isAlarmFlag()));
+                }
+            } else{
+                ItemData itemData = data.get(id);
+                if(itemData.isMonitor_flag()){
+                    itemData.putIndexes(new HashMap<String,Object>() {{
+                        put("time", time);
+                        put("type", type_trans);
+                    }});
+                }else{
+                    itemData.putIndexes(new HashMap<String,Object>() {{
+                        put("time", time);
+                        put("type", null);
+                    }});
+                }
+            }
+
+            //如果处于告警状�?�，则收集告警信�?
+            switch (dimension){
+                case Dimension_data_center:
+                    if(directory_level == 1){
+                        alarmList.add(String.format("内容中心告警：时间:[%s]，内容中心:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }
+                    else if(directory_level == 2) {
+                        alarmList.add(String.format("内容中心告警：时间:[%s]，设备名称:[%s]，IP地址:[%s]，承载业务:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！",
+                                time,id,name,belong_to,index,type_trans));
+                    }
+                    break;
+                case Dimension_fringe_node:
+                    if(directory_level == 1) {
+                        alarmList.add(String.format("边缘节点告警：时间:[%s]，地市:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }else if(directory_level == 2) {
+                        alarmList.add(String.format("边缘节点告警：时间:[%s]，设备名称:[%s]，IP地址:[%s]，承载业务:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！",
+                                time,id,name,belong_to,index,type_trans));
+                    }
+                    break;
+                case Dimension_ICP:
+                    if(directory_level == 1 && type.equals(Cache_cdn_cdn)) {
+                        alarmList.add(String.format("CDN类型ICP告警：时间:[%s]，ICP:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }else if(directory_level == 1 && type.equals(Cache_cdn_cache)){
+                        alarmList.add(String.format("CACHE类型ICP告警：时间:[%s]，ICP:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }else if(directory_level == 2 && type.equals(Cache_cdn_cdn)){
+                        alarmList.add(String.format("CDN类型ICP告警：时间:[%s]，域名:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }else if(directory_level == 2 && type.equals(Cache_cdn_cache)){
+                        alarmList.add(String.format("CACHE类型ICP告警：时间:[%s]，域名:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }
+                    break;
+                case Dimension_service_type:
+                    if(type.equals(Cache_cdn_cdn)){
+                        alarmList.add(String.format("CDN类型业务类型告警：时间:[%s]，业务类型:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }else if(type.equals(Cache_cdn_cache)){
+                        alarmList.add(String.format("CACHE类型业务类型告警：时间:[%s]，业务类型:[%s]，指标:[%s]，出现告警情况，严重值:[%s]，请及时查看！", time,id,index,type_trans));
+                    }
+                    break;
+            }
+        }
+
+        try {
+            //if(isAlarm && enableAlarm)
+            MailUtil.init();
+            for(String address : MailUtil.getAlarmReceiveInternetAddress())  // 发�?�邮�?
+                MailUtil.send(address, "自动告警信息", StringUtils.join(alarmList, "\n"));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for(String s : data.keySet())
+            formatData.add(data.get(s));
+
+        //根据icp_rank排序
+        if("ICP".equals(dimension) && directory_level == 1){
+            sortByICP_Rank(formatData);
+        }
+        return formatData;
+    }
+
+    /**
+     * 根据icp_rank冒泡排序
+     * @param list
+     */
+    public void sortByICP_Rank(List<ItemData> list){
+        //将list集合中的数据转成数组，再进行排序
+        ItemData[] datas=new ItemData[list.size()];
+        for(int i=0;i<list.size();i++){
+            datas[i]=list.get(i);
+        }
+
+        for(int i=0;i<datas.length;i++){
+            for(int j=0;j<datas.length-i-1;j++){
+                int befCount=Integer.parseInt(datas[j].getRanknum());
+                int nextCount=Integer.parseInt(datas[j+1].getRanknum());
+                if(befCount>nextCount) {
+                    ItemData item = datas[j+1];
+                    datas[j+1]=datas[j];
+                    datas[j]=item;
+                }
+            }
+        }
+
+        //清空重置list集合
+        list.clear();
+
+        //把排序后数组中的数据放入list集合
+        for(int i=0;i<datas.length;i++){
+            list.add(datas[i]);
+        }
+    }
+
+    private String sqlTimeFormat(String idText, String id, String time, int num){
+        return String.format(" %s ='%s' AND %s ", idText, id, sqlTimeFormat(time, num));
+    }
+
+    private String sqlTimeFormat(String idText, String id, String time, int num,String cache_cdn){
+        return String.format(" %s ='%s' AND %s ", idText, id, sqlTimeFormat(time, num));
+    }
+
+    public static String sqlTimeFormat(String time, int num){
+        return String.format(" ttime <= cast('%s' as timestamp) AND ttime > cast('%s' as timestamp) ", TimeUtil.DateToTimestamp(TimeUtil.MinTextToDate(time)),
+                TimeUtil.DateToTimestamp(new Date(TimeUtil.MinTextToDate(time).getTime() - num*60*60*1000)));
+    }
+
+    /**
+     * 翻译告警
+     * @param type
+     * @return
+     */
+    private String getAlarmType(int type) {
+        switch (type) {
+            case 1:
+                return "normal";
+            case 2:
+                return "warning";
+            case 3:
+                return "danger";
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * 翻译告警
+     * @param type
+     * @return
+     */
+    private String getAlarmType(Object type) {
+        return null == type ? null : getAlarmType(Integer.parseInt(type.toString()));
+    }
+
+    public List<Map<String, Object>> transData(List<Map<String, Object>> data) throws Exception{
+        for(Map<String, Object> map : data){
+            map.put("type", getAlarmType(map.get("indexlevel")));
+            map.put("id_name", map.get("id"));
+            map.remove("id");
+        }
+        return data;
+    }
+
+    //maping为映射map，本函数将orgString中的值通过maping获得对应的value，并返回字符串，各个项之间用逗号隔开
+    private String getMaping(String[] orgString, Map<String,String> maping){
+        if(orgString == null || maping == null)
+            return null;
+
+        String result = "";
+        for(int i = 0; i<orgString.length; i++){
+            result = result + maping.get(orgString[i]).toString();
+            if(i+1 != orgString.length)
+                result = result + ",";
+        }
+        return result;
+    }
+    /**
+     * 查询数据
+     * @return
+     */
+    public List<Map<String, Object>> queryData(Map<String,Object> params,int requestType) throws Exception{
+        String datasource = params.get("datasource")!=null?params.get("datasource").toString():null;
+        String cache_cdn = params.get("cache_cdn")!=null?params.get("cache_cdn").toString():null;
+        String dimension = params.get("dimension")!=null?params.get("dimension").toString():null;
+        String indexString = params.get("index")!=null?params.get("index").toString():null;
+        String id = params.get("id")!=null?params.get("id").toString():null;
+
+        String directory_level = params.get("directory_level")!=null?params.get("directory_level").toString():null;
+        String time = params.get("time")!=null?params.get("time").toString():null;
+
+        //暂不处理拨测数据
+        if(Datasource_dial.equals(datasource))
+            return null;
+
+        //获取用户选择的指标
+        String[] indexs = indexString.split(",");
+        //将指标与表中的字段进行映射，并生成select中的指标部分
+        String indexFormat = "GREATEST(%s) as indexlevel";
+        String indexColums = getMaping(indexs,index2LevelMap);
+        String indexSQL = String.format(indexFormat,indexColums);
+
+        //如果directory_level为空时，根据是否有id来判断第几层级的请求
+        //如果directory_level不为空时，则直接通过directory_level来判断
+        int level = 0;
+        if(directory_level == null)
+            level = (id == null)? 1:2;
+        else
+            level = Integer.parseInt(directory_level);
+
+        //获取select列
+        String selectcolums = getString(1,0,requestType,dimension,cache_cdn,level,id) + indexSQL;
+        //获取from表
+        String fromTableName = getString(2,0,requestType,dimension,cache_cdn,level,id);
+        //获取where条件
+        String whereString = getString(3,0,requestType,dimension,cache_cdn,level,id);
+
+        //如果没有传递时间参数，则获取最新的时间
+        if(time == null){
+            String querySQL=String.format("SELECT %s as time FROM %s where "+whereString+" order by ttime desc limit 1", "ttime", fromTableName);
+            logger.info(querySQL);
+            Map<String,Object> ttime =jdbcTemplateVertica.queryForMap(querySQL);
+            time = DataUtil.ObjectToString(ttime.get("time"));
+        }
+        //sql语句where部分
+        String whereCondition=  sqlTimeFormat(time, 24) + " and " + whereString + " order by ttime";
+        String sql=SQLUtil.getQuerySql(fromTableName,selectcolums,whereCondition);
+        System.out.println(jdbcTemplateVertica.queryForList(sql).toString());
+        return jdbcTemplateVertica.queryForList(sql);
+
+        /*20170609之前老代码
+        Map<String,String> selectMap;
+        String idName="";
+        String tableName = "";
+        String limitControl="";
+        StringBuffer strBuff=new StringBuffer("");
+        if(cache_cdn!=null&&!"".equals(cache_cdn.trim())){
+            if ("CDN".equals(cache_cdn)) {
+                strBuff.append(" and cache_cdn=\'CDN\'");
+            }else if("CACHE".equals(cache_cdn)){
+                strBuff.append(" and cache_cdn=\'CACHE\'");
+            }else{
+                strBuff.append(" and cache_cdn in('ALL',NULL)");
+            }
+        }
+        StringBuffer selectColumns=new StringBuffer("");
+        switch (dimension) {
+            case "data_center":
+                idName ="dc_id";
+                selectMap = new HashMap<String,String>(){{
+                    put("dc_id", "id");
+                    put("dc_name", "name");
+                    put("dc_city", "belong_to");
+                    put("ttime", "time");
+                    put(indexTypeMap.get(index), "type");
+                }};
+                tableName = "shcdn.r_snapshot_22000";
+                break;
+            case "ICP":
+                idName ="icp_name";
+                selectMap = new HashMap<String,String>(){{
+                    put("icp_name", "id");
+                    put("icp_rank", "rank");
+                    put("icp_address", "belong_to");
+                    put("ttime", "time");
+                    put(indexTypeMap.get(index), "type");
+                    put("cache_cdn","cache_cdn");
+                }};
+                tableName = "shcdn.r_snapshot_20100";
+                 selectColumns.append(SQLUtil.getSelect(selectMap)+",").append(String.format("%s as %s","icp_name","name"));
+                 strBuff.append(" and icp_rank<=100 ");
+                break;
+            case "service_type"://业务类型维度
+                idName ="service_type";
+                selectMap=new HashMap<String,String>();
+                selectMap.put("service_type","id");
+                selectMap.put("ttime","time");
+                selectMap.put(indexTypeMap.get(index),"type");
+                tableName="shcdn.r_snapshot_21002";
+                selectColumns.append(SQLUtil.getSelect(selectMap)+",").append(String.format("%s as %s","service_type","name"));
+                break;
+            default:
+                return null;
+        }
+        if(dimension_id !=null){
+            strBuff.append(String.format(" AND %s = '%s'",idName,dimension_id));
+        }
+        limitControl=strBuff.toString();
+        //如果没有传递时间参数，则获取最新的时间
+        if(time == null){
+            String querySQL=String.format("SELECT %s as time FROM %s where "+limitControl.substring(4)+" order by ttime desc limit 1", "ttime", tableName);
+            logger.info(querySQL);
+            Map<String,Object> ttime =jdbcTemplateVertica.queryForMap(querySQL);
+            time = DataUtil.ObjectToString(ttime.get("time"));
+        }
+
+        //sql语句where部分
+        String whereCondition=  sqlTimeFormat(time, 24) + limitControl + " order by ttime";
+
+        String sql=SQLUtil.getQuerySql(tableName,selectColumns.toString(),whereCondition);
+       if("ICP".equals(dimension) || "service_type".equals(dimension)){
+           return jdbcTemplateVertica.queryForList(sql);
+       }
+        return jdbcTemplateVertica.queryForList(SQLUtil.getQuerySql(tableName, selectMap, whereCondition));*/
+    }
+
+//    /**
+//     * 查询数据
+//     * @param dimension
+//     * @param index
+//     * @return
+//     */
+//    public List<Map<String, Object>> queryData(String dimension, String index, String time, String dimension_id) throws Exception{
+//        Map<String,String> selectMap;
+//        String idName;
+//        String tableName = "";
+//        String limitControl="";
+//
+//        switch (dimension) {
+//            case "data_center":
+//                selectMap = new HashMap<String,String>(){{
+//                    put("dc_id", "id");
+//                    put("dc_name", "name");
+//                    put("dc_city", "belong_to");
+//                    put("ttime", "time");
+//                    put(indexTypeMap.get(index), "type");
+//                }};
+//                idName = "dc_id";
+//                tableName = "shcdn.r_snapshot_22000";
+//                break;
+//            case "ICP":
+//                idName = "icp_id";
+//                    put("icp_id", "id");
+//                selectMap = new HashMap<String,String>(){{
+//                    put("icp_address", "name");
+//                    put("icp_name", "belong_to");
+//                    put("ttime", "time");
+//                    put(indexTypeMap.get(index), "type");
+//                    put("visit_cnt","visit_cnt");
+//        }};
+//                tableName = "shcdn.r_snapshot_20100";
+//                limitControl=" and icp_id in (SELECT icp_id from shcdn.r_snapshot_20100 where "+sqlTimeFormat(null == time ? TimeUtil.CustomToMinDateText() : time, 24)+" group by icp_id order by sum(visit_cnt) desc limit 500)";
+//                break;
+//            default:
+//                return null;
+//        }
+//
+//        final String finalIdName = idName;
+//        return jdbcTemplateVertica.queryForList(
+//                    SQLUtil.getQuerySql(tableName, selectMap,
+//                            (null == dimension_id ? "" : String.format(" %s = '%s' And ", finalIdName, dimension_id))
+//                                    + sqlTimeFormat(null == time ? TimeUtil.CustomToMinDateText() : time, 24) + limitControl + " order by ttime  "));
+//    }
+
+    /**
+     * 查询数据详单
+     * @return
+     */
+    public List<Map<String, Object>> queryDataList(String datasource,String directory_level,String dimension, String cache_cdn,int type, String id, String time, int hour,int requestType){
+        String fromTable = getString(2,type,requestType,dimension,cache_cdn,Integer.parseInt(directory_level),id);
+        if(fromTable == null)
+            return null;
+
+        String whereString = getString(3,type,requestType,dimension,cache_cdn,Integer.parseInt(directory_level),id);
+        whereString += (" and "+sqlTimeFormat(time, hour));
+        String selectString = "*";
+        String sqlString = SQLUtil.getQuerySql(fromTable,selectString,whereString);
+        return jdbcTemplateVertica.queryForList(sqlString);
+    }
+
+//    /**
+//     * 查询数据详单
+//     * @param dimension
+//     * @param type
+//     * @param id
+//     * @param time
+//     * @return
+//     */
+//    public List<Map<String, Object>> queryDataList(String dimension, int type, String id, String time, int hour){
+//        Map<String,String> selectMap;
+//        switch (dimension) {
+//            case "data_center":
+//                selectMap = new HashMap<String,String>(){{
+//                    put("dc_id", "id");
+//                    put("dc_name", "name");
+//                    put("dc_city", "belong_to");
+//                    put("ttime", "time");
+//                }};
+//                break;
+//            case "ICP":
+//                selectMap = new HashMap<String,String>(){{
+//                    put("icp_id", "id");
+//                    put("icp_address", "name");
+//                    put("icp_name", "belong_to");
+//                    put("ttime", "time");
+//                }};
+//                break;
+//            default:
+//                return null;
+//        }
+//        switch (dimension) {
+//            case "data_center":
+//                return jdbcTemplateVertica.queryForList(SQLUtil.getQuerySql(getTable(dimension, type), "*", sqlTimeFormat("dc_id", id, time, hour)));
+//            case "ICP":
+//                return jdbcTemplateVertica.queryForList(SQLUtil.getQuerySql(getTable(dimension, type), "*", sqlTimeFormat("icp_rank", id, time, hour)));
+//            default:
+//                return null;
+//        }
+//    }
+
+    /**
+     * 查询数据详单
+     * @param dimension
+     * @param type
+     * @param id
+     * @param time
+     * @return 返回值为-1时说明没有对应的情况
+     */
+    public int countData(String datasource,String directory_level,String dimension, String cache_cdn,int type, String id, String time, int hour,int requestType){
+        String fromTable = getString(2,type,requestType,dimension,cache_cdn,Integer.parseInt(directory_level),id);
+        if(fromTable == null)
+            return -1;
+
+        String whereString = getString(3,type,requestType,dimension,cache_cdn,Integer.parseInt(directory_level),id);
+        whereString += (" and "+sqlTimeFormat(time, hour));
+        String selectString = "count(1) as numbercount";
+        String sqlString = SQLUtil.getQuerySql(fromTable,selectString,whereString);
+        return Integer.parseInt(jdbcTemplateVertica.queryForMap(sqlString).get("numbercount").toString());
+    }
+
+    /**
+     * 根据维度和层级获取select列、表名、where条件，type为1对应select列，type为2对应表名，type为3对应where条件
+     * @param sqltype，为1说明取select列，为2说明取表名，为3说明取where条件
+     * @param pagetype,为0说明是快照请求，为1说明是详细请求1页面，为2说明是详细信息请求2页面，为3说明是详细请求3页面
+     * @param requestType 标明request类型，主要是为了识别request7，因为在处理此其请求时需要对用户分享的id进行筛选
+     * @param dimension 维度
+     * @param cache_cdn 类型
+     * @param directory_level 页面层级
+     * @param id,取实体的id名称，在where请求的时候会用到
+     * @return
+     */
+    public String getString(int sqltype, int pagetype,int requestType,String dimension, String cache_cdn, int directory_level,String id){
+        if(dimension == null)
+            return null;
+        System.out.println(sqltype+";"+pagetype+";"+dimension+";"+cache_cdn+";"+directory_level+";"+id);
+        String returnString = "";
+        String selectcolums = "";
+        String tablename = "";
+        //判断where条件
+        String whereString = "cache_cdn = '%s'";
+
+        if(cache_cdn.equals(Cache_cdn_cache))
+            whereString = String.format(whereString,"CACHE");
+        else if(cache_cdn.equals(Cache_cdn_cdn))
+            whereString = String.format(whereString,"CDN");
+
+        switch (dimension){
+            case Dimension_data_center:
+                if(directory_level == 1 && (pagetype == 0 || pagetype == 1)){
+                    selectcolums = Table_cdn_datacenter_1_select;
+                    tablename = Table_cdn_datacenter_1;
+                    if(id != null)
+                        whereString += String.format(Table_cdn_datacenter_2_where,id);
+                }else if(directory_level == 1 && pagetype == 2){
+                    tablename = Table_cdn_datacenter_2;
+                    whereString += String.format(Table_cdn_datacenter_2_where,id);
+                }else if(directory_level == 2 && pagetype == 0){
+                    selectcolums = Table_cdn_datacenter_2_select;
+                    tablename = Table_cdn_datacenter_2;
+                    if(requestType == 7)
+                        whereString += String.format(Table_cdn_datacenter_2_2_where,id);
+                    else
+                        whereString += String.format(Table_cdn_datacenter_2_where,id);
+                }else if(directory_level == 2 && pagetype == 1){
+                    whereString += String.format(Table_cdn_datacenter_2_2_where,id);
+                    tablename = Table_cdn_datacenter_2;
+                }else
+                    return null;
+                if(pagetype != 0)
+                    whereString += " and visit_cnt > 100 ";
+                break;
+            case Dimension_fringe_node:
+                if(directory_level == 1 && (pagetype == 0 || pagetype == 1)) {
+                    selectcolums = Table_cache_edgenode_1_select;
+                    tablename = Table_cache_edgenode_1;
+                    if(id != null)
+                        whereString += String.format(Table_cache_edgenode_2_where,id);
+                }else if(directory_level == 1 && pagetype == 2){
+                    tablename = Table_cache_edgenode_2;
+                    whereString += String.format(Table_cache_edgenode_2_where,id);
+                }else if(directory_level == 2 && pagetype == 0){
+                    selectcolums = Table_cache_edgenode_2_select;
+                    tablename = Table_cache_edgenode_2;
+                    if(requestType == 7)
+                        whereString += String.format(Table_cache_edgenode_2_2_where,id);
+                    else
+                        whereString += String.format(Table_cache_edgenode_2_where,id);
+                }else if(directory_level == 2 && pagetype == 1){
+                    whereString += String.format(Table_cache_edgenode_2_2_where,id);
+                    tablename = Table_cache_edgenode_2;
+                }else
+                    return null;
+                break;
+            case Dimension_ICP:
+                if(directory_level == 1 && pagetype == 0) {
+                    selectcolums = Table_icp_1_select;
+                    tablename = Table_icp_1;
+                    whereString += " and icp_rank<=100 ";
+                    if(requestType == 7)
+                        whereString += String.format(Table_icp_2_where,id);
+                }else if(directory_level == 1 && pagetype == 1){
+                    tablename = Table_icp_1;
+                    whereString += String.format(Table_icp_2_where,id);
+                }else if(directory_level == 1 && pagetype == 2){
+                    tablename = Table_icp_2;
+                    whereString += String.format(Table_icp_2_where,id);
+                }else if(directory_level == 1 && pagetype == 3){
+                    tablename = Table_icp_3;
+                    whereString += String.format(Table_icp_2_where,id);
+                }else if(directory_level == 2 && pagetype == 0){
+                    selectcolums = Table_icp_2_select;
+                    tablename = Table_icp_2;
+                    if(requestType == 7)
+                        whereString += String.format(Table_icp_2_2_where,id);
+                    else
+                        whereString += String.format(Table_icp_2_where,id);
+                }else if(directory_level == 2 && pagetype == 1){
+                    tablename = Table_icp_2;
+                    whereString += String.format(Table_icp_2_2_where,id);
+                }else if(directory_level == 2 && pagetype == 2){
+                    tablename = Table_icp_3;
+                    whereString += String.format(Table_icp_2_2_where,id);
+                }else
+                    return null;
+                break;
+            case Dimension_service_type:
+                if(pagetype == 0){
+                    selectcolums = Table_businesstype_1_select;
+                    tablename = Table_businesstype_1;
+                    if(requestType == 7)
+                        whereString += String.format(Table_businesstype_2_where,id);
+                }else {
+                    whereString += (String.format(Table_businesstype_2_where,id)+" and visit_cnt > 100 ");
+                    if(pagetype == 1)
+                        tablename = Table_businesstype_1;
+                    else if(pagetype == 2)
+                        tablename = Table_businesstype_2;
+                    else if(pagetype == 3)
+                        tablename = Table_businesstype_3;
+                }
+                break;
+        }
+
+        if(pagetype != 0)
+            selectcolums = "*";
+
+        switch (sqltype){
+            case 1:
+                returnString = selectcolums; break;
+            case 2:
+                returnString = tablename; break;
+            case 3:
+                returnString = whereString; break;
+        }
+        return returnString;
+    }
+}

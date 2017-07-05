@@ -151,6 +151,11 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory" />
     </bean>
 
+    <bean id="OsInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="cn.com.ailbb.server.mapper.OsInfoMapper"></property>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+
     <!--其他表-->
 
     <!-- 数据映射器 End↑-->

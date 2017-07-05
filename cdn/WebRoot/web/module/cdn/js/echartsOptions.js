@@ -1,0 +1,1058 @@
+/**
+ * Created by zhongguohua
+ * on 2017/3/15.
+ */
+//echarts图形数组，用于重绘
+var chartObj = [];
+var chartOptions = {
+    getOptions: function (ele, inOption) {
+        var options = {
+            "chart1": function (option) {
+                return getChart1Options(option);
+            },
+            "chart2": function (option) {
+                return getChart2Options(option);
+            },
+            "chart3": function (option) {
+                return getChart3Options(option);
+            },
+            "chart4": function (option) {
+                return getChart4Options(option);
+            },
+            "chart5": function (option) {
+                return getChart5Options(option);
+            },
+            "chart6": function (option) {
+                return getChart6Options(option);
+            },
+            "chart_flow": function (option) {
+                return getChartFlowOptions(option);
+            },
+            "chart_flow2": function (option) {
+                return getChartFlow2Options(option);
+            },
+            "chart_flow3": function (option) {
+                return getChartFlow3Options(option);
+            },
+            "chart_download_dataCenter": function (option) {
+                return getChartDownloadDataCenterOptions(option);
+            },
+            "chart_download_ICP": function (option) {
+                return getChartDownloadICPOptions(option);
+            },
+            "chart_server_dataCenter": function (option) {
+                return getChartDownloadServerOptions(option);
+            },
+            "chart_domain_dataCenter": function (option) {
+                return getChartDownloadDomainOptions(option);
+            },
+            "chart_server_ICP": function (option) {
+                return getChartDownloadICPServerOptions(option);
+            },
+            "chart_domain_ICP": function (option) {
+                return getChartDownloadICPDomainOptions(option);
+            }
+        };
+
+        return options[ele](inOption);
+    }
+};
+
+//设置图表配置参数
+function initChartOptions(ele, options) {
+    var chart = echarts.init($("#" + ele)[0]);
+    var chartOp = chartOptions.getOptions(ele, options);
+    chart.setOption(chartOp,true);
+    chartObj[ele] = chart;
+    return chart;
+}
+
+//图表重绘
+function resizeChart() {
+    for (var obj in chartObj) {
+        chartObj[obj].resize();
+    }
+}
+
+function loadData(url, elementArr, extendParam) {
+    //chartArr = [];
+    var validate = validateForm();
+    if (!validate.isPass) {
+        layer.alert(validate.errorMsg, {icon: 7, offset: '200px'});
+        return;
+    }
+
+    var param = getConditionParam();
+    param = $.extend({}, param, extendParam);
+    var timeStart = param.timeStart.replace(/-/g, "/");
+    var timeEnd = param.timeEnd.replace(/-/g, "/");
+    param.timeSlot = getTimeSlot(timeStart, timeEnd, param.timeType);
+    $.post(url, param, function (datas) {
+        if (datas.length == 0) {
+            layer.alert('查询范围内暂无数据', {icon: 7, offset: '200px'});
+            return;
+        }
+        var chartData = {
+            timeSlot: param['timeSlot'].split(","),
+            data: datas.data
+        };
+        for (var i = 0, len = elementArr.length; i < len; i++) {
+            var obj = elementArr[i];
+            var chart = initChartOptions(obj, chartData);
+            if (extendParam && extendParam.chartClick) {
+                chart.on('click', function (data) {
+                    extendParam.chartClick(data);
+                });
+            }
+        }
+
+    }, "JSON");
+
+}
+
+function changeToolTipFormat(param) {
+    param.sort(compare('value'));//先根据值排序
+    var format = param[0]["name"] + "<br/>汇总 : {:sumValue} <br/>";
+    var sumValue = 0;
+    for (var i = 0, len = param.length; i < len; i++) {
+        sumValue += parseFloat(param[i]['value']);
+        format += "<span class='chartsSpot' style='background-color:" + param[i]['color'] + "'></span>"
+            + param[i]['seriesName'] + " : " + param[i]['value'] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+        if (i % 2) {
+            format += "<br/>";
+        }
+    }
+    return format.replace("{:sumValue}", sumValue);
+}
+
+//数据排序
+function compare(property) {
+    return function (a, b) {
+        var value1 = a[property];
+        var value2 = b[property];
+        return value2 - value1;
+    }
+}
+
+/**
+ * 展示前十条数据
+ * @param list
+ */
+function getDataZoomEnd(list) {
+   /* var per = 10 / list.length * 100;
+    per = per > 100 ? 100 : per;
+    return 100 - per;*/
+    var result = parseInt((1-12/list.length)*100);
+    return result<0 ? 0:result;
+}
+
+//边缘节点健康状况
+function getChart1Options(option) {
+    return {
+        title: {
+            text: '边缘节点健康状况',
+            x: 'center'
+            //subtext: '   占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /*formatter: "{b} <br/>{a0} : {c0}%" +
+             "<br/>{a1} : {c1}%" +
+             "<br/>{a2} : {c2}%" +
+             "<br/>{a3} : {c3}%" +
+             "<br/>{a4} : {c4}%" +
+             "<br/>{a5} : {c5}%"*/
+        },
+        legend: {
+            data: ['200', '206', '301', '302', '306', '其他'],
+            top: '30px'
+        },
+        /* toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "百分比(%)",
+                max: 100,
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '200',
+                type: 'line',
+                data: option['data'][0]
+            },
+            {
+                name: '206',
+                type: 'line',
+                data: option['data'][1]
+            },
+            {
+                name: '301',
+                type: 'line',
+                data: option['data'][2]
+            },
+            {
+                name: '302',
+                type: 'line',
+                data: option['data'][3]
+            },
+            {
+                name: '306',
+                type: 'line',
+                data: option['data'][4]
+            },
+            {
+                name: '其他',
+                type: 'line',
+                data: option['data'][5]
+            }
+        ]
+    };
+}
+
+//边缘节点平均下载速率
+function getChart2Options(option) {
+    return {
+        title: {
+            text: '边缘节点平均下载速率',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /*formatter: "{b} <br/>{a0} : {c0}%" +
+             "<br/>{a1} : {c1}%" +
+             "<br/>{a2} : {c2}%" +
+             "<br/>{a3} : {c3}%"*/
+        },
+        legend: {
+            data: ['低于100K', '高于100K', '高于500K', '高于2000K'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "百分比(%)",
+                max: 100,
+                type: 'value'
+            }
+        ],
+        series: [
+            /*{
+             name: 'SlowQuit',
+             type: 'line',
+             stack: '总量',
+             areaStyle: {normal: {}},
+             data: option['data'][6]
+             },*/
+            {
+                name: '低于100K',
+                type: 'line',
+                data: option['data'][6]
+            },
+            {
+                name: '高于100K',
+                type: 'line',
+                data: option['data'][7]
+            },
+            {
+                name: '高于500K',
+                type: 'line',
+                data: option['data'][8]
+            },
+            {
+                name: '高于2000K',
+                type: 'line',
+                data: option['data'][9]
+            }
+        ]
+    };
+}
+
+function getChart3Options(option) {
+    return {
+        title: {
+            text: '边缘节点平均速率',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /* formatter: "{b} <br/>{a0} : {c0} M/S" +
+             "<br/>{a1} : {c1} M/S"*/
+        },
+        legend: {
+            data: ['平均速率-HIT', '平均速率-MISS'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "速率(M/S)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '平均速率-HIT',
+                type: 'line',
+                data: option['data'][10]
+            },
+            {
+                name: '平均速率-MISS',
+                type: 'line',
+                data: option['data'][11]
+            }
+        ]
+    };
+}
+//流量
+function getChart4Options(option) {
+    return {
+        title: {
+            text: '流量',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /* formatter: "{b} <br/>{a0} : {c0} M/S" +
+             "<br/>{a1} : {c1} M/S"*/
+        },
+        legend: {
+            data: ['流量'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "(Mbps)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '流量',
+                type: 'line',
+                smooth:true,
+                data: option['data'][12],
+                itemStyle:{
+                    normal:{color:'#A9C5B8'}
+                }
+            }
+        ]
+    };
+}
+//请求数
+function getChart5Options(option) {
+    return {
+        title: {
+            text: '请求数',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /* formatter: "{b} <br/>{a0} : {c0} M/S" +
+             "<br/>{a1} : {c1} M/S"*/
+        },
+        legend: {
+            data: ['请求数'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "(个)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '请求数',
+                type:'bar',
+                data: option['data'][13],
+                itemStyle:{
+                    normal:{color:'#3398DB'}
+                }
+            }
+        ]
+    };
+}
+//首字节延迟
+function getChart6Options(option) {
+    return {
+        title: {
+            text: '首字节延迟',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /* formatter: "{b} <br/>{a0} : {c0} M/S" +
+             "<br/>{a1} : {c1} M/S"*/
+        },
+        legend: {
+            data: ['首字节延迟'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: option['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "(个)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '首字节延迟',
+                type: 'line',
+                smooth:true,
+                data: option['data'][14],
+                itemStyle:{
+                    normal:{color:'#D9837E'}
+                }
+
+            }
+        ]
+    };
+}
+//单节点下载带宽-时间曲线
+function getChartFlowOptions(options) {
+    return {
+        title: {
+            text: '单节点下载带宽-时间曲线',
+            x: 'center',
+            align: 'right'
+        },
+        grid: {
+            bottom: 80
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                animation: true
+            }
+        },
+        legend: {
+            data: ['带宽'],
+            x: 'left'
+        },
+        dataZoom: [
+            {
+                show: true,
+                realtime: true,
+                start: 100,
+                end: 0
+            }
+        ],
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                axisLine: {onZero: false},
+                data: options['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: '带宽(MBytes)',
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '带宽',
+                type: 'line',
+                areaStyle: {
+                    normal: {}
+                },
+                lineStyle: {
+                    normal: {
+                        width: 1
+                    }
+                },
+                markArea: {
+                    silent: true,
+                    data: []
+                },
+                data: options["data"][0]
+            }
+        ]
+    };
+}
+//流量与带宽的请求数
+function getChartFlow2Options(options){
+    return {
+        title: {
+            text: '请求数',
+            x: 'center'
+        },
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                animation: true
+            }
+        },
+        legend: {
+            data: ['请求数'],
+            top: '30px'
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                axisLine: {onZero: false},
+                data: options['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "(个)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '请求数',
+                type:'bar',
+                itemStyle:{
+                    normal:{color:'#3398DB'}
+                },
+                areaStyle: {
+                    normal: {}
+                },
+                lineStyle: {
+                    normal: {
+                        width: 1
+                    }
+                },
+                markArea: {
+                    silent: true,
+                    data: []
+                },
+                data: options["data"][1]
+            }
+        ]
+    };
+}
+//流量与带宽的首字节延迟
+function getChartFlow3Options(options){
+    return {
+        title: {
+            text: '首字节延迟',
+            x: 'center'
+            //subtext: '占比[%]'
+        },
+        tooltip: {
+            trigger: 'axis'
+            /* formatter: "{b} <br/>{a0} : {c0} M/S" +
+             "<br/>{a1} : {c1} M/S"*/
+        },
+        legend: {
+            data: ['首字节延迟'],
+            top: '30px'
+        },
+        /*toolbox: {
+         feature: {
+         saveAsImage: {}
+         }
+         },*/
+        grid: {
+            left: '10px',
+            right: '20px',
+            bottom: '25px',
+            top: '70px',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: options['timeSlot'].map(function (str) {
+                    return str.replace(' ', '\n')
+                })
+            }
+        ],
+        yAxis: [
+            {
+                name: "(个)",
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '首字节延迟',
+                type: 'line',
+                smooth:true,
+                data: options['data'][2],
+                data: options['data'][2],
+                itemStyle:{
+                    normal:{color:'#D9837E'}
+                }
+
+            }
+        ]
+    };
+}
+//下载带宽数据中心饼图数据
+function getChartDownloadDataCenterOptions(options) {
+    return {
+        title: {
+            text: '数据中心下载带宽',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c}% "
+        },
+        grid: {
+            bottom: 20
+        },
+        legend: {
+            orient: 'vertical',
+            left: '160px',
+            top: "middle",
+            data: options['data']['legendData']
+        },
+        series: [
+            {
+                name: '带宽占比',
+                type: 'pie',
+                radius: '78%',
+                center: ['50%', '55%'],
+                data: options['data']["datas"],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+}
+
+//下载带宽-ICP
+function getChartDownloadICPOptions(options) {
+    var resOp = {
+        color: pubColor,
+        title: {
+            text: 'ICP下载带宽',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            confine: true,
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (param) {
+                return changeToolTipFormat(param);
+            }
+        },
+        dataZoom: [
+            {
+                orient: "vertical",
+                show: true,
+                realtime: true,
+                start: 100,
+                end: getDataZoomEnd(options['data']["wdName"])
+            }
+        ],
+        legend: {
+            top: '50px',
+            data: cityList
+        },
+        grid: {
+            top: '120px',
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: options['data']["wdName"]
+        }
+    };
+
+    var seriesArr = [];
+    for (var i = 0; i < 21; i++) {
+        seriesArr.push({
+            name: cityList[i],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            data: options['data']['valueList'][cityNameArr[i]['text'] + '市']
+        })
+    }
+    resOp.series = seriesArr;
+    return resOp;
+}
+
+//下载带宽-数据中心-钻取-服务器数据
+function getChartDownloadServerOptions(options) {
+    return {
+        title: {
+            text: '服务器',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: "{b} <br/>下载带宽 : {c} MBytes"
+        },
+        dataZoom: [
+            {
+                orient: "vertical",
+                show: true,
+                realtime: true,
+                start: 100,
+                end: getDataZoomEnd(options['serverValue'])
+            }
+        ],
+        grid: {
+            bottom: '40px',
+            containLabel: true
+        },
+        xAxis: {
+            //name: "\n\n\n带宽\n(MBytes)",
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            data: options['serverName']
+        },
+        series: [
+            {
+                name: '下载带宽占比',
+                type: 'bar',
+                data: options['serverValue']
+            }
+        ]
+    };
+}
+//下载带宽-数据中心-钻取-域名数据
+function getChartDownloadDomainOptions(options) {
+    return {
+        title: {
+            text: '域名',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            },
+            formatter: "{b} <br/>下载带宽 : {c} MBytes"
+        },
+        grid: {
+            bottom: '40px',
+            containLabel: true
+        },
+        dataZoom: [
+            {
+                orient: "vertical",
+                show: true,
+                realtime: true,
+                start: 100,
+                end: getDataZoomEnd(options['domainValue'])
+            }
+        ],
+        xAxis: {
+            //name: "\n\n\n带宽\n(MBytes)",
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            data: options['domainName']
+        },
+        series: [
+            {
+                name: '下载带宽占比',
+                type: 'bar',
+                data: options['domainValue']
+            }
+        ]
+    };
+}
+
+//下载带宽-ICP-钻取-服务器数据
+function getChartDownloadICPServerOptions(options) {
+    var resOp = {
+        title: {
+            text: '服务器下载带宽',
+            x: 'center'
+        },
+        tooltip: {
+            width: "300px",
+            trigger: 'axis',
+            confine: true,
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (param) {
+                return changeToolTipFormat(param);
+            }
+        },
+        dataZoom: [
+            {
+                orient: "vertical",
+                show: true,
+                realtime: true,
+                start: 100,
+                end: getDataZoomEnd(options['serverData']['wdName'])
+            }
+        ],
+        legend: {
+            top: '40px',
+            data: cityList
+        },
+        grid: {
+            top: '120px',
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: options['serverData']["wdName"]
+        }
+    };
+
+    var seriesArr = [];
+    for (var i = 0; i < 21; i++) {
+        seriesArr.push({
+            name: cityList[i],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            data: options['serverData']['valueList'][cityNameArr[i]['text'] + '市']
+        })
+    }
+    resOp.series = seriesArr;
+    return resOp;
+}
+
+//下载带宽-ICP-域名
+function getChartDownloadICPDomainOptions(options) {
+    var resOp = {
+        title: {
+            text: '域名下载带宽',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            confine: true,
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (param) {
+                return changeToolTipFormat(param);
+            }
+        },
+        dataZoom: [
+            {
+                orient: "vertical",
+                show: true,
+                realtime: true,
+                start: 100,
+                end: getDataZoomEnd(options['domainData']['wdName'])
+            }
+        ],
+        legend: {
+            top: '40px',
+            data: cityList
+        },
+        grid: {
+            top: '120px',
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: options['domainData']["wdName"]
+        }
+    };
+
+    var seriesArr = [];
+    for (var i = 0; i < 21; i++) {
+        seriesArr.push({
+            name: cityList[i],
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            data: options['domainData']['valueList'][cityNameArr[i]['text'] + '市']
+        })
+    }
+    resOp.series = seriesArr;
+    return resOp;
+}
+var pubColor = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83',
+    '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3', '#CD853F',
+    '#CDB7B5', '#D15FEE', '#D2691E', '#F0E68C', '#FFA07A', '#FFBBFF',
+    '#66CD00', '#EE9A00', '#61a0a8', '#91c7ae', '#CDAF95', '#B0E0E6'];

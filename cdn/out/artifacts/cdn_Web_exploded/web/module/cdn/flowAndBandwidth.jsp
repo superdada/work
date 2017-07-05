@@ -23,6 +23,20 @@
     <script>
         var AppBase = "<%=AppBase%>";
         var baseURL = AppBase+"/web/module/cdn"; // 模块根目录
+        //选项框联动关系,单选框
+        var conditionReflesh = {
+            'cityName1': {conId: ""},
+            'cityName2': {conId: ""},
+            'dataCenter':{conId: ""},
+            'ICP1':{conId:'domain1'},
+            'domain1':{conId: ""},
+            // 'serviceTypeCategory':{conId: ""},
+            // 'serviceNameCategory':{conId: ""},
+            'server1':{conId: ""},
+        };
+        //多选框的处理
+        var conditionReflesh_multiple = {
+        };
     </script>
 
     <style type="text/css">
@@ -38,8 +52,12 @@
 </head>
 <body>
 <%@include file="commonCondition.jsp" %>
-<div>
-    <div id="chart_flow" class="singleChart"></div>
+<div id="scrollDiv" style="width: 100%;">
+    <div id="chartDiv">
+        <div id="chart_flow" class="singleChart"></div>
+        <div id="chart_flow2" class="charts"></div>
+        <div id="chart_flow3" class="charts"></div>
+    </div>
 </div>
 </body>
 </html>

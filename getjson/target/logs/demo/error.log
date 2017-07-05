@@ -1,18 +1,1 @@
-2017-05-26 15:18:22  [ main:1602 ] - [ ERROR ]  executeSQL:create external table if not exists T_NCP_STAT(
-  I_MPTYPE INT,
-  I_MPTYPE_VALUE string,
-  I_PROVINCE_ID INT,
-  I_CITY_ID INT,
-  I_COVER_TYPE string,
-  n_lt_effective_ratio float,
-  n_yd_effective_ratio float,
-  n_dx_effective_ratio float,
-  N_TOTAL_SCORE float
-)
-PARTITIONED BY (month string)
-row format delimited fields terminated by ','
-STORED AS textfile
-location '/catt/data/ncp/T_NCP_STAT'
-
-2017-05-26 15:18:22  [ main:1606 ] - [ ERROR ]  executeSQL:Alter table T_NCP_STAT drop if exists PARTITION(month = '201704')
-2017-05-26 15:18:22  [ main:1607 ] - [ ERROR ]  executeSQL:Alter table T_NCP_STAT add if not exists PARTITION (month = '201704')
+2017-05-27 09:35:38  [ main:11928 ] - [ ERROR ]  driver not found

@@ -54,7 +54,7 @@
                 /realtimeonline.do = anon
                 /index_cp.jsp = anon
                 /web/module/cdn/realtime_monitoring_cp.jsp = anon-->
-                /** = anon
+                /** = authc
             </value>
         </property>
     </bean>

@@ -9,6 +9,12 @@
     <script type="text/javascript">
          var AppBase = "<%=AppBase%>";
          var baseURL = AppBase+"/web/module/cdn"; // 模块根目录
+         //选项框联动关系,单选框
+         var conditionReflesh = {
+         };
+         //多选框的处理
+         var conditionReflesh_multiple = {
+         };
     </script>
     <script src="js/libs/jquery-1.11.1.min.js"></script>
     <script src="js/libs/echarts.min.js"></script>

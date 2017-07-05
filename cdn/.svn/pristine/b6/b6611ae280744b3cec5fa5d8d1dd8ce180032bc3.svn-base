@@ -1,0 +1,173 @@
+/**
+ * Created by zhongguohua
+ * on 2017/3/29.
+ */
+var queryType = "cityName";
+$(function () {
+    initWdName([
+        {text: '数据中心下载带宽', type: "dataCenter", conditions: "cityName"},
+        {text: 'ICP下载带宽', type: "ICP", conditions: ""}
+    ]);
+    initDiv();
+    changeDateCom();
+    loadChartData();
+    initData();
+    $(window).resize(function () {
+        initDiv();
+        resizeChart();
+    });
+});
+
+/**
+ * 首次进入初始化数据和绑定事件
+ */
+function initData() {
+    $("#chart_download_ICP").hide();
+    var $obj = $("#searchCondition .layui-form-label");
+    $obj.css({cursor: 'pointer'}).attr("title", "点击切换条件")
+        .prepend("<span class='switch-icon'></span>");
+    $obj.click(function (ele) {
+        $("#searchCondition .floatDiv").hide();
+        var text = $(ele.target).text();
+        if ($(ele.target).hasClass("switch-icon")) {
+            text = $(ele.target).parent().text();
+        }
+        if (text == "地市") {
+            $("#ICP_div").show();
+            queryType = "ICP";
+        } else {
+            $("#cityName_div").show();
+            queryType = "cityName";
+        }
+    });
+    $("#WDSelected li").click(function (ele) {
+        $(".singleChart").hide();
+        if ($(ele.target).text() == "数据中心下载带宽") {
+            $("#searchCondition .floatDiv").hide();
+            $("#" + queryType + "_div").show();
+            $("#chart_download_dataCenter").show();
+        } else {
+            $("#chart_download_ICP").show();
+        }
+        resizeChart();//切换维度后需要重绘，否则图形会变形
+    });
+    loadPieChartData();
+    loadBarChartData();
+
+}
+
+function initDiv() {
+    var bodyHeight = $("body").height();
+    $(".singleChart").css({
+        height: bodyHeight - 230
+    });
+}
+
+function loadChartData(isClick) {
+    if ($("#WDSelected .my-options-on").text() == "数据中心下载带宽") {
+        loadPieChartData(isClick);
+
+    } else {
+        loadBarChartData(isClick);
+    }
+}
+
+/**
+ * 加载数据中心下载带宽数据-饼图
+ * @param isClick
+ */
+function loadPieChartData(isClick) {
+    var extendParam = {
+        'queryType': queryType,
+        'chartClick': pieChartClick
+    };
+    var url = AppBase + '/downloadbind.do?method=request1';
+    loadData(url, ['chart_download_dataCenter'], extendParam);
+}
+
+/**
+ * 加载ICP下载带宽 条形图数据
+ * @param isClick
+ */
+function loadBarChartData(isClick) {
+    var extendParam = {
+        'queryType': queryType,
+        'chartClick': barChartClick,
+        wdName: "ICP下载带宽"
+    };
+    var url = AppBase + '/downloadbind.do?method=request2';
+    loadData(url, ['chart_download_ICP'], extendParam);
+}
+
+/**
+ * 饼图扇区点击执行的方法
+ */
+function pieChartClick(data) {
+    if (!data) return;
+    openWin({
+        title: '[' + data['name'] + ']下域名和服务器带宽分布',
+        wdId: "dataCenter",
+        successCallback: function (domObj, index) {//开窗成功后回调，用于加载数据
+            loadSubChartData(data);
+        }
+    });
+}
+
+function barChartClick(data) {
+    if (!data) return;
+    openWin({
+        title: '[' + data['name'] + ']下域名和服务器带宽分布',
+        wdId: "ICP",
+        successCallback: function (domObj, index) {//开窗成功后回调，用于加载数据
+            loadSubChartICPData(data);
+        }
+    });
+}
+
+/**
+ * 钻取开窗
+ * @param options
+ */
+function openWin(options) {
+    var $bodyHeight = $("body").height();
+    var option = {
+        type: 1,
+        offset: '12px',
+        area: [1180, $bodyHeight - 200],
+        content: "<div id='detailDataDiv'><div id='chart_domain_" + options['wdId'] + "' class='charts'></div>" +
+        "<div id='chart_server_" + options['wdId'] + "' class='charts'></div></div>",
+        success: function (domObj, index) {
+            $("#detailDataDiv .charts").css({height: $bodyHeight - 250});
+            options.successCallback(domObj, index);
+        }
+    };
+    option = $.extend({}, option, options);
+    layer.open(option);
+}
+
+function loadSubChartData(clickData) {
+    var url = AppBase + '/downloadbind.do?method=request3';
+    var param = {
+        id: clickData.data.id,
+        timeStart: $("#timeStart").val(),
+        timeType: $("#timeTypeSelected .my-options-on").val()
+    };
+    $.post(url, param, function (data) {
+        initChartOptions("chart_server_dataCenter", data);
+        initChartOptions("chart_domain_dataCenter", data);
+    }, "JSON");
+}
+
+function loadSubChartICPData(clickData) {
+    var url = AppBase +  '/downloadbind.do?method=request4';
+    var param = {
+        name: clickData.name,
+        timeStart: $("#timeStart").val(),
+        timeType: $("#timeTypeSelected .my-options-on").val()
+    };
+    $.post(url, param, function (data) {
+        initChartOptions("chart_server_ICP", data);
+        initChartOptions("chart_domain_ICP", data);
+    }, "JSON");
+}
+

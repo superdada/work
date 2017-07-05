@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="d0cca28f-20b9-43ad-b962-24ab845ba9c6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/com/ailbb/Dao/TroubleShootingDaoImpl.java" afterPath="$PROJECT_DIR$/src/cn/com/ailbb/Dao/TroubleShootingDaoImpl.java" />
-    </list>
+    <list default="true" readonly="true" id="d0cca28f-20b9-43ad-b962-24ab845ba9c6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,13 +15,56 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="RealTimeOnlineController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/RealTimeOnlineController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="520">
+              <caret line="46" column="82" lean-forward="false" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RealTimeOnlineServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/RealTimeOnlineServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="580">
+              <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <marker date="1497608100095" expanded="true" signature="1572:1586" ph="SELECT * FRO... r_realtime2_10000" />
+                <marker date="1497608100095" expanded="true" signature="1572:1674" ph="SELECT * FRO... r_realtime2_10000" />
+                <marker date="1497608100095" expanded="true" signature="3895:3926" ph="SELECT %s as... " />
+                <marker date="1497608100095" expanded="true" signature="3895:3949" ph="SELECT %s as... " />
+                <marker date="1497608100095" expanded="true" signature="3895:4001" ph="SELECT %s as... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PerformanceSnapshotController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/PerformanceSnapshotController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1980">
+              <caret line="116" column="43" lean-forward="false" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DataCenterDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/dao/DataCenterDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="280">
+              <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,60 +73,99 @@
         <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/impl/DataCenterDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mybatis.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+              <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
-                <element signature="e#1335#1357#0" expanded="true" />
-                <element signature="e#1400#1414#0" expanded="true" />
-                <element signature="e#1454#1469#0" expanded="true" />
-                <element signature="e#1513#1532#0" expanded="true" />
-                <element signature="e#1579#1605#0" expanded="true" />
-                <element signature="e#1652#1678#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#945#946#0" expanded="false" />
+                <element signature="e#1003#1004#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mybatis-config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis-config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataBase.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dataBase.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataCenterStatusMapper.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DataCenterStatusMapper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/DataCenterStatusMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="26" column="1" lean-forward="false" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+            <state relative-caret-position="240">
+              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PerformanceSnapshotService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/PerformanceSnapshotService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5720">
+              <caret line="357" column="22" lean-forward="false" selection-start-line="357" selection-start-column="22" selection-end-line="357" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="initializer##0;class#2509:2607" expanded="false" />
+                <element signature="initializer##0;class#2692:2785" expanded="false" />
+                <element signature="initializer##0;class#2859:2983" expanded="false" />
+                <element signature="initializer##0;class#3066:3162" expanded="false" />
+                <element signature="method#sortByICP_Rank#0;class#PerformanceSnapshotService#0" expanded="false" />
+                <element signature="method#sqlTimeFormat#1;class#PerformanceSnapshotService#0" expanded="false" />
+                <element signature="docComment;method#getAlarmType#1;class#PerformanceSnapshotService#0" expanded="false" />
+                <element signature="method#getMaping#0;class#PerformanceSnapshotService#0" expanded="false" />
+                <element signature="e#19776#19785#0" expanded="false" />
+                <element signature="e#22678#22687#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalysisReportController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/AnalysisReportController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/handler/HttpHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RealTimeOnlineService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/RealTimeOnlineService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ContextLoaderListener</find>
+      <find>InternalResourceViewResolver</find>
+      <find>request</find>
+      <find>strBuff</find>
+      <find>sqlTimeFormat</find>
+      <find>service_type</find>
+      <find>MailUtil</find>
+      <find>queryDataList</find>
+      <find>transData</find>
+      <find>println</find>
+    </findStrings>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -98,6 +177,23 @@
       <list>
         <option value="$PROJECT_DIR$/src/cn/com/ailbb/Dao/TroubleShootingDaoImpl.java" />
         <option value="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/config/shiro.xml" />
+        <option value="$PROJECT_DIR$/src/dataBase.properties" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/handler/AlarmHandler.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/DataCenterStatusMapper.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/impl/DataCenterDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/dao/DataCenterDao.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/pojo/DataCenterStatus.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/obj/ItemData.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/impl/PfcsnapshotDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/dao/PfcsnapshotDao.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/pojo/Pfcsnapshot.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/PfcsnapshotMapper.java" />
+        <option value="$PROJECT_DIR$/src/mail.properties" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/service/RealTimeOnlineServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/controller/RealTimeOnlineController.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/service/PerformanceSnapshotService.java" />
+        <option value="$PROJECT_DIR$/src/cn/com/ailbb/controller/PerformanceSnapshotController.java" />
       </list>
     </option>
   </component>
@@ -135,6 +231,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,42 +280,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cdn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -236,6 +299,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ailbb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ailbb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -305,277 +390,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ailbb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cdn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ailbb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gs-rest-service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../getjson" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="js.eslint.eslintPackage" value="" />
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\login\images\logo-2.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\commonCondition.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\downloadBindWidth.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\errorCodeAnalysis.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\flowAndBandwidth.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\performanceAnalysis.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\troubleShooting.jsp</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\extend</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\extend\layer.ext.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\layer.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\layer.min.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default\icon-ext.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default\icon.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default\loading-0.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default\loading-1.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\default\loading-2.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\layer.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\layer.ext.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\moon</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\moon\default.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layer\skin\moon\style.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\layui.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\layui.mobile.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\code.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\laydate</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\laydate\icon.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\laydate\laydate.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\icon-ext.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\icon.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\layer.css</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\loading-0.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\loading-1.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\css\modules\layer\default\loading-2.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\font</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\font\iconfont.eot</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\font\iconfont.svg</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\font\iconfont.ttf</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\font\iconfont.woff</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\0.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\1.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\10.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\11.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\12.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\13.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\14.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\15.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\16.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\17.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\18.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\19.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\2.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\20.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\21.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\22.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\23.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\24.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\25.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\26.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\27.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\28.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\29.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\3.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\30.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\31.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\32.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\33.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\34.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\35.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\36.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\37.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\38.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\39.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\4.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\40.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\41.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\42.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\43.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\44.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\45.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\46.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\47.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\48.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\49.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\5.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\50.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\51.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\52.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\53.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\54.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\55.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\56.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\57.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\58.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\59.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\6.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\60.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\61.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\62.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\63.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\64.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\65.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\66.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\67.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\68.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\69.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\7.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\70.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\71.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\8.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\images\face\9.gif</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\dest</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\dest\layui.all.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\code.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\element.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\flow.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\form.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\jquery.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\laydate.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\layedit.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\layer.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\laypage.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\laytpl.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\mobile.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\tree.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\upload.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\lay\modules\util.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\components\layui\layui.js</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\images\signOut.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\images\signOut2.png</PATH>
-          <PATH vcs="svn" revision="203">D:\工作\4G无线数据解析\spark-read\cdn\WebRoot\web\module\cdn\images\switch20.png</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Tomcat Server.tomcat8">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -826,6 +708,7 @@
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
       <setting name="launchBrowserUrl" value="" />
+      <setting name="depsClasspath" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -947,6 +830,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -1071,50 +960,232 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495696522620</updated>
-      <workItem from="1495696525761" duration="18230000" />
+      <workItem from="1495696525761" duration="23392000" />
+      <workItem from="1496216315301" duration="20957000" />
+      <workItem from="1496712027564" duration="139901000" />
+      <workItem from="1497853821654" duration="11709000" />
+      <workItem from="1498789009185" duration="602000" />
+      <workItem from="1499049427873" duration="659000" />
+      <workItem from="1499219795626" duration="621000" />
     </task>
+    <task id="LOCAL-00001" summary="WZY修改性能快照request1和request3">
+      <created>1497500832744</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500832744</updated>
+    </task>
+    <task id="LOCAL-00002" summary="WZY修改性能快照request1和request3">
+      <created>1497500847011</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500847011</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WZY修改性能快照request1和request3">
+      <created>1497500868185</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500868185</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WZY修改性能快照request1和request3">
+      <created>1497500881914</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500881914</updated>
+    </task>
+    <task id="LOCAL-00005" summary="WZY修改性能快照request1和request3">
+      <created>1497500893667</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500893667</updated>
+    </task>
+    <task id="LOCAL-00006" summary="WZY修改性能快照request1和request3">
+      <created>1497500913214</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500913214</updated>
+    </task>
+    <task id="LOCAL-00007" summary="WZY修改性能快照request1和request3">
+      <created>1497500930461</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500930461</updated>
+    </task>
+    <task id="LOCAL-00008" summary="WZY修改性能快照request1和request3">
+      <created>1497500946470</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500946470</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WZY修改性能快照request1和request3">
+      <created>1497500971203</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1497500971203</updated>
+    </task>
+    <task id="LOCAL-00010" summary="WZY修改性能快照request4和request6">
+      <created>1497517443270</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1497517443270</updated>
+    </task>
+    <task id="LOCAL-00011" summary="WZY修改性能快照request4和request6">
+      <created>1497517539880</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1497517539880</updated>
+    </task>
+    <task id="LOCAL-00012" summary="WZY修改性能快照request4和request6">
+      <created>1497520804487</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1497520804487</updated>
+    </task>
+    <task id="LOCAL-00013" summary="WZY修改性能快照request4和request6">
+      <created>1497521258723</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1497521258723</updated>
+    </task>
+    <task id="LOCAL-00014" summary="WZY修改性能快照request4和request6">
+      <created>1497523598039</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1497523598039</updated>
+    </task>
+    <task id="LOCAL-00015" summary="WZY修改性能快照request4和request6">
+      <created>1497587929168</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1497587929168</updated>
+    </task>
+    <task id="LOCAL-00016" summary="WZY修改性能快照request4和request6">
+      <created>1497587955826</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1497587955826</updated>
+    </task>
+    <task id="LOCAL-00017" summary="WZY修改性能快照request4和request6">
+      <created>1497587982324</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1497587982325</updated>
+    </task>
+    <task id="LOCAL-00018" summary="WZY修改性能快照request4和request6">
+      <created>1497587997455</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1497587997455</updated>
+    </task>
+    <task id="LOCAL-00019" summary="WZY修改性能快照request4和request6">
+      <created>1497601397009</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1497601397009</updated>
+    </task>
+    <task id="LOCAL-00020" summary="WZY修改性能快照request4和request6">
+      <created>1497603022598</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1497603022598</updated>
+    </task>
+    <task id="LOCAL-00021" summary="WZY修改实时监控">
+      <created>1497609208667</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1497609208667</updated>
+    </task>
+    <task id="LOCAL-00022" summary="WZY修改返回结构中删除id字段，添加name字段，以解决只显示一行的问题。">
+      <created>1497945007541</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1497945007541</updated>
+    </task>
+    <task id="LOCAL-00023" summary="WZY修改返回结构中删除id字段，添加name字段，以解决只显示一行的问题。">
+      <created>1497945869258</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1497945869258</updated>
+    </task>
+    <task id="LOCAL-00024" summary="WZY修改，删除注释">
+      <created>1498012426083</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1498012426083</updated>
+    </task>
+    <task id="LOCAL-00025" summary="WZY修改，删除注释">
+      <created>1498012462550</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1498012462550</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18230000" />
+    <option name="totallyTimeSpent" value="197841000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <editor active="false" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993576" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15849674" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1830835" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.06699347" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30711043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18522485" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1123,8 +1194,18 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="WZY修改性能快照request1和request3" />
+    <MESSAGE value="WZY修改性能快照request4和request6" />
+    <MESSAGE value="WZY修改实时监控" />
+    <MESSAGE value="WZY修改返回结构中删除id字段，添加name字段，以解决只显示一行的问题。" />
+    <MESSAGE value="WZY修改，删除注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="WZY修改，删除注释" />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="7" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1132,235 +1213,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/Dao/TroubleShootingDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="84" column="69" lean-forward="false" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
-          <folding>
-            <marker date="1495700573465" expanded="true" signature="27:339" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="113" column="24" lean-forward="true" selection-start-line="113" selection-start-column="24" selection-end-line="113" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/spring.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/shiro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-812">
-          <caret line="8" column="40" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/PerformanceSnapshotController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="86" column="51" lean-forward="true" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/web/module/cdn/cdn_index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/dao/GroupInfoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/GroupInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/pojo/DataCenterStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/AnalysisReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="21" column="56" lean-forward="true" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/database/Dialect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/database/VerticaDialect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/Dao/AnalysisReportDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/enums/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/filter/ShiroDbRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/handler/AlarmHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/handler/HttpHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/interfaces/RealTimeOnlineInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/manage/SystemManage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-320">
-          <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/manage/InitManage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="42" column="23" lean-forward="true" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/obj/RealTimeOnlineData1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/obj/ItemData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/util/PropertiesUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mail.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="23" lean-forward="true" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/util/HttpUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/AnalysisReportService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/AnalysisReportServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1368,62 +1224,394 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/web/module/undefind/404.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/web/module/cdn/flowAndBandwidth.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="29" column="37" lean-forward="false" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/manage/SystemManage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="27" column="45" lean-forward="false" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/shiro/shiro-core-1.3.2.jar!/org/apache/shiro/authc/SimpleAuthenticationInfo.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/filter/ShiroDbRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/shiro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/TroubleShootingController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="26" column="13" lean-forward="true" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/spring.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="61" lean-forward="true" selection-start-line="13" selection-start-column="61" selection-end-line="13" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/web/module/cdn/js/performancesnapshot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cdn.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="56" lean-forward="true" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dataBase.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="63" column="43" lean-forward="true" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/handler/AlarmHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-jdbc-4.2.5.RELEASE.jar!/org/springframework/jdbc/support/SQLStateSQLExceptionTranslator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/pojo/DataCenterStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="50" column="19" lean-forward="false" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-jdbc-4.2.5.RELEASE.jar!/org/springframework/jdbc/core/JdbcTemplate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3980">
+          <caret line="294" column="31" lean-forward="false" selection-start-line="294" selection-start-column="31" selection-end-line="294" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/util/SQLUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="33" column="25" lean-forward="false" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/obj/ItemData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/util/ExcelUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="39" column="18" lean-forward="true" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-aop-4.2.5.RELEASE.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/mybatis/mybatis-3.4.2.jar!/org/apache/ibatis/binding/MapperProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-tx-4.2.5.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-aop-4.2.5.RELEASE.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-aop-4.2.5.RELEASE.jar!/org/springframework/aop/interceptor/ExposeInvocationInterceptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-aop-4.2.5.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="165" column="49" lean-forward="true" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-tx-4.2.5.RELEASE.jar!/org/springframework/transaction/interceptor/TransactionAspectSupport.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="162" column="0" lean-forward="false" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/spring/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="19" column="68" lean-forward="true" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/util/MailUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="38" column="66" lean-forward="false" selection-start-line="38" selection-start-column="66" selection-end-line="38" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/commons/commons-lang3-3.1.jar!/org/apache/commons/lang3/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="1190" column="0" lean-forward="false" selection-start-line="1190" selection-start-column="0" selection-end-line="1190" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/pojo/Pfcsnapshot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="29" column="63" lean-forward="true" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/impl/PfcsnapshotDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/PfcsnapshotMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="20" column="34" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/dao/PfcsnapshotDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="13" column="45" lean-forward="false" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mail.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/obj/Result.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/handler/HttpHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="24" column="24" lean-forward="false" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/AnalysisReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/RealTimeOnlineController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="46" column="82" lean-forward="false" selection-start-line="46" selection-start-column="82" selection-end-line="46" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/RealTimeOnlineService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/RealTimeOnlineServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1497608100095" expanded="true" signature="1572:1586" ph="SELECT * FRO... r_realtime2_10000" />
+            <marker date="1497608100095" expanded="true" signature="1572:1674" ph="SELECT * FRO... r_realtime2_10000" />
+            <marker date="1497608100095" expanded="true" signature="3895:3926" ph="SELECT %s as... " />
+            <marker date="1497608100095" expanded="true" signature="3895:3949" ph="SELECT %s as... " />
+            <marker date="1497608100095" expanded="true" signature="3895:4001" ph="SELECT %s as... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/service/PerformanceSnapshotService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5720">
+          <caret line="357" column="22" lean-forward="false" selection-start-line="357" selection-start-column="22" selection-end-line="357" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="initializer##0;class#2509:2607" expanded="false" />
+            <element signature="initializer##0;class#2692:2785" expanded="false" />
+            <element signature="initializer##0;class#2859:2983" expanded="false" />
+            <element signature="initializer##0;class#3066:3162" expanded="false" />
+            <element signature="method#sortByICP_Rank#0;class#PerformanceSnapshotService#0" expanded="false" />
+            <element signature="method#sqlTimeFormat#1;class#PerformanceSnapshotService#0" expanded="false" />
+            <element signature="docComment;method#getAlarmType#1;class#PerformanceSnapshotService#0" expanded="false" />
+            <element signature="method#getMaping#0;class#PerformanceSnapshotService#0" expanded="false" />
+            <element signature="e#19776#19785#0" expanded="false" />
+            <element signature="e#22678#22687#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/controller/PerformanceSnapshotController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1980">
+          <caret line="116" column="43" lean-forward="false" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/dao/DataCenterDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="280">
+          <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/impl/DataCenterDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding />
+          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#945#946#0" expanded="false" />
+            <element signature="e#1003#1004#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/server/mapper/DataCenterStatusMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="26" column="1" lean-forward="false" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+        <state relative-caret-position="240">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dataBase.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="36" column="41" lean-forward="false" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/com/ailbb/config/mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="e#1335#1357#0" expanded="true" />
-            <element signature="e#1400#1414#0" expanded="true" />
-            <element signature="e#1454#1469#0" expanded="true" />
-            <element signature="e#1513#1532#0" expanded="true" />
-            <element signature="e#1579#1605#0" expanded="true" />
-            <element signature="e#1652#1678#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

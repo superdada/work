@@ -169,16 +169,45 @@ a:hover {
 }
 
 /*=================维度/指标切换=================*/
+.index_box{
+    z-index:99;
+    margin-top: 3px;
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    box-sizing: border-box;
+}
+.index_table{
+    margin: 5px 0 5px 0;
+}
+.index-this {
+    background-color: #5FB878;
+    color: #fff;
+}
+.layui-form-checked[lay-skin=primary] i {
+    border-color: #fff;
+    background-color: #fff;
+    color: #5FB878;
+}
 .my-switch-box{
     width: 100%;
     height: 50px;
     min-width: 900px;
     padding-left: 20px;
 }
+.my3-switch-box{
+    width: 100%;
+    height:auto;
+    min-width: 900px;
+    padding-left: 10px;
+    padding-right:10px;
+}
 .my-switch-item {
-    width:300px;
+    width:auto;
     height: 50px;
     float: left;
+    padding-right: 5px;
 }
 .my-switch-text{
     height: 50px;
@@ -198,6 +227,30 @@ a:hover {
     padding: 8px 10px;
     border-radius: 3px;
     font-size: 12px;
+    float: left;
+    cursor: pointer;
+}
+.my-title-text{
+    display: inline-block;
+    line-height: 38px;
+    vertical-align: middle;
+    font-size: 14px;
+    float: left;
+    padding-right: 5px;
+}
+.my-title-options {
+    white-space: nowrap;
+    /* padding: 8px;*/
+    overflow: auto;
+}
+.my-title-options>li{
+    display: inline-block;
+    text-align: center;
+    width: 70px;
+    line-height: 38px;
+    vertical-align: middle;
+    border-radius: 3px;
+    font-size: 14px;
     float: left;
     cursor: pointer;
 }
@@ -236,8 +289,8 @@ a:hover {
     text-align: center;
 }
 
-/*=================列样式================*/
-.my-list-row > li {
+/*=================列样式1================*/
+.my-list-row5 > li {
     padding-top: 10px;
     float: left;
     text-align: center;
@@ -246,19 +299,66 @@ a:hover {
     font-size: 13px;
 }
 
-.my-list-row>li:nth-child(1){
-    width: 120px;
+.my-list-row5>li:nth-child(1){
+    width: 90px;
 }
-.my-list-row>li:nth-child(2){
-    width: 100px;
+.my-list-row5>li:nth-child(2){
+    width: 90px;
 }
-.my-list-row>li:nth-child(3){
+.my-list-row5>li:nth-child(3){
+    width: 90px;
+}
+.my-list-row5>li:nth-child(4){
     width: 650px;
 }
-.my-list-row>li:nth-child(4){
-    width: 140px;
+.my-list-row5>li:nth-child(5){
+    width: 120px;
+}
+/*=================列样式2================*/
+.my-list-row4 > li {
+    padding-top: 10px;
+    float: left;
+    text-align: center;
+    height: 40px;
+    overflow: auto;
+    font-size: 13px;
 }
 
+.my-list-row4>li:nth-child(1){
+    width: 120px;
+}
+.my-list-row4>li:nth-child(2){
+    width: 100px;
+}
+.my-list-row4>li:nth-child(3){
+    width: 650px;
+}
+.my-list-row4>li:nth-child(4){
+    width: 140px;
+}
+/*=================列样式2================*/
+.my-list-row3 > li {
+    padding-top: 10px;
+    float: left;
+    text-align: center;
+    height: 40px;
+    overflow: auto;
+    font-size: 13px;
+}
+
+.my-list-row3>li:nth-child(1){
+    width: 220px;
+}
+.my-list-row3>li:nth-child(2){
+    width: 650px;
+}
+.my-list-row3>li:nth-child(3){
+    width: 140px;
+}
+.textline {
+
+}
+.textline:hover,.textline:focus {text-decoration: underline}
 /*=================数据样式=================*/
 /*.my-list-items {
     width: 100%;
@@ -364,7 +464,16 @@ a:hover {
     color: #5B5B5B;
     text-align: center;
 }
-
+.returnbtn{
+    padding: 6px 15px;
+    width: 60px;
+    font-weight: 500;
+    border-radius: 3px;
+    border: 1px solid #bbbbbb;
+}
+.returnbtn:hover,.returnbtn:focus{
+    background-color:  #bbbbbb;
+}
 /*=================footer=================*/
 #my-footer {
     width: 100%;
@@ -483,53 +592,93 @@ a:hover {
     border-left: 6px solid #39485B;
     color: #39485B;
 }
+.my-m2-submodule-parts-title{
+    width: 95%;
+    margin:10px auto 20px auto;
+    height: 38px;
+}
+.my-m2-submodule-left-title{
+    float: left;
+    width: 40%;
+    height: 18px;
+    line-height: 1;
+    font-size: 18px;
+    margin: 10px 0;
+    padding: 0 5px;
+    border-left: 6px solid #39485B;
+    color: #39485B;
+}
+.my-m2-submodule-right-title{
+    float: right;
+    width: 50%;
+    margin-right:0
+}
 /*=================sub_module1=================*/
 #my-m2-submodule1{
-    width: 100%;
-    height: 140px;
+    width: 95%;
+    height: 300px;
+    margin: 0 auto;
+}
+.my-m2-submodule1-list{
+    overflow:hidden;
+    margin-right:-2.8%;
 }
 .my-m2-submodule1-item{
     float: left;
-    width: 30%;
-    margin-left:2.5%;
+    width: 23%;
+    margin-right:1.75%;
+    margin-top: 10px;
+    margin-bottom: 10px;
     height: 130px;
     background: #F9F9F9;
     border: 1px solid #BBBBBB;
     border-radius: 3px;
 }
-.my-m2-submodule1-icon{
-    float: left;
-    width: 80px;
-    margin: 25px 15px;
-    height: 80px;
-}
+
 .my-m2-submodule1-text{
     float: left;
-    width: 30%;
+    width: 65%;
     line-height: 1;
     padding-top: 10px;
     height: 100%;
+    padding-left: 15px;
 }
 .my-m2-submodule1-text h1{
-    margin: 0;
+     margin: 0;
     line-height: 1;
-    padding-top:25px;
+    padding-top:20px;
     font-size: 16px;
 }
-.my-m2-submodule1-text h2{
+.my-m2-submodule1-text-left{
+    width:100%;
+    overflow: hidden;
+    height:auto;
+    margin-top: 10px;
+}
+.my-m2-submodule1-icon{
+    display: inline-block;
+    line-height:82px;
+    width: 30px;
+    padding:  15px 0;
+    height: 60px;
+    vertical-align: middle;
+}
+.my-m2-submodule1-text-left h2{
+    display: inline-block;
+    vertical-align: middle;
     margin: 0;
-    line-height: 1;
-    padding-top:15px;
-    font-size: 34px;
+    padding: 0;
+    line-height:2;
+    font-size: 26px;
     color:#7FC05C;
 }
-.my-m2-submodule1-text h2 span{
+.my-m2-submodule1-text-left h2 span{
     font-size: 16px;
 }
 .my-m2-submodule1-chart{
     float:right;
-    width: 30%;
-    margin-right: 15px;
+    width: 35%;
+    padding-right:10px;
     /*    margin: 10px 0 10px 1%;*/
     height: 100%;
 }
@@ -537,7 +686,7 @@ a:hover {
 #my-m2-submodule2{
     width: 95%;
     height: auto;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     background: #fff;
 
 }
@@ -722,7 +871,7 @@ a:hover {
 
 .searchBtn {
     margin-top: 4px;
-    margin-right: 70px;
+    margin-right: 5px;
     float: right;
 }
 
@@ -771,72 +920,40 @@ a:hover {
     background: url("../../images/switch20.png") center center no-repeat;
 }
 
-/*=================usermanegent=================*/
-#leftpannel{
-    width:238px;
-    height: 100%;
-    overflow-x:scroll;
+.multip-input {
+position: absolute;
+left: 0;
+top: 42px;
+padding: 5px 0;
+z-index: 999;
+/*min-width: 100%;*/
+    width: 170px;
+border: 1px solid #d2d2d2;
+max-height: 300px;
+overflow-y: auto;
+background-color: #fff;
+border-radius: 2px;
+box-shadow: 0 2px 4px rgba(0,0,0,.12);
+box-sizing: border-box;
+}
+/*.multi_table thead  tr,.multi_table tbody  tr{
+    padding: 3px 3px;
+    line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 14px;
-    border-right:2px solid #F3F3F3;
-    float: left;
 }
-#tree-nav{
-    padding: 0;
-    margin:0;
+*/
+.multi_table td, .multi_table th{
+    padding: 5px 5px !important;
 }
-.title_li{
-    line-height: 30px;
-    font-size: 14px ;
-    border-bottom:2px solid #F3F3F3;
-    text-align: center;
-    font-weight: 600;
-    color:#FFFFFF;
-    background: #647b9a;
-}
-#tree-nav li a i,#tree-nav li a cite{
-    font-size: 14px
-}
-#rightpanel{
-     width:960px;
-    height: 100%;
-    float: left;
-}
-.userlist{
-    display: inline-block;
-    line-height: 30px;
-    font-size:14px;
-    background: #647b9a;
-    width:100%;
-    text-align: center;
-    vertical-align: middle;
-    color:#FFFFFF;
-    font-weight: 600;
-    border-bottom: 1px solid #F3F3F3;
 
+.multi_table .layui-form-checkbox[lay-skin=primary] {
+    margin-top: 4px !important;
 }
-.userfunction{
-    overflow: hidden;
-    height: 30px;
-    background: #9F9F9F;
-}
-.userfunction ul{
-    overflow: hidden;
-}
-.userfunction li{
-    display: inline-block;
-    line-height: 30px;
-    float:left;
 
-}
-.userfunction li a{
-    color:#FFFFFF;
-    padding: 0 10px 0 10px;
-    border:2px solid #9F9F9F;
-}
-.userfunction li a:hover{
-    border-radius: 2px;
-    border:1px solid #F3F3F3;
-}
-.userfunction li  span{
-    color:#F3F3F3;
+.multi_table .layui-form-checkbox[lay-skin=primary] i{
+    width: 14px  !important;
+    line-height: 14px !important;
 }

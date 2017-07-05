@@ -36,12 +36,12 @@ public class GetConf {
             FileInputStream fis = new FileInputStream(file);*/
             InputStream fis = GetConf.class.getResourceAsStream("/data.properties");
             properties.load(fis);
-
+/*
             Set<Object> keySet = properties.keySet();
 
             for (Object object : keySet) {
                 System.out.println(object.toString()+":"+properties.getProperty(object.toString()));
-            }
+            }*/
             cityCodeFile = properties.getProperty("cityCodeFile");
             provinceCodeFile = properties.getProperty("provinceCodeFile");
             createTablesFile = properties.getProperty("createTablesFile");

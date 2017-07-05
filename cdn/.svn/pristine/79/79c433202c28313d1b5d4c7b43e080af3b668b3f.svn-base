@@ -1,0 +1,416 @@
+package cn.com.ailbb.server.service;
+
+import cn.com.ailbb.enums.Msg;
+import cn.com.ailbb.handler.HttpHandler;
+import cn.com.ailbb.obj.Result;
+import cn.com.ailbb.obj.Token;
+import cn.com.ailbb.server.model.Node;
+import cn.com.ailbb.server.dao.UserDao;
+import cn.com.ailbb.server.dao.OsInfoDao;
+import cn.com.ailbb.server.dao.MenuInfoDao;
+import cn.com.ailbb.server.dao.GroupInfoDao;
+import cn.com.ailbb.server.pojo.*;
+import cn.com.ailbb.server.dao.GroupRightsDao;
+import cn.com.ailbb.server.service.UserRightsService;
+import cn.com.ailbb.util.HttpUtil;
+import cn.com.ailbb.util.MD5Util;
+import cn.com.ailbb.util.TimeUtil;
+import org.apache.commons.collections.MapUtils;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
+import java.lang.System;
+import java.util.*;
+import cn.com.ailbb.util.*;
+import java.sql.Timestamp;
+import net.sf.json.JSONArray;
+/**
+ * Created by xzl on 2017/5/21.
+ */
+@Service
+public class UserRightsServiceImpl implements UserRightsService {
+
+    private Logger logger = Logger.getLogger(UserRightsService.class); // log4j日志
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private GroupInfoDao groupInfoDao;
+
+    @Autowired
+    private GroupRightsDao groupRightsDao;
+
+    @Autowired
+    private MenuInfoDao menuInfoDao;
+
+    @Autowired
+    private OsInfoDao osInfoDao;
+
+    /**
+     * 登陆
+     *
+     * @param request
+     * @param response
+     * @return Result
+     */
+    @Override
+    public Result doLogin(Map<String, Object> params) {
+
+
+        String username = DataUtil.ObjectToString(params.get("username"));
+        String password = DataUtil.ObjectToString(params.get("password"));
+
+
+        User user = userDao.getUserById(username);
+
+        if (null == username) {
+            return new Result(false, Msg.getCode(101));
+        } else if (null == password) {
+            return new Result(false, Msg.getCode(102));
+        } else if (null == user) {
+            return new Result(false, Msg.getCode(103));
+        } else if (!user.getPassword().equals(MD5Util.encoded(password))) {
+            return new Result(false, Msg.getCode(104));
+        } else {
+            boolean rememberMe = Boolean.getBoolean(DataUtil.ObjectToString(params.get("rememberMe")));
+            String host = DataUtil.ObjectToString(params.get("host"));
+
+            user.setBeforeLoginTime(user.getLastLoginTime())
+                    .setLastLoginTime(TimeUtil.DateToTimestamp())
+                    .setBeforeLoginHost(user.getLastLoginHost())
+                    .setLastLoginHost(host)
+                    .setRememberMe(rememberMe)
+                    .setStatus(2);
+
+            userDao.updateUser(user);
+            SecurityUtils.getSubject().getSession().setAttribute("user", user);
+            SecurityUtils.getSubject().login(new Token(user, username, password, rememberMe, host));
+
+            logger.info(Msg.getCode(105) + host + user);
+            //获取用户的权限和菜单
+            // List<MenuInfo> menuContent =getUserRightsAndMenu(user.getUgroupid());
+            Result result = new Result(true, Msg.getCode(105), "/web/module/cdn/cdn_index.jsp");
+            return result;
+        }
+    }
+
+    @Override
+    public Result doLoginout() {
+        Subject subject = SecurityUtils.getSubject();
+        if (null != subject) {
+            subject.logout();
+            // logger.info(Msg.getCode(106));
+            return new Result(true, Msg.getCode(106));
+            // HttpHandler.send(response, new Result(true, Msg.getCode(106)));
+        } else {
+            // HttpHandler.send(response, new Result(false, Msg.getCode(107)));
+            return new Result(true, Msg.getCode(107));
+        }
+    }
+
+    @Override
+    public List<MenuInfo> getUserRightsAndMenu(int groupid) {
+
+        //获取用户所在的用户组权限
+        List<GroupRights> menurights = groupRightsDao.getGroupRights(groupid);
+        List<Integer> menulist = new ArrayList<Integer>();
+        for (GroupRights gr : menurights) {
+            menulist.add(gr.getMenuid());
+        }
+        //根据获得的菜单列表，去菜单表里获取菜单的依赖关系
+        List<MenuInfo> menuContent = menuInfoDao.getMenuList(menulist);
+        return menuContent;
+    }
+
+    @Override
+    public String getUserGroupInfo() {
+        List<GroupInfo> groupinfo = groupInfoDao.getGroupinfo();
+        List<Map<String, Object>> result = new ArrayList<>();
+        HashMap nodeList = new HashMap();
+        // 根据结果集构造节点列表（存入散列表）
+        for (Iterator it = groupinfo.iterator(); it.hasNext(); ) {
+            GroupInfo dataRecord = (GroupInfo) it.next();
+            Node node = new Node();
+            node.id = String.valueOf(dataRecord.getUgroupid());
+            node.name = String.valueOf(dataRecord.getUgroupname());
+            node.parentId = String.valueOf(dataRecord.getUparentgroupid());
+            nodeList.put(node.id, node);
+            nodeList.put("0", new Node("0", "根目录", ""));
+        }
+        return   changedatatree(nodeList);
+    }
+
+
+
+    @Override
+    public List<Map<String, String>> getUserInfo(int osid) {
+        List<Map<String, String>> result = new ArrayList<>();
+        List<User> userinfo = userDao.getUserByOsId(osid);
+        for (int i = 0; i < userinfo.size(); i++) {
+            User user = (User) userinfo.get(i);
+            Map map = new HashMap<String, String>();
+            map.put("username", user.getUsername());
+            map.put("name", user.getName());
+            map.put("sex", user.getSex());
+            map.put("tel", user.getTel());
+            map.put("osid", user.getOsid());
+            map.put("CreateTime", user.getCreateTime() == null ? null : TimeUtil.TextToMinDateText((user.getCreateTime()).toString()));
+            map.put("LastLoginTime", user.getLastLoginTime() == null ? null : TimeUtil.TextToMinDateText(user.getLastLoginTime().toString()));
+            result.add(map);
+        }
+        return result;
+    }
+
+    @Override
+    public Map addUserInfo(Map map) {
+        String username = MapUtils.getString(map, "username");
+        String password = MD5Util.encoded(MapUtils.getString(map, "password"));//密码加密
+        String realname = MapUtils.getString(map, "realname");
+        int osid = DataUtil.StringToInt(MapUtils.getString(map, "osid"));
+        String tel = MapUtils.getString(map, "tel");
+        int sex = DataUtil.StringToInt(MapUtils.getString(map, "sex"));
+        Date date = new Date();
+        Timestamp createTime = new Timestamp(date.getTime());
+        Timestamp lastLoginTime = new Timestamp(date.getTime());
+
+        User newuser = new User(username, password, sex, realname, osid, tel, createTime, lastLoginTime);
+        try{
+            userDao.insertUser(newuser);
+            Map newusermap = new HashMap<String, String>();
+            newusermap.put("username", username);
+            newusermap.put("name", realname);
+            newusermap.put("sex", sex);
+            newusermap.put("tel", tel);
+            newusermap.put("osid", osid);
+            newusermap.put("CreateTime", TimeUtil.TextToMinDateText(createTime.toString()));
+            newusermap.put("LastLoginTime", TimeUtil.TextToMinDateText(lastLoginTime.toString()));
+            return newusermap;
+        }catch(DataAccessException e){
+            Map newusermap = new HashMap<String, String>();
+            newusermap.put("error","插入数据库失败，请保证用户名唯一");
+            return newusermap;
+        }
+
+    }
+
+    public Map editUserInfo(Map map) {
+        String username = MapUtils.getString(map, "username");
+        String realname = MapUtils.getString(map, "realname");
+        String tel = MapUtils.getString(map, "tel");
+        int sex = DataUtil.StringToInt(MapUtils.getString(map, "sex"));
+       /* User edituser = userDao.getUserById(username);
+        edituser.setName(realname);
+        edituser.setTel(tel);
+        edituser.setSex(sex);
+        userDao.updateUser(edituser);*/
+        Map newusermap = new HashMap<String, String>();
+        newusermap.put("username", username);
+        newusermap.put("name", realname);
+        newusermap.put("sex", sex);
+        newusermap.put("tel", tel);
+        userDao.updatePartUser(newusermap);
+        return newusermap;
+    }
+
+    public void deleteUserInfo(String username) {
+
+        userDao.deleteUserById(username);
+    }
+
+    @Override
+    public String getMenuInfo(int groupid) {
+
+        List<MenuInfo> menuinfo = menuInfoDao.getAllMenuList();
+        List<GroupRights> groupinfo = groupRightsDao.getGroupRights(groupid);
+        return changedatatreeforrights(menuinfo, groupinfo);
+    }
+
+    @Override
+    public String changedatatreeforrights(List<MenuInfo> menuinfo, List<GroupRights> groupinfo) {
+        // 节点列表（散列表，用于临时存储节点对象）
+        HashMap nodeList = new HashMap();
+        // 根节点
+        Node root = null;
+
+        // 根据结果集构造节点列表（存入散列表）
+        for (Iterator it = menuinfo.iterator(); it.hasNext(); ) {
+            MenuInfo menuInfo = (MenuInfo) it.next();
+            Node node = new Node();
+            node.id = String.valueOf(menuInfo.getMenuid());
+            node.name = String.valueOf(menuInfo.getMenuname());
+            node.parentId = String.valueOf(menuInfo.getMparentId());
+            for (Iterator iit = groupinfo.iterator(); iit.hasNext(); ) {
+                GroupRights groupRights = (GroupRights) iit.next();
+                if (menuInfo.getMenuid() == groupRights.getMenuid()) {
+                    node.checked = true;
+                    break;
+                }
+            }
+            nodeList.put(node.id, node);
+            nodeList.put("0", new Node("0", "根目录", ""));
+        }
+
+        // 构造无序的多叉树
+        Set entrySet = nodeList.entrySet();
+        for (Iterator it = entrySet.iterator(); it.hasNext(); ) {
+            Node node = (Node) ((Map.Entry) it.next()).getValue();
+            if (node.parentId == null || node.parentId.equals("")) {
+                root = node;
+            } else {
+                ((Node) nodeList.get(node.parentId)).addChild(node);
+            }
+        }
+        // 对多叉树进行横向排序
+        root.sortChildren();
+        return root.toString2();
+    }
+
+    public int getGroupIdByName(String groupname) {
+        int groupid = groupInfoDao.getGroupIdByName(groupname);
+        return groupid;
+    }
+
+    @Override
+    public String modifypasswd(Map map) {
+        String username = MapUtils.getString(map, "username");
+        String password = MD5Util.encoded(MapUtils.getString(map, "password"));
+       if( userDao.modifyUserPasswd(password, username)) {
+           return "密码修改成功";
+       }else
+       {
+           return "密码修改失败";
+       }
+    }
+    @Override
+    public String editMenuRights(Map map){
+        String MenuArr=MapUtils.getString(map, "menuid");
+        JSONArray MenuList = JSONArray.fromObject(MenuArr);
+        int ugroupid=DataUtil.StringToInt(MapUtils.getString(map, "ugroupid"));
+        //先删除权限表原来该组的权限
+        try{
+            groupRightsDao.deleteGroupRightsById(ugroupid);
+            String ugroupname = groupInfoDao.getGroupNameById(ugroupid);
+            List<MenuInfo> Menuinfo = menuInfoDao.getMenuList(MenuList);
+            for(int i=0;i<Menuinfo.size();i++){
+                MenuInfo menu = (MenuInfo) Menuinfo.get(i);
+                groupRightsDao.insertGroupRights(ugroupid,ugroupname,menu.getMenuid(),menu.getMenuname());
+            }
+            return "修改权限成功";
+        }catch (Exception e) {
+            e.printStackTrace();
+            return "修改权限失败";
+        }
+    }
+
+    public String getOsInfo(){
+        try{
+           List<OsInfo> osInfo = osInfoDao.getOsinfo();
+            // 节点列表（散列表，用于临时存储节点对象）
+            HashMap nodeList = new HashMap();
+            // 根据结果集构造节点列表（存入散列表）
+            for (Iterator it = osInfo.iterator(); it.hasNext(); ) {
+                OsInfo dataRecord = (OsInfo) it.next();
+                Node node = new Node();
+                node.id = String.valueOf(dataRecord.getOsid());
+                node.name = String.valueOf(dataRecord.getOsname());
+                node.parentId = String.valueOf(dataRecord.getOsparentid());
+                nodeList.put(node.id, node);
+                nodeList.put("0", new Node("0", "根目录", ""));
+            }
+          return   changedatatree(nodeList);
+        }catch(Exception e) {
+            e.printStackTrace();
+            return  "获取组织结构失败";
+        }
+
+    }
+
+    @Override
+    public String changedatatree(HashMap nodeList) {
+
+        // 根节点
+        Node root = null;
+        // 构造无序的多叉树
+        Set entrySet = nodeList.entrySet();
+        for (Iterator it = entrySet.iterator(); it.hasNext(); ) {
+            Node node = (Node) ((Map.Entry) it.next()).getValue();
+            if (node.parentId == null || node.parentId.equals("")) {
+                root = node;
+            } else {
+                ((Node) nodeList.get(node.parentId)).addChild(node);
+            }
+        }
+        // 对多叉树进行横向排序
+        root.sortChildren();
+        return root.toString();
+    }
+    @Override
+    public String allocateUserGroup(Map map){
+
+        String username =MapUtils.getString(map, "username");
+        int   ugroupid=DataUtil.StringToInt(MapUtils.getString(map, "ugroupid"));
+        try{
+           /* User user = userDao.getUserById(username);
+            user.setUgroupid(ugroupid);
+            userDao.updateUser(user);*/
+            Map newusermap = new HashMap<String, String>();
+            newusermap.put("username", username);
+            newusermap.put("ugroupid", ugroupid);
+            userDao.updatePartUser(newusermap);
+            return "分配用户组成功";
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return "分配用户组失败";
+        }
+
+    }
+
+    @Override
+    public String modifyOsInfo(Map map){
+        String msg = "";
+        try{
+            int osid =DataUtil.StringToInt(MapUtils.getString(map, "osid"));
+           String osname = MapUtils.getString(map, "osname");
+            osInfoDao.updateOsnameById(osid,osname);
+            osInfoDao.updateOsParentnameById(osid,osname);
+            msg ="机构名称修改成功";
+    } catch(DataAccessException e){
+            msg ="数据库异常,机构名称修改失败";
+        }
+        return   msg;
+    }
+
+    @Override
+    public String deleteOsInfo(Map map){
+        String msg = "";
+        int osid =DataUtil.StringToInt(MapUtils.getString(map, "osid"));
+        try{
+            osInfoDao.deleteOsInfo(osid);//同时需要删除osid为父节点的所有子节点
+            osInfoDao.deleteOsnameByparnentId(osid);
+            msg ="机构名称删除成功";
+        } catch(DataAccessException e){
+            msg ="机构名称删除失败";
+        }
+        return   msg;
+    }
+    @Override
+     public OsInfo addOsInfo(Map map){
+         int osparentid =DataUtil.StringToInt(MapUtils.getString(map, "osparentid"));
+         String osname = MapUtils.getString(map, "osname");
+         String osparentname = MapUtils.getString(map, "osparentname");
+         int subnodenum = osInfoDao.getsubnode(osparentid);
+         int osid = DataUtil.StringToInt(MapUtils.getString(map, "osparentid")+String.valueOf(subnodenum+1));
+         OsInfo osinfo =new OsInfo(osid,osname,osparentid,osparentname);
+        osInfoDao.insertinfo(osinfo);
+         return osinfo;
+     }
+}

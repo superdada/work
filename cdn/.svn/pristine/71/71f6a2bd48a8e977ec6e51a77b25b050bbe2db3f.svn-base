@@ -1,0 +1,915 @@
+/* 鎬讳綋
+ ========================================================================== */
+html, body, div, ul, li, p, a {
+    margin: 0;
+    padding: 0
+}
+
+/*li {display: inline-block}*/
+li {
+    list-style-type: none;
+}
+
+.my-float-right {
+    float: right;
+}
+
+.my-float-left {
+    float: left;
+}
+
+body, div, li, a, p {
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.my-a {
+    color: #FCB738;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #FAE6CB
+}
+
+/*=================loading=================*/
+#loading {
+    position: fixed;
+    /*top: 60px;*/
+    width: 100%;
+    height:100%;
+    min-width: 1300px;
+    /*margin: 20px 0;*/
+    background: #F3F3F3;
+    border: 1px solid #bbbbbb;
+    /*padding: 10px 0;*/
+    z-index: 1000;
+}
+
+.my-progress {
+    width: 200px;
+    margin: 220px auto;
+}
+
+/*=================header=================*/
+.header {
+    width: 100%;
+    height: 60px;
+    min-width: 1200px;
+    background: #39485B;
+}
+
+.my-header-container {
+    /*    max-width: 1366px;*/
+    width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+}
+
+.my-header {
+    margin: 0 auto;
+    /*float: left;*/
+    width: 1200px;
+    height: 60px;
+    background: #39485B;
+}
+
+.my-logo1 {
+    margin: 7px 30px 8px 20px;
+    height: 45px;
+    float: left;
+}
+
+.my-header-item {
+    float: left;
+    width: 100px;
+    height: 42px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 18px;
+    cursor: pointer;
+}
+
+.my-header-item-selected {
+    float: left;
+    width: 100px;
+    height: 42px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 18px;
+    cursor: pointer;
+    background: #4787F3;
+}
+
+.my-header-item:hover {
+    background: #4787F3;
+}
+
+.my-quit {
+    cursor: pointer;
+    margin: 15px 20px;
+    font-size: 22px;
+    color: #8f8f8f;
+}
+
+.my-quit:hover {
+    color: #fff;
+}
+
+.signOutImg {
+    display: inline-block;
+    border: 0;
+    width: 32px;
+    height: 32px;
+    background: url("../../images/signOut.png") no-repeat;
+}
+
+.signOutImg:hover {
+    background: url("../../images/signOut2.png") no-repeat;
+}
+
+.layui-tab-title li:hover {
+    background: #BBBBBB;
+}
+
+/*=================vm=================*/
+#vm {
+    width: 1200px;
+    /*    width: 96%;
+        min-width: 1300px;*/
+    margin: 20px auto;
+    /*    background: #F3F3F3;*/
+    background: #FFF;
+    height: auto;
+    /*    max-height: 550px;*/
+    border-radius: 5px;
+    border: 1px solid #bbbbbb;
+    padding: 20px 0;
+}
+
+#index_head {
+    width: 100%;
+    /*min-width: 1230px;*/
+    margin: 0px auto;
+    /* background: #F3F3F3; */
+    height: auto;
+    /* max-height: 550px; */
+    /* border-radius: 5px; */
+    /* border: 1px solid #bbbbbb; */
+    /* padding: 10px 0; */
+}
+
+.my-show-box {
+    width: 100%;
+    height: auto;
+}
+
+/*=================维度/指标切换=================*/
+.index_box{
+    z-index:99;
+    margin-top: 3px;
+    border: 1px solid #d2d2d2;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12);
+    box-sizing: border-box;
+}
+.index_table{
+    margin: 5px 0 5px 0;
+}
+.index-this {
+    background-color: #5FB878;
+    color: #fff;
+}
+.layui-form-checked[lay-skin=primary] i {
+    border-color: #fff;
+    background-color: #fff;
+    color: #5FB878;
+}
+.my-switch-box{
+    width: 100%;
+    height: 50px;
+    min-width: 900px;
+    padding-left: 20px;
+}
+.my-switch-item {
+    width:auto;
+    height: 50px;
+    float: left;
+    padding-right: 5px;
+}
+.my-switch-text{
+    height: 50px;
+    padding: 8px 10px;
+    font-size: 14px;
+    float: left;
+}
+.my-switch-options {
+    white-space: nowrap;
+   /* padding: 8px;*/
+    overflow: auto;
+}
+.my-switch-options>li{
+    text-align: center;
+    width: 70px;
+    height: 35px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    float: left;
+    cursor: pointer;
+}
+.my-title-text{
+    display: inline-block;
+    line-height: 38px;
+    vertical-align: middle;
+    font-size: 14px;
+    float: left;
+    padding-right: 5px;
+}
+.my-title-options {
+    white-space: nowrap;
+    /* padding: 8px;*/
+    overflow: auto;
+}
+.my-title-options>li{
+    display: inline-block;
+    text-align: center;
+    width: 70px;
+    line-height: 38px;
+    vertical-align: middle;
+    border-radius: 3px;
+    font-size: 14px;
+    float: left;
+    cursor: pointer;
+}
+
+.conditionDiv {
+    width: 1200px;
+    height: 135px;
+    margin: auto;
+    padding: 10px 0;
+    background-color: white;
+    border-bottom: 3px inset;
+}
+
+.my-switch-options > li:hover {
+    background: #BBBBBB;
+}
+
+.my-options-on {
+    color: #fff;
+    background: #4787F3;
+}
+
+.my-options-off {
+}
+
+/*=================表头=================*/
+.my-list-titles {
+    width: 100%;
+    height: 40px;
+    background: #647B9A;
+}
+
+.my-list-titles > li {
+    padding-top: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+/*=================列样式1================*/
+.my-list-row5 > li {
+    padding-top: 10px;
+    float: left;
+    text-align: center;
+    height: 40px;
+    overflow: auto;
+    font-size: 13px;
+}
+
+.my-list-row5>li:nth-child(1){
+    width: 90px;
+}
+.my-list-row5>li:nth-child(2){
+    width: 90px;
+}
+.my-list-row5>li:nth-child(3){
+    width: 90px;
+}
+.my-list-row5>li:nth-child(4){
+    width: 650px;
+}
+.my-list-row5>li:nth-child(5){
+    width: 120px;
+}
+/*=================列样式2================*/
+.my-list-row4 > li {
+    padding-top: 10px;
+    float: left;
+    text-align: center;
+    height: 40px;
+    overflow: auto;
+    font-size: 13px;
+}
+
+.my-list-row4>li:nth-child(1){
+    width: 120px;
+}
+.my-list-row4>li:nth-child(2){
+    width: 100px;
+}
+.my-list-row4>li:nth-child(3){
+    width: 650px;
+}
+.my-list-row4>li:nth-child(4){
+    width: 140px;
+}
+/*=================列样式2================*/
+.my-list-row3 > li {
+    padding-top: 10px;
+    float: left;
+    text-align: center;
+    height: 40px;
+    overflow: auto;
+    font-size: 13px;
+}
+
+.my-list-row3>li:nth-child(1){
+    width: 220px;
+}
+.my-list-row3>li:nth-child(2){
+    width: 650px;
+}
+.my-list-row3>li:nth-child(3){
+    width: 140px;
+}
+.textline {
+
+}
+.textline:hover,.textline:focus {text-decoration: underline}
+/*=================数据样式=================*/
+/*.my-list-items {
+    width: 100%;
+}*/
+.my-list-items {
+    /*    max-height: 350px;*/
+    height: auto;
+    overflow: auto;
+}
+
+.my-list-items > li {
+    width: 100%;
+    height: 40px;
+}
+
+.my-list-items > li:nth-child(even) {
+    background: #F3F3F3;
+}
+
+.my-state-block {
+    float: left;
+    height: 20px;
+    width: 26px;
+    border-radius: 2px;
+    margin-right: 1px;
+}
+
+.state-danger {
+    background: #E7696A;
+    cursor: pointer;
+}
+
+.state-warning {
+    background: #FCB17A;
+    cursor: pointer;
+}
+
+.state-normal {
+    background: #9EBD84;
+    cursor: pointer;
+}
+
+.state-null {
+    background: #CDCDCD
+}
+
+.my-icons {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.my-icons-on {
+    color: #4787F3;
+}
+
+.my-icons-off {
+    color: #B6B6B6;
+}
+
+/*=================时间刻度=================*/
+.my-time-line {
+    width: 100%;
+    height: 20px;
+}
+
+.my-time-line > li {
+    float: left;
+    margin-top: -5px;
+}
+
+.my-time-line > li:nth-child(1) {
+    margin-left: 247px
+}
+
+/*.my-time-line>li:nth-child(2) {
+    margin-left: 86px
+}
+.my-time-line>li:nth-child(3) {
+    margin-left: 86px
+}
+.my-time-line>li:nth-child(4) {
+    margin-left: 86px
+}*/
+.my-time-point {
+    width: 81px;
+}
+
+.my-triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #5B5B5B;
+    margin: 0px auto;
+    z-index: 10;
+}
+
+.my-time-text {
+    font-size: 10px;
+    color: #5B5B5B;
+    text-align: center;
+}
+.returnbtn{
+    padding: 6px 15px;
+    width: 60px;
+    font-weight: 500;
+    border-radius: 3px;
+    border: 1px solid #bbbbbb;
+}
+.returnbtn:hover,.returnbtn:focus{
+    background-color:  #bbbbbb;
+}
+/*=================footer=================*/
+#my-footer {
+    width: 100%;
+    height: 65px;
+}
+
+/*=================图例=================*/
+.my-Legend-box {
+    float: left;
+    width: 500px;
+    height: 30px;
+    margin-left: 300px;
+    margin-top: 10px;
+}
+
+.my-legend-text {
+    float: left;
+    /*width: 80px;*/
+    font-size: 12px;
+    margin-right: 40px;
+}
+
+.my-Legend-danger {
+    background: #E7696A;
+    float: left;
+    height: 13px;
+    width: 20px;
+    border-radius: 2px;
+    margin: 2px;
+}
+
+.my-Legend-warning {
+    background: #FCB17A;
+    float: left;
+    height: 13px;
+    width: 20px;
+    border-radius: 2px;
+    margin: 2px;
+}
+
+.my-Legend-normal {
+    background: #9EBD84;
+    float: left;
+    height: 13px;
+    width: 20px;
+    border-radius: 2px;
+    margin: 2px;
+}
+
+.my-Legend-null {
+    background: #CDCDCD;
+    float: left;
+    height: 13px;
+    width: 20px;
+    border-radius: 2px;
+    margin: 2px;
+}
+
+/*=================分页=================*/
+.my-page-control-box {
+    float: right;
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.my-page-controller {
+    float: right;
+    width: 34px;
+    height: 34px;
+    margin: 0 10px;
+    border: 1px solid #BBBBBB;
+    border-radius: 3px;
+    padding-left: 8px;
+    padding-top: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.my-page-controller:hover {
+    background: #E6E6E6;
+}
+
+.my-page-goto {
+    float: right;
+    width: 120px;
+}
+
+.my-page-text {
+    float: right;
+    font-size: 14px;
+    padding-top: 8px;
+}
+/*=================module2=================*/
+/*=================实时监控模块=================*/
+#my-m2-vm{
+    /*    width: 96%;
+        min-width: 1300px;
+        max-width: 1366px;*/
+    width: 1200px;
+    height: auto;
+    margin: 20px auto;
+    background: #fff;
+    border: 1px solid #d9dadc;
+    border-radius: 5px;
+    padding: 20px 0 30px 0;
+}
+.my-m2-submodule-title{
+    width: 95%;
+    height: 18px;
+    line-height: 1;
+    margin: 20px auto;
+    font-size: 18px;
+    padding: 0 5px;
+    border-left: 6px solid #39485B;
+    color: #39485B;
+}
+.my-m2-submodule-parts-title{
+    width: 95%;
+    margin:10px auto 20px auto;
+    height: 38px;
+}
+.my-m2-submodule-left-title{
+    float: left;
+    width: 40%;
+    height: 18px;
+    line-height: 1;
+    font-size: 18px;
+    margin: 10px 0;
+    padding: 0 5px;
+    border-left: 6px solid #39485B;
+    color: #39485B;
+}
+.my-m2-submodule-right-title{
+    float: right;
+    width: 50%;
+    margin-right:0
+}
+/*=================sub_module1=================*/
+#my-m2-submodule1{
+    width: 95%;
+    height: 300px;
+    margin: 0 auto;
+}
+.my-m2-submodule1-list{
+    overflow:hidden;
+    margin-right:-2.8%;
+}
+.my-m2-submodule1-item{
+    float: left;
+    width: 23%;
+    margin-right:1.75%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 130px;
+    background: #F9F9F9;
+    border: 1px solid #BBBBBB;
+    border-radius: 3px;
+}
+
+.my-m2-submodule1-text{
+    float: left;
+    width: 65%;
+    line-height: 1;
+    padding-top: 10px;
+    height: 100%;
+    padding-left: 15px;
+}
+.my-m2-submodule1-text h1{
+     margin: 0;
+    line-height: 1;
+    padding-top:20px;
+    font-size: 16px;
+}
+.my-m2-submodule1-text-left{
+    width:100%;
+    overflow: hidden;
+    height:auto;
+    margin-top: 10px;
+}
+.my-m2-submodule1-icon{
+    display: inline-block;
+    line-height:82px;
+    width: 30px;
+    padding:  15px 0;
+    height: 60px;
+    vertical-align: middle;
+}
+.my-m2-submodule1-text-left h2{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    line-height:2;
+    font-size: 26px;
+    color:#7FC05C;
+}
+.my-m2-submodule1-text-left h2 span{
+    font-size: 16px;
+}
+.my-m2-submodule1-chart{
+    float:right;
+    width: 35%;
+    padding-right:10px;
+    /*    margin: 10px 0 10px 1%;*/
+    height: 100%;
+}
+/*=================sub_module2=================*/
+#my-m2-submodule2{
+    width: 95%;
+    height: auto;
+    margin: 0 auto 20px;
+    background: #fff;
+
+}
+#my-m2-submodule2-chart-box{
+    width: 98%;
+    height: 445px;
+    margin: 10px auto;
+    background: #fff;
+}
+#my-m2-submodule2-chart1 {
+    float: left;
+    width: 59%;
+    height: 445px;
+}
+.my-m2-submodule2-form {
+    float: right;
+    width: 20%;
+    height: 445px;
+    overflow-y: auto;
+}
+/*===================模块3====================*/
+#my-m2-submodule3 {
+    height: auto;
+    width: 95%;
+    margin: 0 auto;
+    background: #fff;
+}
+/*===================模块3====================*/
+/*=================module3=================*/
+/*=================报告分析模块=================*/
+.my3-switch-item {
+    /*width:300px;*/
+    height: 50px;
+    float: left;
+}
+.conditions {
+    padding: 5px;
+    width: 100%;
+    float: left;
+}
+.my3-switch-text {
+    height: 18px;
+    padding: 8px 10px;
+    font-size: 15px;
+    float: left;
+}
+.my3-switch-options {
+    white-space: nowrap;
+    padding: 8px;
+    overflow: auto;
+}
+.my3-switch-options > li {
+    text-align: center;
+    width: 80px;
+    height: 35px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    /* float: left; */
+    display: inline;
+    cursor: pointer;
+}
+.my3-switch-options > li:hover {
+    background: #BBBBBB;
+}
+/*===================自定义标签start======================*/
+.tbback-tabs {
+    width: 100%;
+    height: auto;
+    border: 1px solid #BBBBBB;
+}
+.tbback-nav-tabs {
+    width: 100%;
+    height: 35px;
+    background: #F3F3F3;
+    border-bottom: 1px solid #BBBBBB;
+}
+.tbback-nav-tabs>li {
+    float: left;
+    width: auto;
+    height: 35px;
+    padding: 7px 25px;
+    font-size: 14px;
+    border-right: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    background: #F3F3F3;
+    cursor: pointer;
+}
+.tbback-nav-tabs>li:hover {
+    background: #fff;
+    padding-top: 5px;
+    border-top: 2px solid #BBBBBB;
+}
+.tbback-nav-tabs>li.tbback-nav-tabs-selected {
+    border-bottom: 0;
+    padding-top: 5px;
+    border-top: 2px solid #4787F3;
+    background: #fff;
+    cursor: pointer;
+    color: #4787F3
+}
+.tbback-nav-tabs-unselected {}
+/*===================自定义标签end======================*/
+.my-m2-submodule3-chart-box{
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+.my-m2-submodule3-chart-controller{
+    margin-top: 30px;
+    width: 100%;
+    height: 35px;
+}
+/*===================自定义按钮组start======================*/
+.tbback-btns{
+    float: left;
+    width: auto;
+    height: 35px;
+}
+.tbback-btns>li {
+    margin-left: -1px;
+    float: left;
+    width: auto;
+    height: 35px;
+    padding: 7px 25px;
+    font-size: 14px;
+    border: 1px solid #BBBBBB;
+    background: #fff;
+    cursor: pointer;
+}
+.tbback-btns>li:hover {
+    background: #F3F3F3;
+}
+.tbback-btns>li.tbback-btns-selected {
+    border: 1px solid #39485B;
+    background: #39485B;
+    cursor: pointer;
+    color: #fff;
+}
+.tbback-btns-unselected {
+}
+/*===================自定义按钮组end======================*/
+/*===================自定义按钮start=======================*/
+.tbback-btn {
+    width: auto;
+    height: 35px;
+    padding: 7px 25px;
+    font-size: 14px;
+    border-radius:3px;
+    background: #4787F3;
+    color: #fff;
+    cursor: pointer;
+}
+.tbback-btn:hover {
+    background: #387EFF;
+}
+/*===================自定义按钮end=======================*/
+#my-time-selector{
+    width:auto;
+    float:right
+}
+#my-time-selector>p{
+    float:left;
+    font-size: 14px;
+    padding: 7px 10px;
+}
+#my-m2-submodule3-chart1{
+    width: 100%;
+    height: 300px;
+}
+/*==================================*/
+
+.btn_sbm_search span {
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 28px;
+    margin-top: 5px;
+    margin-right: 5px;
+    background: url("icon/icon-btn-search.png") center center no-repeat;
+}
+
+.searchBtn {
+    margin-top: 4px;
+    margin-right: 70px;
+    float: right;
+}
+
+.timeCondition {
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+.charts {
+    float: left;
+    margin-left: 2%;
+    width: 47.5%;
+    height: 350px;
+}
+
+.floatDiv {
+    float: left;
+}
+
+.singleChart {
+    width: 98%;
+    margin: 10px 1%;
+    height: 100%;
+}
+
+#tabDiv {
+    overflow: hidden;
+    width: 1200px;
+}
+
+/*echarts鐨凩egeth鏍峰紡*/
+.chartsSpot {
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 10px;
+    width: 9px;
+    height: 9px;
+}
+
+.switch-icon {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background: url("../../images/switch20.png") center center no-repeat;
+}
+

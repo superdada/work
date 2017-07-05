@@ -103,7 +103,7 @@ public class GetJson {
     private void handlejson(String provinceCode,String cityCode,String jsonString){
         if(jsonString == null)
             return;
-
+        System.out.println("cityCode"+cityCode+" JSON RESULT:"+jsonString);
         JsonParser parser = new JsonParser();
         try {
             JsonObject json = (JsonObject)parser.parse(jsonString);
@@ -114,7 +114,6 @@ public class GetJson {
             }
 
             JsonObject data = json.get("data").getAsJsonObject();
-            System.out.println(data.toString());
             String jsonline = data.toString().replace("{\"China_Unicom\":{","");
             jsonline = jsonline.replace("\"China_Mobile\":{","");
             jsonline = jsonline.replace("\"China_Telecom\":{","");
@@ -132,14 +131,50 @@ public class GetJson {
             ArrayList<String> lines = new ArrayList<String>();
             String line;
             String types[] = getConf.types.split(",");
+            //列转行
+            String lt_validity_ratio = "";
+            String yd_validity_ratio = "";
+            String dx_validity_ratio = "";
+            String cu_competitive = "";
             for(int i=0;i<types.length;i++){
-                line=44640+","+monthString+","+provinceCode+","+cityCode+","+types[i]+","+colums[i]+","+colums[i+types.length]+","+colums[i+types.length*2]+","+colums[i+types.length*3]+"\n";
+                lt_validity_ratio = colums[i].equals("null")? "":colums[i];
+                yd_validity_ratio = colums[i+types.length].equals("null")? "":colums[i+types.length];
+                dx_validity_ratio = colums[i+types.length*2].equals("null")? "":colums[i+types.length*2];
+                cu_competitive = getScore(lt_validity_ratio,yd_validity_ratio,dx_validity_ratio);
+                line=44640+","+monthString+","+provinceCode+","+cityCode+","+types[i]+","+lt_validity_ratio+","+yd_validity_ratio+","+dx_validity_ratio+","+cu_competitive+"\n";
                 resultString.append(line);
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    //分数计算
+    private String getScore(String lt_validity_ratio,String yd_validity_ratio,String dx_validity_ratio){
+        float score = 0;
+        if (lt_validity_ratio.equals(""))
+            return String.valueOf(score);
+
+        float lt_ratio = lt_validity_ratio.equals("")? 0:Float.parseFloat(lt_validity_ratio);
+        float yd_ratio = yd_validity_ratio.equals("")? 0:Float.parseFloat(yd_validity_ratio);
+        float dx_ratio = dx_validity_ratio.equals("")? 0:Float.parseFloat(dx_validity_ratio);
+
+        float max_ratio = Math.max(yd_ratio,dx_ratio);
+        float min_ratio = Math.min(yd_ratio,dx_ratio);
+
+        if(lt_ratio >= max_ratio){
+            float case1 = (lt_ratio-max_ratio)/lt_ratio;
+            if(case1 >= 0.1)
+                score = 100;
+            else
+                score = 90 + 100*case1;
+        }else if(lt_ratio < min_ratio)
+            score = 70 - 100*(min_ratio - lt_ratio)/min_ratio;
+        else
+            score = 70 + 20*(lt_ratio - min_ratio)/(max_ratio - min_ratio);
+
+        return String.valueOf(score);
     }
 
     //根据URL获得返回值
